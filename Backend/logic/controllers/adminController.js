@@ -2,10 +2,10 @@ import * as adminService from '../services/adminService.js';
 import * as ordonnanceService from '../services/ordonnanceService.js';
 
 // GET /api/admin/stats
-export const getStats = async (req, res) => {
-    try {
-        const stats = await adminService.getStats();
-        res.status(200).json({ success: true, stats });
+export const getStats = async (req, res) => {     //to get the stats of
+    try {                                         //the user (or the dashboard)
+        const stats = await adminService.getStats();            
+        res.status(200).json({ success: true, stats });        
     } catch (error) {
         console.error('Error fetching stats:', error);
         res.status(500).json({ success: false, message: 'Erreur serveur.' });
@@ -13,10 +13,10 @@ export const getStats = async (req, res) => {
 };
 
 // GET /api/admin/pending
-export const getPending = async (req, res) => {
-    try {
-        const pending = await adminService.getPendingItems();
-        res.status(200).json({ success: true, pending });
+export const getPending = async (req, res) => {       // get pending annonces
+    try {                                             //or pending ordonnances
+        const pending = await adminService.getPendingItems();        
+        res.status(200).json({ success: true, pending });          
     } catch (error) {
         console.error('Error fetching pending items:', error);
         res.status(500).json({ success: false, message: 'Erreur serveur.' });
@@ -24,13 +24,13 @@ export const getPending = async (req, res) => {
 };
 
 // PATCH /api/admin/moderate/:id
-export const moderateAnnonce = async (req, res) => {
+export const moderateAnnonce = async (req, res) => {   //moderate an annonce
     try {
         const { statut } = req.body;
 
         // Validate the status value
-        const validStatuts = ['PUBLIEE', 'REJETEE', 'SUSPENDUE'];
-        if (!statut || !validStatuts.includes(statut)) {
+        const validStatuts = ['PUBLIEE', 'REJETEE', 'SUSPENDUE'];    
+        if (!statut || !validStatuts.includes(statut)) {             
             return res.status(400).json({
                 success: false,
                 message: `Statut invalide. Valeurs autorisées: ${validStatuts.join(', ')}`
@@ -50,7 +50,7 @@ export const moderateAnnonce = async (req, res) => {
 };
 
 // PATCH /api/admin/ordonnance/:id
-export const moderateOrdonnance = async (req, res) => {
+export const moderateOrdonnance = async (req, res) => {   //moderate an annonce
     try {
         const { statut, comment } = req.body;
 
