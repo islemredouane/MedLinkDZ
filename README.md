@@ -1,16 +1,62 @@
-# React + Vite
+# MedLink DZ
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Plateforme d'entraide médicale pour l'Algérie — mise en relation entre personnes ayant des médicaments inutilisés et celles qui en ont besoin.
 
-Currently, two official plugins are available:
+## Repo layout
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+```
+MedLinkDZ/
+├── frontend/     React + Vite (port 5173)
+└── backend/      Express + PostgreSQL (port 5000)
+```
 
-## React Compiler
+Each side is self-contained with its own `package.json`, `.env`, and dependencies.
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Quick start
 
-## Expanding the ESLint configuration
+### Prerequisites
+- Node.js 20+
+- PostgreSQL 14+ (or Docker)
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+### 1. Backend
+
+```bash
+cd backend
+cp .env.example .env          # fill in DATABASE_URL and JWT_SECRET
+npm install
+# Initialize DB (once):
+psql $DATABASE_URL -f DataBase/schema.sql
+npm run dev                   # http://localhost:5000
+```
+
+### 2. Frontend
+
+```bash
+cd frontend
+cp .env.example .env          # set VITE_API_URL=http://localhost:5000
+npm install
+npm run dev                   # http://localhost:5173
+```
+
+### Run both at once (from repo root)
+
+```bash
+npm install                   # installs `concurrently`
+npm run dev                   # starts backend + frontend
+```
+
+## Documentation
+
+- **API reference**: [`backend/API_DOCUMENTATION.md`](backend/API_DOCUMENTATION.md)
+- **Database schema**: [`backend/DataBase/schema.sql`](backend/DataBase/schema.sql)
+- **Class diagram**: [`backend/DataBase/Class Diagram.pdf`](backend/DataBase/Class%20Diagram.pdf)
+
+## Tech stack
+
+**Frontend** — React 19, React Router 7, Vite, Framer Motion, Lucide, Axios
+**Backend** — Express 4, PostgreSQL (pg), JWT, bcryptjs, multer
+
+## Branches
+
+- `main` — stable
+- feature branches → PR → `main`
