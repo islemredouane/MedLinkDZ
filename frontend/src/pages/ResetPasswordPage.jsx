@@ -76,6 +76,7 @@ export default function ResetPasswordPage() {
               id="reset-password"
               icon={Lock}
               placeholder="••••••••"
+              minLength={8}
               value={newPassword}
               onChange={(e) => setNewPassword(e.target.value)}
               required
