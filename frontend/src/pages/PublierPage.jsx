@@ -131,8 +131,12 @@ export default function PublierPage() {
               </div>
               <h2 className="publish-success__title">Annonce publiée ! 🎉</h2>
               <p className="publish-success__desc">
-                Votre annonce est maintenant visible par la communauté MedLink DZ.
+                Votre annonce a bien été envoyée à l'équipe d'administration pour vérification.
               </p>
+              <div className="publish-review-note glass">
+                <AlertCircle size={16} />
+                <span>Elle sera examinée puis pourra être acceptée ou rejetée selon les règles de la plateforme.</span>
+              </div>
               <div className="publish-success__actions">
                 <PremiumButton variant="primary" onClick={() => navigate('/')}>
                   Retour à l'accueil
@@ -320,6 +324,10 @@ export default function PublierPage() {
                       <img src={imagePreview} alt="Aperçu" className="recap-image-thumb" />
                     </div>
                   )}
+                </div>
+                <div className="publish-review-note glass">
+                  <AlertCircle size={16} />
+                  <span>Après publication, votre annonce sera revue par un administrateur avant d'être acceptée ou rejetée.</span>
                 </div>
                 {submitError && (
                   <div className="submit-error">

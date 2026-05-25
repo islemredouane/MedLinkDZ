@@ -311,6 +311,25 @@
 
 .publish-success__title { font-size: var(--fs-xl); font-weight: 800; margin-bottom: 0.6rem; }
 .publish-success__desc { font-size: 0.9rem; color: var(--c-text-muted); margin-bottom: 2rem; }
+.publish-review-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.6rem;
+  padding: 0.9rem 1rem;
+  margin-bottom: 1.75rem;
+  border-radius: var(--r-md);
+  font-size: 0.82rem;
+  color: var(--c-text-muted);
+  line-height: 1.5;
+  text-align: left;
+}
+
+.publish-review-note svg {
+  flex-shrink: 0;
+  margin-top: 1px;
+  color: var(--c-green-400);
+}
+
 .publish-success__actions { display: flex; gap: 0.75rem; justify-content: center; flex-wrap: wrap; }
 
 /* Cat pills reuse from SearchPage */
