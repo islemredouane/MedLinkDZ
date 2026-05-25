@@ -94,127 +94,135 @@ export default function StatsPage() {
             ))}
           </div>
 
-          {/* Users Table */}
-          <div className="admin-card glass-bright" style={{ marginTop: '1.5rem' }}>
-            <h3 style={{ margin: '0 0 1rem', fontSize: '1.05rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, color: 'var(--c-text-primary)' }}>
-              <Users size={18} style={{ color: 'var(--c-green-400)' }} />
-              Liste des utilisateurs ({users.length})
-            </h3>
+          {/* Users List */}
+          <div className="admin-card glass-bright admin-users-panel" style={{ marginTop: '1.5rem' }}>
+            <div className="admin-users-panel__head">
+              <div>
+                <h3 className="admin-users-panel__title">
+                  <Users size={18} />
+                  Liste des utilisateurs
+                </h3>
+                <p className="admin-users-panel__subtitle">
+                  Consultez l’état des comptes, les coordonnées et les actions d’administration en un seul endroit.
+                </p>
+              </div>
+              <span className="admin-users-panel__count">{users.length} comptes</span>
+            </div>
+
             {users.length === 0 ? (
               <div className="admin-empty">Aucun utilisateur trouvé</div>
             ) : (
-              <div style={{ overflowX: 'auto' }}>
-                <table className="admin-table">
-                  <thead>
-                    <tr>
-                      <th>#</th>
-                      <th>Nom complet</th>
-                      <th>Email</th>
-                      <th>Téléphone</th>
-                      <th>Rôle</th>
-                      <th>Vérifié</th>
-                      <th>Annonces</th>
-                      <th>Inscrit le</th>
-                      <th>Actions</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {users.map((u, i) => {
-                      const role = ROLE_LABELS[u.role] || ROLE_LABELS.USER;
-                      return (
-                        <tr key={u.id}>
-                          <td data-label="#" style={{ color: 'var(--c-text-muted)', fontWeight: 500 }}>{i + 1}</td>
-                          <td data-label="Nom complet" style={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
-                            {u.prenom} {u.nom}
-                            {u.is_suspended && (
-                              <span style={{
-                                fontSize: '0.65rem', fontWeight: 800, textTransform: 'uppercase',
-                                padding: '0.1rem 0.35rem', borderRadius: '4px',
-                                background: 'rgba(245, 158, 11, 0.1)', color: '#f59e0b', border: '1px solid rgba(245, 158, 11, 0.2)'
-                              }}>
-                                Suspendu
-                              </span>
-                            )}
-                          </td>
-                          <td data-label="Email">
-                            <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                              <Mail size={13} style={{ opacity: 0.55, color: 'var(--c-text-muted)' }} />
+              <div className="admin-users-list">
+                <div className="admin-users-list__header">
+                  <span>#</span>
+                  <span>Profil</span>
+                  <span>Contact</span>
+                  <span>Rôle</span>
+                  <span>État</span>
+                  <span>Annonces</span>
+                  <span>Inscrit</span>
+                  <span>Actions</span>
+                </div>
+
+                <div className="admin-users-list__body">
+                  {users.map((u, i) => {
+                    const role = ROLE_LABELS[u.role] || ROLE_LABELS.USER;
+                    const isSuspended = !!u.is_suspended;
+                    const verifiedLabel = u.is_verified ? 'Vérifié' : 'Non vérifié';
+
+                    return (
+                      <div key={u.id} className={`admin-user-card glass ${isSuspended ? 'is-suspended' : ''}`}>
+                        <div className="admin-user-card__top">
+                          <div className="admin-user-card__index">{i + 1}</div>
+
+                          <div className="admin-user-card__identity">
+                            <div className="admin-user-card__name-row">
+                              <strong className="admin-user-card__name">{u.prenom} {u.nom}</strong>
+                              {isSuspended && <span className="admin-user-chip admin-user-chip--suspended">Suspendu</span>}
+                            </div>
+                            <div className="admin-user-card__subtext">Compte créé le {formatDate(u.created_at)}</div>
+                          </div>
+
+                          <div className="admin-user-card__actions">
+                            <button
+                              className={`admin-user-action-btn ${isSuspended ? 'admin-user-action-btn--restore' : 'admin-user-action-btn--warn'}`}
+                              onClick={() => handleSuspend(u.id, !isSuspended)}
+                              title={isSuspended ? 'Réactiver le compte' : 'Suspendre le compte'}
+                              aria-label={isSuspended ? 'Réactiver le compte' : 'Suspendre le compte'}
+                            >
+                              {isSuspended ? <RefreshCw size={16} /> : <Ban size={16} />}
+                              <span>{isSuspended ? 'Réactiver' : 'Suspendre'}</span>
+                            </button>
+
+                            <button
+                              className="admin-user-action-btn admin-user-action-btn--danger"
+                              onClick={() => handleDelete(u.id)}
+                              title="Supprimer le compte"
+                              aria-label="Supprimer le compte"
+                            >
+                              <Trash2 size={16} />
+                              <span>Supprimer</span>
+                            </button>
+                          </div>
+                        </div>
+
+                        <div className="admin-user-card__meta">
+                          <div className="admin-user-card__meta-item">
+                            <span className="admin-user-card__label">Email</span>
+                            <span className="admin-user-card__value">
+                              <Mail size={13} />
                               {u.email}
                             </span>
-                          </td>
-                          <td data-label="Téléphone">
-                            {u.phone ? (
-                              <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                                <Phone size={13} style={{ opacity: 0.55, color: 'var(--c-text-muted)' }} />
-                                {u.phone}
-                              </span>
-                            ) : (
-                              <span style={{ color: 'var(--c-text-muted)' }}>—</span>
-                            )}
-                          </td>
-                          <td data-label="Rôle">
+                          </div>
+
+                          <div className="admin-user-card__meta-item">
+                            <span className="admin-user-card__label">Téléphone</span>
+                            <span className="admin-user-card__value">
+                              {u.phone ? (
+                                <>
+                                  <Phone size={13} />
+                                  {u.phone}
+                                </>
+                              ) : (
+                                '—'
+                              )}
+                            </span>
+                          </div>
+
+                          <div className="admin-user-card__meta-item">
+                            <span className="admin-user-card__label">Rôle</span>
                             <span className={`admin-role-badge ${role.className}`}>
                               {u.role === 'ADMIN' && <ShieldCheck size={12} />}
                               {role.label}
                             </span>
-                          </td>
-                          <td data-label="Vérifié">
-                            <span style={{
-                              display: 'inline-block',
-                              width: 8, height: 8,
-                              borderRadius: '50%',
-                              background: u.is_verified ? '#10b981' : '#ef4444',
-                              boxShadow: u.is_verified ? '0 0 6px rgba(16,185,129,0.4)' : '0 0 6px rgba(239,68,68,0.4)',
-                            }} title={u.is_verified ? 'Vérifié' : 'Non vérifié'} />
-                          </td>
-                          <td data-label="Annonces">
-                            <span style={{
-                              display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                              minWidth: 28,
-                              padding: '0.15rem 0.5rem',
-                              borderRadius: 8,
-                              fontSize: '0.82rem',
-                              fontWeight: 700,
-                              background: u.annonce_count > 0 ? 'rgba(16,185,129,0.12)' : 'rgba(255,255,255,0.04)',
-                              color: u.annonce_count > 0 ? 'var(--c-green-400)' : 'var(--c-text-muted)',
-                            }}>
+                          </div>
+
+                          <div className="admin-user-card__meta-item">
+                            <span className="admin-user-card__label">Vérification</span>
+                            <span className={`admin-user-status ${u.is_verified ? 'is-verified' : 'is-unverified'}`} title={verifiedLabel}>
+                              <span className="admin-user-status__dot" />
+                              {verifiedLabel}
+                            </span>
+                          </div>
+
+                          <div className="admin-user-card__meta-item">
+                            <span className="admin-user-card__label">Annonces</span>
+                            <span className={`admin-user-count ${u.annonce_count > 0 ? 'has-data' : ''}`}>
                               {u.annonce_count}
                             </span>
-                          </td>
-                          <td data-label="Inscrit le" style={{ fontSize: '0.82rem', color: 'var(--c-text-secondary)' }}>
-                            {formatDate(u.created_at)}
-                          </td>
-                          <td data-label="Actions">
-                            <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
-                              <button
-                                onClick={() => handleSuspend(u.id, !u.is_suspended)}
-                                title={u.is_suspended ? 'Réactiver le compte' : 'Suspendre le compte'}
-                                style={{
-                                  background: 'none', border: 'none', cursor: 'pointer',
-                                  color: u.is_suspended ? '#10b981' : '#f59e0b',
-                                  display: 'flex', alignItems: 'center', padding: '0.2rem'
-                                }}
-                              >
-                                {u.is_suspended ? <RefreshCw size={16} /> : <Ban size={16} />}
-                              </button>
-                              <button
-                                onClick={() => handleDelete(u.id)}
-                                title="Supprimer le compte"
-                                style={{
-                                  background: 'none', border: 'none', cursor: 'pointer',
-                                  color: '#ef4444',
-                                  display: 'flex', alignItems: 'center', padding: '0.2rem'
-                                }}
-                              >
-                                <Trash2 size={16} />
-                              </button>
-                            </div>
-                          </td>
-                        </tr>
-                      );
-                    })}
-                  </tbody>
-                </table>
+                          </div>
+
+                          <div className="admin-user-card__meta-item">
+                            <span className="admin-user-card__label">Inscrit</span>
+                            <span className="admin-user-card__value admin-user-card__value--date">
+                              {formatDate(u.created_at)}
+                            </span>
+                          </div>
+                        </div>
+                      </div>
+                    );
+                  })}
+                </div>
               </div>
             )}
           </div>
