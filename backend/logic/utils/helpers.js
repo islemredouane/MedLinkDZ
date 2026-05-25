@@ -1,72 +1,39 @@
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
-import nodemailer from 'nodemailer';
+import axios from 'axios';
 
 const FRONTEND_URL = process.env.FRONTEND_URL?.trim() || 'http://localhost:5173';
-const SMTP_HOST = process.env.SMTP_HOST?.trim();
-const SMTP_PORT = process.env.SMTP_PORT?.trim();
-const SMTP_USER = process.env.SMTP_USER?.trim();
-const SMTP_PASS = process.env.SMTP_PASS?.trim();
-const SMTP_SECURE = String(process.env.SMTP_SECURE || '').trim().toLowerCase() === 'true';
-const EMAIL_FROM = process.env.EMAIL_FROM?.trim() || SMTP_USER || 'no-reply@medlinkdz.com';
-const SMTP_CONFIGURED = Boolean(SMTP_HOST && SMTP_PORT && SMTP_USER && SMTP_PASS);
-
-let transporter = null;
-let emailMode = 'disabled';
-
-if (SMTP_CONFIGURED) {
-    transporter = nodemailer.createTransport({
-        host: SMTP_HOST,
-        port: Number(SMTP_PORT),
-        secure: SMTP_SECURE,
-        auth: {
-            user: SMTP_USER,
-            pass: SMTP_PASS,
-        },
-    });
-    emailMode = 'smtp';
-} else {
-    const testAccount = await nodemailer.createTestAccount();
-    transporter = nodemailer.createTransport({
-        host: testAccount.smtp.host,
-        port: testAccount.smtp.port,
-        secure: testAccount.smtp.secure,
-        auth: {
-            user: testAccount.user,
-            pass: testAccount.pass,
-        },
-    });
-    emailMode = 'ethereal';
-    console.log('No SMTP configured. Using Ethereal test email account for development.');
-    console.log(`Preview URL will be available in the backend logs after sending.`);
-}
 
 const sendEmail = async ({ to, subject, html, text }) => {
-    if (!transporter) {
-        console.log('Email transport not configured. Email content:');
-        console.log({ to, subject, text, html });
+    const BREVO_API_KEY = process.env.BREVO_API_KEY?.trim();
+    const SENDER_EMAIL = process.env.SENDER_EMAIL?.trim();
+
+    if (!BREVO_API_KEY || !SENDER_EMAIL) {
+        console.log('Brevo API key or Sender Email not configured. Fallback content:');
+        console.log('\n==== EMAIL DEVELOPMENT FALLBACK ====');
+        console.log(`${text}`);
+        console.log('====================================\n');
         return false;
     }
 
     try {
-        const info = await transporter.sendMail({
-            from: EMAIL_FROM,
-            to,
-            subject,
-            text,
-            html,
+        await axios.post('https://api.brevo.com/v3/smtp/email', {
+            sender: { email: SENDER_EMAIL, name: 'MedLink DZ' },
+            to: [{ email: to }],
+            subject: subject,
+            htmlContent: html,
+            textContent: text
+        }, {
+            headers: {
+                'api-key': BREVO_API_KEY,
+                'Content-Type': 'application/json'
+            }
         });
-
-        if (emailMode === 'ethereal') {
-            console.log('Ethereal email sent. Preview URL:', nodemailer.getTestMessageUrl(info));
-        }
-
         return true;
     } catch (error) {
-        console.error('Failed to send email:', error.message);
+        console.error('Failed to send email via Brevo:', error?.response?.data || error.message);
         console.log('\n==== EMAIL DEVELOPMENT FALLBACK ====');
-        console.log(`Because the email failed to send (likely due to Render blocking SMTP ports), here is the link you need:`);
-        console.log(`\n${text}\n`);
+        console.log(`Email failed to send. Fallback link:\n${text}\n`);
         console.log('====================================\n');
         return false;
     }
