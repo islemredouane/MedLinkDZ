@@ -203,9 +203,9 @@
 }
 
 .admin-user-card {
-  display: flex;
-  flex-direction: column;
-  gap: 0.95rem;
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.8fr);
+  gap: 1rem 1.25rem;
   padding: 1rem 1.05rem;
   border-radius: 18px;
   border: 1px solid rgba(148, 163, 184, 0.12);
@@ -218,6 +218,7 @@
 }
 
 .admin-user-card__top {
+  grid-column: 1 / -1;
   display: grid;
   grid-template-columns: 42px minmax(0, 1fr) auto;
   gap: 0.85rem;
@@ -322,8 +323,9 @@
 }
 
 .admin-user-card__meta {
+  grid-column: 1 / -1;
   display: grid;
-  grid-template-columns: repeat(6, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.75rem;
 }
 
@@ -333,6 +335,12 @@
   border-radius: 16px;
   border: 1px solid rgba(148, 163, 184, 0.1);
   background: rgba(255, 255, 255, 0.02);
+}
+
+.admin-user-card__meta-item:nth-child(4),
+.admin-user-card__meta-item:nth-child(5),
+.admin-user-card__meta-item:nth-child(6) {
+  background: rgba(255, 255, 255, 0.03);
 }
 
 .admin-user-card__label {
@@ -607,6 +615,10 @@
 @media (max-width: 1080px) {
   .admin-users-list__header {
     display: none;
+  }
+
+  .admin-user-card {
+    grid-template-columns: 1fr;
   }
 
   .admin-user-card__top {

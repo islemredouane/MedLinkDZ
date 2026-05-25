@@ -80,7 +80,7 @@ export default function ProfilAnnoncesPage() {
           <div className="profil-annonces-summary glass">
             <div className="profil-annonces-summary__value">{loading ? '—' : annonces.length}</div>
             <div className="profil-annonces-summary__label">
-              {loading ? 'Chargement de vos annonces' : 'annonces disponibles dans votre historique'}
+              {loading ? 'Chargement de vos annonces' : 'annonce(s) disponibles dans votre historique'}
             </div>
           </div>
         </FadeUp>
@@ -93,12 +93,34 @@ export default function ProfilAnnoncesPage() {
             </div>
           ) : annonces.length === 0 ? (
             <FadeUp delay={0.15}>
-              <div className="profil-empty profil-annonces-empty glass-bright">
-                <Package size={32} />
-                <p>Aucune annonce pour le moment</p>
-                <PremiumButton variant="primary" size="sm" onClick={() => navigate('/publier')}>
-                  Publier une annonce
-                </PremiumButton>
+              <div className="profil-annonces-empty-card glass-bright">
+                <div className="profil-annonces-empty-card__icon">
+                  <Package size={34} />
+                </div>
+
+                <div className="profil-annonces-empty-card__content">
+                  <span className="profil-annonces-empty-card__eyebrow">Aucun résultat pour l’instant</span>
+                  <h2 className="profil-annonces-empty-card__title">Aucune annonce publiée</h2>
+                  <p className="profil-annonces-empty-card__text">
+                    Vos annonces apparaîtront ici dès que vous en publierez une. Vous pourrez ensuite suivre leur statut,
+                    les modifier ou les supprimer depuis cet espace.
+                  </p>
+
+                  <div className="profil-annonces-empty-card__actions">
+                    <PremiumButton variant="primary" size="sm" onClick={() => navigate('/publier')}>
+                      Publier une annonce
+                    </PremiumButton>
+                    <PremiumButton variant="ghost" size="sm" onClick={() => navigate('/profil')}>
+                      Retour au profil
+                    </PremiumButton>
+                  </div>
+                </div>
+
+                <div className="profil-annonces-empty-card__footer">
+                  <span>Suivi des statuts</span>
+                  <span>Modification rapide</span>
+                  <span>Suppression sécurisée</span>
+                </div>
               </div>
             </FadeUp>
           ) : (
