@@ -6,7 +6,7 @@ Plateforme algérienne de partage de médicaments, pensée pour relier les perso
 
 - Frontend en production: https://medlink-dz.vercel.app/
 - Backend API: hébergé sur Render
-- Base de données: hébergée sur Neon via `DATABASE_URL`
+- Base de données: hébergée sur Neon 
 
 ## Versions actuelles
 
