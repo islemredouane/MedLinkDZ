@@ -327,28 +327,6 @@
   color: #fbbf24;
 }
 
-.edit-profile-notes {
-  padding: 1.1rem 1.15rem;
-}
-
-.edit-profile-notes h3 {
-  margin: 0 0 0.65rem;
-  font-size: 0.98rem;
-  font-weight: 700;
-  color: var(--c-text-primary);
-}
-
-.edit-profile-notes ul {
-  margin: 0;
-  padding-left: 1.05rem;
-  color: var(--c-text-secondary);
-}
-
-.edit-profile-notes li {
-  margin-bottom: 0.55rem;
-  line-height: 1.55;
-}
-
 @media (max-width: 960px) {
   .edit-profile-grid {
     grid-template-columns: 1fr;

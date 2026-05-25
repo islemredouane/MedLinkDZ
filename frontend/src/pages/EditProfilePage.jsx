@@ -203,15 +203,6 @@ export default function EditProfilePage() {
                 </span>
               </div>
             </div>
-
-            <div className="edit-profile-notes glass">
-              <h3>Pourquoi cette page est meilleure</h3>
-              <ul>
-                <li>Pas de collision avec la navbar fixe ou la navigation mobile.</li>
-                <li>Les champs sont groupés par intention, pas empilés au hasard.</li>
-                <li>Le bouton d'enregistrement reste visible et cohérent sur desktop et mobile.</li>
-              </ul>
-            </div>
           </aside>
         </div>
       </div>
