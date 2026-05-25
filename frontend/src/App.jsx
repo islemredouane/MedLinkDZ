@@ -25,6 +25,7 @@ const AnnonceDetailPage = lazy(() => import('./pages/AnnonceDetailPage'));
 const PublierPage = lazy(() => import('./pages/PublierPage'));
 const ProfilPage = lazy(() => import('./pages/ProfilPage'));
 const ProfilAnnoncesPage = lazy(() => import('./pages/ProfilAnnoncesPage'));
+const EditProfilePage = lazy(() => import('./pages/EditProfilePage'));
 
 /* Admin — lazy (rarely used by most users) */
 const AdminLayout = lazy(() => import('./pages/admin/AdminLayout'));
@@ -39,6 +40,17 @@ function App() {
     <>
       <ScrollToTop />
       <Routes>
+        <Route element={<ProtectedRoute />}>
+          <Route
+            path="profil/modifier"
+            element={
+              <Suspense fallback={<RouteFallback />}>
+                <EditProfilePage />
+              </Suspense>
+            }
+          />
+        </Route>
+
         <Route path="/" element={<Layout />}>
           <Route index element={<HomePage />} />
           <Route path="login" element={<LoginPage />} />

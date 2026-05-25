@@ -1,42 +1,20 @@
-import React, { useEffect, useMemo, useRef, useState } from 'react';
-import { motion, AnimatePresence } from 'framer-motion';
+import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
   User, Mail, Phone, MapPin, Calendar, Package, LogOut,
-  Edit3, Shield, Camera, X, Loader2,
+  Edit3, Shield, Loader2,
 } from 'lucide-react';
 import PremiumButton from '../components/ui/PremiumButton';
-import Input from '../components/ui/Input';
-import WilayaSelect from '../components/ui/WilayaSelect';
 import FadeUp from '../components/animations/FadeUp';
 import { useAuth } from '../context/AuthContext';
 import { annonceApi, assetUrl } from '../services/api';
 import './ProfilPage.css';
 
 export default function ProfilPage() {
-  const { user, loading: authLoading, updateProfile, logout } = useAuth();
+  const { user, loading: authLoading, logout } = useAuth();
   const navigate = useNavigate();
   const [annonces, setAnnonces] = useState([]);
   const [loadingAnnonces, setLoadingAnnonces] = useState(true);
-
-  const [editOpen, setEditOpen] = useState(false);
-  const [form, setForm] = useState({ nom: '', prenom: '', phone: '', wilaya: '' });
-  const [avatarFile, setAvatarFile] = useState(null);
-  const [avatarPreview, setAvatarPreview] = useState(null);
-  const [saving, setSaving] = useState(false);
-  const [editError, setEditError] = useState(null);
-  const fileRef = useRef(null);
-
-  useEffect(() => {
-    if (user) {
-      setForm({
-        nom: user.nom || '',
-        prenom: user.prenom || '',
-        phone: user.phone || '',       // DB column is 'phone', not 'telephone'
-        wilaya: user.wilaya || ''
-      });
-    }
-  }, [user]);
 
   useEffect(() => {
     let mounted = true;
@@ -68,32 +46,6 @@ export default function ProfilPage() {
     ? new Date(user.created_at).toLocaleDateString('fr-FR', { month: 'long', year: 'numeric' })
     : '—';
 
-  const onPickAvatar = (e) => {
-    const f = e.target.files?.[0];
-    if (!f) return;
-    setAvatarFile(f);
-    setAvatarPreview(URL.createObjectURL(f));
-  };
-
-  const handleSave = async (e) => {
-    e.preventDefault();
-    setEditError(null);
-    setSaving(true);
-    try {
-      const fd = new FormData();
-      Object.entries(form).forEach(([k, v]) => fd.append(k, v ?? ''));
-      if (avatarFile) fd.append('avatar', avatarFile);
-      await updateProfile(fd);
-      setEditOpen(false);
-      setAvatarFile(null);
-      setAvatarPreview(null);
-    } catch (err) {
-      setEditError(err?.response?.data?.message || 'Impossible d\'enregistrer.');
-    } finally {
-      setSaving(false);
-    }
-  };
-
   const handleLogout = () => {
     logout();
     navigate('/', { replace: true });
@@ -110,9 +62,11 @@ export default function ProfilPage() {
   }
 
 
-  const avatarSrc = avatarPreview || assetUrl(user.avatar_url); // DB column is 'avatar_url
+  const avatarSrc = assetUrl(user.avatar_url); // DB column is 'avatar_url'
   const isVerified = !!user.is_verified;
   const roleLabel = user.role === 'ADMIN' ? 'Administrateur' : 'Utilisateur';
+
+  const goToProfileEdit = () => navigate('/profil/modifier');
 
 
   return (
@@ -142,7 +96,7 @@ export default function ProfilPage() {
               </div>
             </div>
             <div className="profil-hero__right">
-              <PremiumButton variant="primary" icon={Edit3} size="sm" onClick={() => setEditOpen(true)}>
+              <PremiumButton variant="primary" icon={Edit3} size="sm" onClick={goToProfileEdit}>
                 Modifier le profil
               </PremiumButton>
               {user.role === 'ADMIN' && (
@@ -205,7 +159,7 @@ export default function ProfilPage() {
               </div>
 
               <div className="profil-info-card__actions">
-                <PremiumButton variant="ghost" icon={Edit3} size="sm" onClick={() => setEditOpen(true)}>
+                <PremiumButton variant="ghost" icon={Edit3} size="sm" onClick={goToProfileEdit}>
                   Modifier les informations
                 </PremiumButton>
               </div>
@@ -247,75 +201,6 @@ export default function ProfilPage() {
         </div>
       </div>
 
-      <AnimatePresence>
-        {editOpen && (
-          <motion.div
-            className="profil-modal-backdrop"
-            initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }}
-            onClick={() => setEditOpen(false)}
-          >
-            <motion.div
-              className="profil-modal glass-bright"
-              initial={{ opacity: 0, y: 20, scale: 0.97 }}
-              animate={{ opacity: 1, y: 0, scale: 1 }}
-              exit={{ opacity: 0, y: 20, scale: 0.97 }}
-              onClick={(e) => e.stopPropagation()}
-            >
-              <button className="profil-modal__close" onClick={() => setEditOpen(false)} aria-label="Fermer">
-                <X size={18} />
-              </button>
-              <h3 className="profil-modal__title">Modifier mon profil</h3>
-
-              <form onSubmit={handleSave} className="profil-edit-form">
-                <div className="profil-edit-preview glass">
-                  <div className="profil-edit-preview__avatar">
-                    {avatarSrc ? <img src={avatarSrc} alt="avatar" /> : <User size={28} />}
-                  </div>
-                  <div className="profil-edit-preview__text">
-                    <strong>{user.prenom} {user.nom}</strong>
-                    <span>{user.email}</span>
-                    {user.wilaya && <span>{user.wilaya}</span>}
-                  </div>
-                </div>
-
-                <div className="profil-avatar-edit">
-                  <div className="profil-avatar profil-avatar--lg">
-                    {avatarSrc ? <img src={avatarSrc} alt="avatar" /> : <User size={40} />}
-                  </div>
-                  <button type="button" className="profil-avatar-btn" onClick={() => fileRef.current?.click()}>
-                    <Camera size={14} /> Changer la photo
-                  </button>
-                  <input ref={fileRef} type="file" accept="image/*" hidden onChange={onPickAvatar} />
-                </div>
-
-                <div className="form-row">
-                  <Input label="Prénom" id="ed-prenom" icon={User} value={form.prenom}
-                    onChange={(e) => setForm({ ...form, prenom: e.target.value })} />
-                  <Input label="Nom" id="ed-nom" icon={User} value={form.nom}
-                    onChange={(e) => setForm({ ...form, nom: e.target.value })} />
-                </div>
-
-                <Input label="Téléphone" id="ed-tel" icon={Phone} value={form.phone}
-                  onChange={(e) => setForm({ ...form, phone: e.target.value })} />
-
-                <WilayaSelect label="Wilaya" value={form.wilaya}
-                  onChange={(v) => setForm({ ...form, wilaya: v })} />
-
-                {editError && <div className="auth-error">{editError}</div>}
-
-                <div className="profil-modal__actions">
-                  <PremiumButton type="button" variant="ghost" onClick={() => setEditOpen(false)}>
-                    Annuler
-                  </PremiumButton>
-                  <PremiumButton type="submit" variant="primary" loading={saving}>
-                    Enregistrer
-                  </PremiumButton>
-                </div>
-              </form>
-            </motion.div>
-          </motion.div>
-        )}
-      </AnimatePresence>
     </div>
   );
 }
