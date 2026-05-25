@@ -8,7 +8,7 @@
     "dev:backend": "npm --prefix backend run dev",
     "dev:frontend": "npm --prefix frontend run dev",
     "install:all": "npm install && npm --prefix backend install && npm --prefix frontend install",
-    "build": "npm --prefix frontend run build",
+    "build": "vite build",
     "start": "npm --prefix backend run start"
   },
   "devDependencies": {
