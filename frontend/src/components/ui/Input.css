@@ -72,3 +72,32 @@
   line-height: 1.35;
   color: #ef4444;
 }
+
+.input-toggle-btn {
+  position: absolute;
+  right: 0.85rem;
+  background: transparent;
+  border: none;
+  color: var(--c-text-muted);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 4px;
+  border-radius: var(--r-sm);
+  transition: color var(--t-fast) var(--ease-smooth), background var(--t-fast) var(--ease-smooth);
+}
+
+.input-toggle-btn:hover {
+  color: var(--c-green-400);
+  background: rgba(255, 255, 255, 0.04);
+}
+
+.input-toggle-btn:focus-visible {
+  outline: 2px solid rgba(52, 211, 153, 0.9);
+  outline-offset: 1px;
+}
+
+.input-field.with-toggle {
+  padding-right: 2.75rem;
+}
