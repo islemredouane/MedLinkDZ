@@ -123,8 +123,8 @@ export default function StatsPage() {
                       const role = ROLE_LABELS[u.role] || ROLE_LABELS.USER;
                       return (
                         <tr key={u.id}>
-                          <td style={{ color: 'var(--c-text-muted)', fontWeight: 500 }}>{i + 1}</td>
-                          <td style={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                          <td data-label="#" style={{ color: 'var(--c-text-muted)', fontWeight: 500 }}>{i + 1}</td>
+                          <td data-label="Nom complet" style={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             {u.prenom} {u.nom}
                             {u.is_suspended && (
                               <span style={{
@@ -136,13 +136,13 @@ export default function StatsPage() {
                               </span>
                             )}
                           </td>
-                          <td>
+                          <td data-label="Email">
                             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                               <Mail size={13} style={{ opacity: 0.55, color: 'var(--c-text-muted)' }} />
                               {u.email}
                             </span>
                           </td>
-                          <td>
+                          <td data-label="Téléphone">
                             {u.phone ? (
                               <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
                                 <Phone size={13} style={{ opacity: 0.55, color: 'var(--c-text-muted)' }} />
@@ -152,13 +152,13 @@ export default function StatsPage() {
                               <span style={{ color: 'var(--c-text-muted)' }}>—</span>
                             )}
                           </td>
-                          <td>
+                          <td data-label="Rôle">
                             <span className={`admin-role-badge ${role.className}`}>
                               {u.role === 'ADMIN' && <ShieldCheck size={12} />}
                               {role.label}
                             </span>
                           </td>
-                          <td>
+                          <td data-label="Vérifié">
                             <span style={{
                               display: 'inline-block',
                               width: 8, height: 8,
@@ -167,7 +167,7 @@ export default function StatsPage() {
                               boxShadow: u.is_verified ? '0 0 6px rgba(16,185,129,0.4)' : '0 0 6px rgba(239,68,68,0.4)',
                             }} title={u.is_verified ? 'Vérifié' : 'Non vérifié'} />
                           </td>
-                          <td>
+                          <td data-label="Annonces">
                             <span style={{
                               display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
                               minWidth: 28,
@@ -181,10 +181,10 @@ export default function StatsPage() {
                               {u.annonce_count}
                             </span>
                           </td>
-                          <td style={{ fontSize: '0.82rem', color: 'var(--c-text-secondary)' }}>
+                          <td data-label="Inscrit le" style={{ fontSize: '0.82rem', color: 'var(--c-text-secondary)' }}>
                             {formatDate(u.created_at)}
                           </td>
-                          <td>
+                          <td data-label="Actions">
                             <div style={{ display: 'flex', gap: '0.5rem', alignItems: 'center' }}>
                               <button
                                 onClick={() => handleSuspend(u.id, !u.is_suspended)}

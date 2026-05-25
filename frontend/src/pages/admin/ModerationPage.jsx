@@ -72,11 +72,11 @@ export default function ModerationPage() {
             <tbody>
               {items.map(a => (
                 <tr key={a.id}>
-                  <td>{a.marque || a.dci || '—'}</td>
-                  <td>{a.type}</td>
-                  <td>{a.user_prenom && a.user_nom ? `${a.user_prenom} ${a.user_nom}` : '—'}</td>
-                  <td>{a.created_at ? new Date(a.created_at).toLocaleDateString('fr-FR') : '—'}</td>
-                  <td>
+                  <td data-label="Médicament">{a.marque || a.dci || '—'}</td>
+                  <td data-label="Type">{a.type}</td>
+                  <td data-label="Auteur">{a.user_prenom && a.user_nom ? `${a.user_prenom} ${a.user_nom}` : '—'}</td>
+                  <td data-label="Date">{a.created_at ? new Date(a.created_at).toLocaleDateString('fr-FR') : '—'}</td>
+                  <td data-label="Actions">
                     <div className="admin-actions" style={{ justifyContent: 'flex-end' }}>
                       <button
                         className="admin-btn admin-btn--approve"
