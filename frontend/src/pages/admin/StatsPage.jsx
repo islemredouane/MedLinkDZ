@@ -113,17 +113,6 @@ export default function StatsPage() {
               <div className="admin-empty">Aucun utilisateur trouvé</div>
             ) : (
               <div className="admin-users-list">
-                <div className="admin-users-list__header">
-                  <span>#</span>
-                  <span>Profil</span>
-                  <span>Contact</span>
-                  <span>Rôle</span>
-                  <span>État</span>
-                  <span>Annonces</span>
-                  <span>Inscrit</span>
-                  <span>Actions</span>
-                </div>
-
                 <div className="admin-users-list__body">
                   {users.map((u, i) => {
                     const role = ROLE_LABELS[u.role] || ROLE_LABELS.USER;

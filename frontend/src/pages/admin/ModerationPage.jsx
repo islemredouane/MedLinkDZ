@@ -47,19 +47,29 @@ export default function ModerationPage() {
       <p className="admin-page-sub">Annonces en attente de validation</p>
 
       {error && (
-        <div style={{ marginBottom: '1rem', padding: '0.75rem', borderRadius: '0.75rem', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.35)', color: '#fca5a5', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div className="admin-alert admin-alert--error">
           <AlertCircle size={16} />
           {error}
         </div>
       )}
 
-      <div className="admin-card glass-bright">
+      <div className="admin-card glass-bright admin-moderation-panel">
+        <div className="admin-moderation-panel__head">
+          <div>
+            <h2 className="admin-moderation-panel__title">Files de validation</h2>
+            <p className="admin-moderation-panel__subtitle">
+              Examinez chaque annonce, contrôlez l’auteur et prenez une décision rapide.
+            </p>
+          </div>
+          <span className="admin-users-panel__count">{items.length} annonces</span>
+        </div>
+
         {loading ? (
           <div className="admin-empty"><Loader2 className="profil-spin" /></div>
         ) : items.length === 0 ? (
           <div className="admin-empty">Aucune annonce à modérer</div>
         ) : (
-          <table className="admin-table">
+          <table className="admin-table admin-table--moderation">
             <thead>
               <tr>
                 <th>Médicament</th>
@@ -72,21 +82,35 @@ export default function ModerationPage() {
             <tbody>
               {items.map(a => (
                 <tr key={a.id}>
-                  <td data-label="Médicament">{a.marque || a.dci || '—'}</td>
-                  <td data-label="Type">{a.type}</td>
-                  <td data-label="Auteur">{a.user_prenom && a.user_nom ? `${a.user_prenom} ${a.user_nom}` : '—'}</td>
-                  <td data-label="Date">{a.created_at ? new Date(a.created_at).toLocaleDateString('fr-FR') : '—'}</td>
+                  <td data-label="Médicament">
+                    <span className="admin-moderation-medicine">{a.marque || a.dci || '—'}</span>
+                  </td>
+                  <td data-label="Type">
+                    <span className={`admin-moderation-type admin-moderation-type--${String(a.type || '').toLowerCase() === 'demande' ? 'demande' : 'offre'}`}>
+                      {String(a.type || '').toLowerCase() === 'demande' ? 'Demande' : 'Offre'}
+                    </span>
+                  </td>
+                  <td data-label="Auteur">
+                    <span className="admin-moderation-author">
+                      {a.user_prenom && a.user_nom ? `${a.user_prenom} ${a.user_nom}` : '—'}
+                    </span>
+                  </td>
+                  <td data-label="Date">
+                    <span className="admin-moderation-date">
+                      {a.created_at ? new Date(a.created_at).toLocaleDateString('fr-FR') : '—'}
+                    </span>
+                  </td>
                   <td data-label="Actions">
-                    <div className="admin-actions" style={{ justifyContent: 'flex-end' }}>
+                    <div className="admin-actions admin-moderation-actions">
                       <button
-                        className="admin-btn admin-btn--approve"
+                        className="admin-btn admin-btn--approve admin-moderation-btn admin-moderation-btn--approve"
                         disabled={busyId === a.id}
                         onClick={() => moderate(a.id, 'approve')}
                       >
                         <Check size={14} /> Approuver
                       </button>
                       <button
-                        className="admin-btn admin-btn--reject"
+                        className="admin-btn admin-btn--reject admin-moderation-btn admin-moderation-btn--reject"
                         disabled={busyId === a.id}
                         onClick={() => moderate(a.id, 'reject')}
                       >
