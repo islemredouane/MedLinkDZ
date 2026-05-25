@@ -107,50 +107,118 @@ export const sendVerificationEmail = async (user, token) => {
     
     const html = `
     <!DOCTYPE html>
-    <html>
+    <html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${subject}</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+            
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100% !important;
+                -webkit-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+                background-color: #050b12;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            }
+            
+            img {
+                border: 0;
+                outline: none;
+                text-decoration: none;
+                -ms-interpolation-mode: bicubic;
+            }
+            
+            .title-text {
+                font-family: 'Space Grotesk', -apple-system, sans-serif;
+            }
+            
+            .cta-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5) !important;
+                background: linear-gradient(135deg, #14b8a6 0%, #10b981 100%) !important;
+            }
+            
+            @media only screen and (max-width: 600px) {
+                .email-container {
+                    width: 100% !important;
+                    padding: 10px !important;
+                }
+                .card-body {
+                    padding: 30px 20px !important;
+                }
+            }
+        </style>
     </head>
-    <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6;">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f4f7f6; padding: 40px 20px;">
+    <body style="margin: 0; padding: 0; background-color: #050b12; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #050b12; background-image: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.12) 0%, transparent 50%), radial-gradient(circle at 50% 100%, rgba(20, 184, 166, 0.08) 0%, transparent 50%); padding: 40px 10px;">
             <tr>
                 <td align="center">
-                    <table width="100%" max-width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 600px; width: 100%;">
-                        <!-- Header -->
+                    <table class="email-container" width="100%" max-width="580" border="0" cellspacing="0" cellpadding="0" style="background-color: #091520; border-radius: 16px; border: 1px solid rgba(16, 185, 129, 0.18); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); max-width: 580px; width: 100%; overflow: hidden;">
                         <tr>
-                            <td align="center" style="background-color: #059669; padding: 30px 20px;">
-                                <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700; letter-spacing: 1px;">MedLink DZ</h1>
-                            </td>
+                            <td height="4" style="background: linear-gradient(90deg, #10b981 0%, #14b8a6 100%); line-height: 4px; font-size: 0px;">&nbsp;</td>
                         </tr>
-                        <!-- Body -->
                         <tr>
-                            <td style="padding: 40px 30px;">
-                                <h2 style="color: #1f2937; margin-top: 0; font-size: 22px;">Bonjour ${user.prenom},</h2>
-                                <p style="color: #4b5563; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
+                            <td class="card-body" style="padding: 45px 35px;">
+                                <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 35px; width: 100%;">
+                                    <tr>
+                                        <td>
+                                            <table border="0" cellspacing="0" cellpadding="0" align="left">
+                                                <tr>
+                                                    <td style="vertical-align: middle; padding-right: 12px;">
+                                                        <div style="background-color: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 10px; width: 44px; height: 44px; text-align: center; display: inline-block;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 10px; display: inline-block; vertical-align: middle;">
+                                                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                                                                <path d="M3.22 12H9.5l1.5-3.5 2 7 1.5-3.5h3.28"/>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    <td style="vertical-align: middle;">
+                                                        <span style="font-family: 'Space Grotesk', -apple-system, sans-serif; font-size: 23px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; line-height: 44px;">
+                                                            Med<span style="color: #10b981;">Link</span>
+                                                            <span style="font-family: 'Inter', -apple-system, sans-serif; font-weight: 600; font-size: 11px; color: #94a3b8; border: 1px solid rgba(148,163,184,0.15); background-color: rgba(255,255,255,0.03); padding: 3px 7px; border-radius: 6px; margin-left: 6px; letter-spacing: 0.5px; vertical-align: middle;">DZ</span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <h2 class="title-text" style="color: #ffffff; margin-top: 0; font-size: 24px; font-weight: 700; margin-bottom: 18px; letter-spacing: -0.01em;">Bonjour ${user.prenom},</h2>
+                                
+                                <p style="color: #94a3b8; font-size: 15px; line-height: 1.65; margin-bottom: 30px; margin-top: 0;">
                                     Bienvenue sur <strong>MedLink DZ</strong> ! Nous sommes ravis de vous compter parmi nous. Pour commencer à utiliser notre plateforme d'entraide médicale, veuillez vérifier votre adresse email en cliquant sur le bouton ci-dessous :
                                 </p>
-                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                                
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 35px;">
                                     <tr>
-                                        <td align="center" style="padding: 10px 0 30px 0;">
-                                            <a href="${verifyUrl}" style="background-color: #10b981; color: #ffffff; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-size: 16px; font-weight: bold; display: inline-block; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.25);">
+                                        <td align="center">
+                                            <a href="${verifyUrl}" class="cta-btn" style="background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%); background-color: #10b981; color: #ffffff; text-decoration: none; padding: 15px 36px; border-radius: 30px; font-size: 16px; font-weight: 600; display: inline-block; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35); transition: all 0.3s ease;">
                                                 Vérifier mon email
                                             </a>
                                         </td>
                                     </tr>
                                 </table>
-                                <p style="color: #6b7280; font-size: 14px; line-height: 1.5; margin-bottom: 0;">
-                                    Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :<br>
-                                    <a href="${verifyUrl}" style="color: #059669; word-break: break-all;">${verifyUrl}</a>
-                                </p>
+                                
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #050b12; border: 1px solid rgba(148, 163, 184, 0.08); border-radius: 10px; padding: 18px;">
+                                    <tr>
+                                        <td>
+                                            <p style="color: #475569; font-size: 12px; margin: 0 0 8px 0; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Si le bouton ne fonctionne pas, copiez ce lien :</p>
+                                            <a href="${verifyUrl}" style="color: #14b8a6; font-size: 13px; font-family: 'Courier New', Courier, monospace, monospace; text-decoration: none; word-break: break-all; font-weight: 500;">${verifyUrl}</a>
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
-                        <!-- Footer -->
                         <tr>
-                            <td align="center" style="background-color: #f9fafb; padding: 20px; border-top: 1px solid #e5e7eb;">
-                                <p style="color: #9ca3af; font-size: 13px; margin: 0;">
+                            <td align="center" style="background-color: rgba(5, 11, 18, 0.5); padding: 25px 30px; border-top: 1px solid rgba(148, 163, 184, 0.06);">
+                                <p style="color: #475569; font-size: 13px; margin: 0; line-height: 1.5; text-align: center;">
                                     Si vous n'avez pas créé de compte, vous pouvez ignorer cet email en toute sécurité.<br>
-                                    &copy; ${new Date().getFullYear()} MedLink DZ. Tous droits réservés.
+                                    <span style="display: inline-block; margin-top: 10px; color: #34d399; font-weight: 500;">MedLink DZ &bull; Plateforme d'entraide médicale</span>
                                 </p>
                             </td>
                         </tr>
@@ -171,50 +239,118 @@ export const sendResetPasswordEmail = async (user, token) => {
     
     const html = `
     <!DOCTYPE html>
-    <html>
+    <html lang="fr">
     <head>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>${subject}</title>
+        <style>
+            @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@500;700&display=swap');
+            
+            body {
+                margin: 0;
+                padding: 0;
+                width: 100% !important;
+                -webkit-text-size-adjust: 100%;
+                -ms-text-size-adjust: 100%;
+                background-color: #050b12;
+                font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            }
+            
+            img {
+                border: 0;
+                outline: none;
+                text-decoration: none;
+                -ms-interpolation-mode: bicubic;
+            }
+            
+            .title-text {
+                font-family: 'Space Grotesk', -apple-system, sans-serif;
+            }
+            
+            .cta-btn:hover {
+                transform: translateY(-2px);
+                box-shadow: 0 6px 20px rgba(16, 185, 129, 0.5) !important;
+                background: linear-gradient(135deg, #14b8a6 0%, #10b981 100%) !important;
+            }
+            
+            @media only screen and (max-width: 600px) {
+                .email-container {
+                    width: 100% !important;
+                    padding: 10px !important;
+                }
+                .card-body {
+                    padding: 30px 20px !important;
+                }
+            }
+        </style>
     </head>
-    <body style="margin: 0; padding: 0; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; background-color: #f4f7f6;">
-        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #f4f7f6; padding: 40px 20px;">
+    <body style="margin: 0; padding: 0; background-color: #050b12; font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;">
+        <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #050b12; background-image: radial-gradient(circle at 50% 0%, rgba(16, 185, 129, 0.12) 0%, transparent 50%), radial-gradient(circle at 50% 100%, rgba(20, 184, 166, 0.08) 0%, transparent 50%); padding: 40px 10px;">
             <tr>
                 <td align="center">
-                    <table width="100%" max-width="600" border="0" cellspacing="0" cellpadding="0" style="background-color: #ffffff; border-radius: 12px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05); max-width: 600px; width: 100%;">
-                        <!-- Header -->
+                    <table class="email-container" width="100%" max-width="580" border="0" cellspacing="0" cellpadding="0" style="background-color: #091520; border-radius: 16px; border: 1px solid rgba(16, 185, 129, 0.18); box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4); max-width: 580px; width: 100%; overflow: hidden;">
                         <tr>
-                            <td align="center" style="background-color: #059669; padding: 30px 20px;">
-                                <h1 style="color: #ffffff; margin: 0; font-size: 28px; font-weight: 700; letter-spacing: 1px;">MedLink DZ</h1>
-                            </td>
+                            <td height="4" style="background: linear-gradient(90deg, #10b981 0%, #14b8a6 100%); line-height: 4px; font-size: 0px;">&nbsp;</td>
                         </tr>
-                        <!-- Body -->
                         <tr>
-                            <td style="padding: 40px 30px;">
-                                <h2 style="color: #1f2937; margin-top: 0; font-size: 22px;">Bonjour ${user.prenom},</h2>
-                                <p style="color: #4b5563; font-size: 16px; line-height: 1.6; margin-bottom: 25px;">
-                                    Vous avez demandé la réinitialisation de votre mot de passe sur <strong>MedLink DZ</strong>. Ne vous inquiétez pas, cela arrive à tout le monde ! Cliquez sur le bouton ci-dessous pour définir un nouveau mot de passe :
-                                </p>
-                                <table width="100%" border="0" cellspacing="0" cellpadding="0">
+                            <td class="card-body" style="padding: 45px 35px;">
+                                <table border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 35px; width: 100%;">
                                     <tr>
-                                        <td align="center" style="padding: 10px 0 30px 0;">
-                                            <a href="${resetUrl}" style="background-color: #10b981; color: #ffffff; text-decoration: none; padding: 14px 30px; border-radius: 8px; font-size: 16px; font-weight: bold; display: inline-block; box-shadow: 0 4px 6px rgba(16, 185, 129, 0.25);">
+                                        <td>
+                                            <table border="0" cellspacing="0" cellpadding="0" align="left">
+                                                <tr>
+                                                    <td style="vertical-align: middle; padding-right: 12px;">
+                                                        <div style="background-color: rgba(16, 185, 129, 0.12); border: 1px solid rgba(16, 185, 129, 0.25); border-radius: 10px; width: 44px; height: 44px; text-align: center; display: inline-block;">
+                                                            <svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="#10b981" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="margin-top: 10px; display: inline-block; vertical-align: middle;">
+                                                                <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
+                                                                <path d="M3.22 12H9.5l1.5-3.5 2 7 1.5-3.5h3.28"/>
+                                                            </svg>
+                                                        </div>
+                                                    </td>
+                                                    <td style="vertical-align: middle;">
+                                                        <span style="font-family: 'Space Grotesk', -apple-system, sans-serif; font-size: 23px; font-weight: 700; color: #ffffff; letter-spacing: -0.5px; line-height: 44px;">
+                                                            Med<span style="color: #10b981;">Link</span>
+                                                            <span style="font-family: 'Inter', -apple-system, sans-serif; font-weight: 600; font-size: 11px; color: #94a3b8; border: 1px solid rgba(148,163,184,0.15); background-color: rgba(255,255,255,0.03); padding: 3px 7px; border-radius: 6px; margin-left: 6px; letter-spacing: 0.5px; vertical-align: middle;">DZ</span>
+                                                        </span>
+                                                    </td>
+                                                </tr>
+                                            </table>
+                                        </td>
+                                    </tr>
+                                </table>
+                                
+                                <h2 class="title-text" style="color: #ffffff; margin-top: 0; font-size: 24px; font-weight: 700; margin-bottom: 18px; letter-spacing: -0.01em;">Bonjour ${user.prenom},</h2>
+                                
+                                <p style="color: #94a3b8; font-size: 15px; line-height: 1.65; margin-bottom: 30px; margin-top: 0;">
+                                    Vous avez demandé la réinitialisation de votre mot de passe sur <strong>MedLink DZ</strong>. Pas de panique, cela arrive à tout le monde ! Cliquez sur le bouton ci-dessous pour choisir votre nouveau mot de passe de façon sécurisée :
+                                </p>
+                                
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="margin-bottom: 35px;">
+                                    <tr>
+                                        <td align="center">
+                                            <a href="${resetUrl}" class="cta-btn" style="background: linear-gradient(135deg, #10b981 0%, #14b8a6 100%); background-color: #10b981; color: #ffffff; text-decoration: none; padding: 15px 36px; border-radius: 30px; font-size: 16px; font-weight: 600; display: inline-block; box-shadow: 0 4px 15px rgba(16, 185, 129, 0.35); transition: all 0.3s ease;">
                                                 Réinitialiser mon mot de passe
                                             </a>
                                         </td>
                                     </tr>
                                 </table>
-                                <p style="color: #6b7280; font-size: 14px; line-height: 1.5; margin-bottom: 0;">
-                                    Si le bouton ne fonctionne pas, copiez et collez ce lien dans votre navigateur :<br>
-                                    <a href="${resetUrl}" style="color: #059669; word-break: break-all;">${resetUrl}</a>
-                                </p>
+                                
+                                <table width="100%" border="0" cellspacing="0" cellpadding="0" style="background-color: #050b12; border: 1px solid rgba(148, 163, 184, 0.08); border-radius: 10px; padding: 18px;">
+                                    <tr>
+                                        <td>
+                                            <p style="color: #475569; font-size: 12px; margin: 0 0 8px 0; font-weight: 500; text-transform: uppercase; letter-spacing: 0.5px;">Si le bouton ne fonctionne pas, copiez ce lien :</p>
+                                            <a href="${resetUrl}" style="color: #14b8a6; font-size: 13px; font-family: 'Courier New', Courier, monospace, monospace; text-decoration: none; word-break: break-all; font-weight: 500;">${resetUrl}</a>
+                                        </td>
+                                    </tr>
+                                </table>
                             </td>
                         </tr>
-                        <!-- Footer -->
                         <tr>
-                            <td align="center" style="background-color: #f9fafb; padding: 20px; border-top: 1px solid #e5e7eb;">
-                                <p style="color: #9ca3af; font-size: 13px; margin: 0;">
-                                    Si vous n'avez pas demandé cette réinitialisation, veuillez ignorer cet email.<br>
-                                    &copy; ${new Date().getFullYear()} MedLink DZ. Tous droits réservés.
+                            <td align="center" style="background-color: rgba(5, 11, 18, 0.5); padding: 25px 30px; border-top: 1px solid rgba(148, 163, 184, 0.06);">
+                                <p style="color: #475569; font-size: 13px; margin: 0; line-height: 1.5; text-align: center;">
+                                    Si vous n'avez pas demandé cette réinitialisation, vous pouvez ignorer cet email en toute sécurité.<br>
+                                    <span style="display: inline-block; margin-top: 10px; color: #34d399; font-weight: 500;">MedLink DZ &bull; Plateforme d'entraide médicale</span>
                                 </p>
                             </td>
                         </tr>
@@ -226,4 +362,5 @@ export const sendResetPasswordEmail = async (user, token) => {
     </html>
     `;
     return sendEmail({ to: user.email, subject, text, html });
+};l, subject, text, html });
 };
