@@ -12,10 +12,14 @@ dotenv.config({ path: path.join(__dirname, '.env') });
 
 // 2. Importer l'application express (depuis le dossier logic)
 import app from './logic/app.js';
+import { seedDatabase } from './logic/config/seeder.js';
 
 // 3. Définir le port et démarrer l'écoute
 const PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => {
+app.listen(PORT, async () => {
     console.log(`Serveur démarré avec succès sur le port ${PORT}`);
+    // Auto-seed the database on startup (self-healing UX)
+    await seedDatabase().catch(err => console.error('Seeding database failed:', err));
 });
+
