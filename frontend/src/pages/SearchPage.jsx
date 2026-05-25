@@ -1,15 +1,18 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Search, SlidersHorizontal, MapPin, X, ChevronDown, Package, ArrowUpRight } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
 import AnnonceCard from '../components/annonces/AnnonceCard';
 import WilayaSelect from '../components/ui/WilayaSelect';
 import PremiumButton from '../components/ui/PremiumButton';
 import FadeUp from '../components/animations/FadeUp';
 import Skeleton, { CardSkeleton } from '../components/ui/Skeleton';
 import { annonceApi, assetUrl } from '../services/api';
+import { mapAnnonceCard } from '../utils/annonceMapper';
 import './SearchPage.css';
 
 export default function SearchPage() {
+  const location = useLocation();
   const [query, setQuery] = useState('');
   const [selectedType, setSelectedType] = useState('all');
   const [selectedWilaya, setSelectedWilaya] = useState('');
@@ -17,6 +20,12 @@ export default function SearchPage() {
   const [isLoading, setIsLoading] = useState(true);
   const [allAnnonces, setAllAnnonces] = useState([]);
   const [error, setError] = useState(null);
+
+  useEffect(() => {
+    const params = new URLSearchParams(location.search);
+    setQuery(params.get('q') || '');
+    setSelectedWilaya(params.get('wilaya') || '');
+  }, [location.search]);
 
   // Fetch annonces on mount
   useEffect(() => {
@@ -27,16 +36,7 @@ export default function SearchPage() {
         const response = await annonceApi.list();
         
         if (response.success && Array.isArray(response.annonces)) {
-          const formattedAnnonces = response.annonces.map(annonce => ({
-            id: annonce.id,
-            type: annonce.type === 'DON' ? 'offre' : 'demande',
-            name: annonce.dci || annonce.marque || 'Médicament',
-            wilayaId: annonce.wilaya_id,
-            wilaya: annonce.wilaya_nom || 'N/A',
-            category: annonce.categorie_nom || 'Autre',
-            date: annonce.created_at || new Date().toISOString(),
-            imageUrl: annonce.imageUrl ? assetUrl(annonce.imageUrl) : null,
-          }));
+          const formattedAnnonces = response.annonces.map(mapAnnonceCard);
           setAllAnnonces(formattedAnnonces);
         } else {
           setAllAnnonces([]);

@@ -6,7 +6,8 @@ import PremiumButton from '../ui/PremiumButton';
 import FadeUp from '../animations/FadeUp';
 import MagnetButton from '../animations/MagnetButton';
 import { CardSkeleton } from '../ui/Skeleton';
-import { annonceApi, assetUrl } from '../../services/api';
+import { annonceApi } from '../../services/api';
+import { mapAnnonceCard } from '../../utils/annonceMapper';
 import './RecentAnnonces.css';
 
 export default function RecentAnnonces() {
@@ -25,16 +26,7 @@ export default function RecentAnnonces() {
         
         if (response.success && Array.isArray(response.annonces)) {
           // Take first 6 annonces for the home page preview
-          const recentAnnonces = response.annonces.slice(0, 6).map(annonce => ({
-            id: annonce.id,
-            type: annonce.type === 'DON' ? 'offre' : 'demande',
-            name: annonce.dci || annonce.marque || 'Médicament',
-            category: annonce.categorie_nom || 'Autre',
-            wilaya: annonce.wilaya_nom || 'N/A',
-            date: annonce.created_at || new Date().toISOString(),
-            imageUrl: annonce.imageUrl ? assetUrl(annonce.imageUrl) : null,
-            description: annonce.description,
-          }));
+          const recentAnnonces = response.annonces.slice(0, 6).map(mapAnnonceCard);
           setAnnonces(recentAnnonces);
         } else {
           setAnnonces([]);

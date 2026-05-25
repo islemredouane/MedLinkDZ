@@ -1,5 +1,5 @@
 .recent-section {
-  padding: 6rem 0;
+  padding: clamp(3.5rem, 6vw, 6rem) 0;
   position: relative;
 }
 
@@ -35,7 +35,7 @@
 
 .annonces-masonry {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(285px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
   gap: 1.5rem;
 }
 

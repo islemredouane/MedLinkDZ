@@ -252,11 +252,37 @@
     gap: 2rem;
     padding: 3rem 0 2rem;
   }
+  .footer-col__title {
+    margin-bottom: 1rem;
+  }
+  .footer-col__list {
+    gap: 0.7rem;
+  }
+  .footer-cta-btn {
+    width: 100%;
+    justify-content: center;
+  }
   .footer-bottom {
     flex-direction: column;
     text-align: center;
   }
   .footer-description {
     max-width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .footer-grid {
+    padding: 2.5rem 0 1.75rem;
+  }
+
+  .footer-logo__text {
+    font-size: 1.05rem;
+  }
+
+  .footer-description,
+  .footer-cta-text,
+  .footer-col__link {
+    font-size: 0.82rem;
   }
 }

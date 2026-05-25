@@ -1,6 +1,6 @@
 /* ═══════════════════ PROFIL PAGE ═══════════════════ */
 .profil-page {
-  min-height: calc(100vh - 72px);
+  min-height: calc(100dvh - 72px);
   padding: 2.5rem 0 5rem;
   position: relative;
 }
@@ -182,7 +182,7 @@
 /* ═══════════════════ CONTENT GRID ═══════════════════ */
 .profil-grid {
   display: grid;
-  grid-template-columns: 320px 1fr;
+  grid-template-columns: minmax(300px, 0.95fr) minmax(0, 1.35fr);
   gap: 1.5rem;
   align-items: start;
 }
@@ -452,6 +452,10 @@
 .profil-empty p { font-size: 0.88rem; }
 
 @media (max-width: 768px) {
+  .profil-page { padding: 1.75rem 0 4rem; }
+  .profil-hero { padding: 1.45rem; }
+  .profil-info-card,
+  .profil-annonces-card { padding: 1.35rem; }
   .profil-grid { grid-template-columns: 1fr; }
   .profil-hero { flex-direction: column; align-items: flex-start; }
   .profil-stats { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 0.75rem; }
@@ -464,6 +468,16 @@
     flex: 1 1 auto;
     min-width: max-content;
     justify-content: center;
+  }
+
+  .profil-info-card__actions,
+  .profil-annonces-card__actions {
+    justify-content: stretch;
+  }
+
+  .profil-info-card__actions > *,
+  .profil-annonces-card__actions > * {
+    width: 100%;
   }
 }
 
@@ -480,6 +494,18 @@
   .profil-card-subtitle {
     max-width: none;
   }
+
+  .profil-meta {
+    gap: 0.75rem;
+  }
+
+  .profil-meta span {
+    font-size: 0.78rem;
+  }
+
+  .profil-hero__right {
+    gap: 0.65rem;
+  }
 }
 
 .profil-avatar img { width: 100%; height: 100%; object-fit: cover; border-radius: inherit; }
@@ -490,8 +516,8 @@
 .profil-modal-backdrop {
   position: fixed; inset: 0; z-index: 9999;
   background: rgba(8, 12, 20, 0.72);
-  backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
   display: flex; align-items: center; justify-content: center;
   padding: 1rem;
 }
@@ -569,6 +595,10 @@
 
   .profil-annonces-preview__content strong {
     font-size: 0.96rem;
+  }
+
+  .profil-annonces-preview {
+    padding: 0.9rem;
   }
 }
 

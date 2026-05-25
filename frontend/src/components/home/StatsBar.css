@@ -6,20 +6,21 @@
 
 .stats-grid {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
   gap: 1.25rem;
 }
 
 .stat-card {
   position: relative;
   border-radius: var(--r-lg);
-  padding: 1.75rem;
+  padding: 1.5rem;
   display: flex;
   align-items: center;
   gap: 1.25rem;
   overflow: hidden;
   background: var(--grad-navbar);
   transition: transform 0.3s var(--ease-smooth);
+  min-height: 124px;
 }
 
 .stat-card:hover { transform: translateY(-4px); }
@@ -47,5 +48,7 @@
 .stat-card__value { font-size: 2.1rem; font-weight: 800; line-height: 1.1; font-family: 'Space Grotesk', sans-serif; }
 .stat-card__label { font-size: 0.82rem; color: var(--c-text-muted); margin-top: 0.3rem; font-weight: 500; }
 
-@media (max-width: 768px) { .stats-grid { grid-template-columns: 1fr; } }
-@media (min-width: 480px) and (max-width: 768px) { .stats-grid { grid-template-columns: 1fr 1fr; } }
+@media (max-width: 768px) {
+  .stats-section { padding: 3rem 0; }
+  .stat-card { padding: 1.25rem; min-height: 108px; }
+}

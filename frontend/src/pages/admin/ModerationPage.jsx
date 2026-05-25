@@ -47,7 +47,7 @@ export default function ModerationPage() {
       <p className="admin-page-sub">Annonces en attente de validation</p>
 
       {error && (
-        <div style={{ marginBottom: '1rem', padding: '0.75rem', borderRadius: '0.5rem', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgb(239, 68, 68)', color: 'rgb(239, 68, 68)', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+        <div style={{ marginBottom: '1rem', padding: '0.75rem', borderRadius: '0.75rem', backgroundColor: 'rgba(239, 68, 68, 0.1)', border: '1px solid rgba(239, 68, 68, 0.35)', color: '#fca5a5', display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
           <AlertCircle size={16} />
           {error}
         </div>

@@ -111,37 +111,6 @@
   font-size: 0.75rem;
 }
 
-
-
-/* User pill for auth state */
-.user-pill {
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.4rem 1rem;
-  border-radius: 9999px;
-  background: rgba(255,255,255,0.05);
-  border: 1px solid rgba(255,255,255,0.1);
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--c-text-secondary);
-}
-
-/* Mobile toggle override */
-.mobile-toggle {
-  display: none;
-  background: none;
-  border: none;
-  color: var(--c-text-muted);
-  cursor: pointer;
-}
-
-@media (max-width: 900px) {
-  .navbar-nav { display: none; }
-  .auth-row { display: none; }
-  .mobile-toggle { display: block; }
-}
-
 @media (max-width: 600px) {
   .navbar { width: 95%; padding: 0.4rem 1.25rem; top: 1rem; }
   .brand-name { font-size: 1rem; }

@@ -1,6 +1,6 @@
 /* ═══════════════════ PUBLIER PAGE ═══════════════════ */
 .publier-page {
-  min-height: calc(100vh - 72px);
+  min-height: calc(100dvh - 72px);
   padding: 3rem 0 4rem;
   position: relative;
 }
@@ -331,7 +331,8 @@
 .publier-page .cat-pill.active { background: rgba(16,185,129,0.12); border-color: rgba(16,185,129,0.3); color: var(--c-green-400); }
 
 @media (max-width: 640px) {
-  .publier-card { padding: 1.5rem; }
+  .publier-page { padding-top: 2rem; padding-bottom: 3rem; }
+  .publier-card { padding: 1.35rem; }
   .type-cards { grid-template-columns: 1fr; }
   .stepper__label { display: none; }
   .stepper { max-width: 100%; }
@@ -365,9 +366,9 @@
 }
 
 @media (max-width: 380px) {
-  .publier-card { padding: 1.25rem; }
+  .publier-card { padding: 1.15rem; }
   .publish-success {
-    padding: 2.25rem 1.25rem;
+    padding: 2rem 1.1rem;
   }
   .publier-nav {
     gap: 0.6rem;

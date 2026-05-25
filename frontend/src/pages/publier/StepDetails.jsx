@@ -45,11 +45,11 @@ export default function StepDetails({ form, setForm }) {
           <label className="input-label">Photo (optionnel)</label>
           {form.image ? (
             <div className="image-preview" style={{ position: 'relative', display: 'inline-block', marginTop: '0.5rem', width: '100%' }}>
-              <img src={URL.createObjectURL(form.image)} alt="Preview" style={{ width: '100%', maxHeight: '200px', objectFit: 'contain', borderRadius: 'var(--r-md)', border: '1px solid var(--c-border)', background: 'rgba(0,0,0,0.2)' }} />
+              <img src={URL.createObjectURL(form.image)} alt="Preview" style={{ width: '100%', maxHeight: '200px', objectFit: 'contain', borderRadius: 'var(--r-md)', border: '1px solid var(--c-border)', background: 'var(--c-bg-base)' }} />
               <button 
                 type="button" 
                 onClick={() => setForm({ ...form, image: null })}
-                style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(0,0,0,0.6)', color: 'white', borderRadius: '50%', padding: '6px', border: 'none', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
+                style={{ position: 'absolute', top: '8px', right: '8px', background: 'rgba(15,23,42,0.88)', color: 'var(--c-text-primary)', borderRadius: '50%', padding: '6px', border: '1px solid var(--c-border)', cursor: 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center' }}
               >
                 <X size={16} />
               </button>

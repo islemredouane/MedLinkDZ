@@ -13,7 +13,7 @@ const STEPS = [
 
 export default function HowItWorks() {
   return (
-    <section className="hiw-section">
+    <section id="how-it-works" className="hiw-section">
       {/* Section divider gradient line */}
       <div className="hiw-gradient-line" />
 
