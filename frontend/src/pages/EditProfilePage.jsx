@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ArrowLeft, Camera, CheckCircle2, Loader2, Phone, Shield, User } from 'lucide-react';
+import { AlertCircle, ArrowLeft, Camera, CheckCircle2, Loader2, Phone, Shield, User } from 'lucide-react';
 import PremiumButton from '../components/ui/PremiumButton';
 import Input from '../components/ui/Input';
 import WilayaSelect from '../components/ui/WilayaSelect';
@@ -173,7 +173,17 @@ export default function EditProfilePage() {
               </div>
             </div>
 
-            {error && <div className="edit-profile-error">{error}</div>}
+            {error && (
+              <div className="edit-profile-error" role="alert" aria-live="polite">
+                <div className="edit-profile-error__icon">
+                  <AlertCircle size={18} />
+                </div>
+                <div className="edit-profile-error__content">
+                  <strong>Enregistrement impossible</strong>
+                  <span>{error}</span>
+                </div>
+              </div>
+            )}
 
             <div className="edit-profile-footer">
               <PremiumButton variant="ghost" onClick={() => navigate('/profil')}>

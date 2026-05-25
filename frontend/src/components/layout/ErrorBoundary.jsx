@@ -1,5 +1,5 @@
 import React from 'react';
-import { AlertOctagon, RefreshCcw } from 'lucide-react';
+import { AlertOctagon, RefreshCcw, Home } from 'lucide-react';
 import PremiumButton from '../ui/PremiumButton';
 import FadeUp from '../animations/FadeUp';
 import './ErrorBoundary.css';
@@ -23,24 +23,38 @@ class ErrorBoundary extends React.Component {
       return (
         <div className="error-boundary">
           <div className="error-glow" />
+          <div className="error-glow error-glow--teal" />
           <FadeUp>
             <div className="error-card glass">
+              <div className="error-card__badge">Erreur critique</div>
               <div className="error-icon-wrapper">
-                <AlertOctagon size={48} />
+                <AlertOctagon size={40} />
               </div>
               <h1 className="error-title">Une erreur inattendue est survenue</h1>
               <p className="error-desc">
                 Nous sommes désolés, mais un problème technique nous empêche d'afficher cette page correctement.
               </p>
               <div className="error-actions">
-                <PremiumButton 
-                  variant="primary" 
+                <PremiumButton
+                  variant="primary"
                   icon={RefreshCcw}
+                  fullWidth
                   onClick={() => window.location.reload()}
                 >
                   Rafraîchir la page
                 </PremiumButton>
+                <PremiumButton
+                  variant="ghost"
+                  icon={Home}
+                  fullWidth
+                  onClick={() => (window.location.href = '/')}
+                >
+                  Retour à l’accueil
+                </PremiumButton>
               </div>
+              <p className="error-footnote">
+                Si le problème persiste, actualisez la page ou revenez plus tard.
+              </p>
             </div>
           </FadeUp>
         </div>

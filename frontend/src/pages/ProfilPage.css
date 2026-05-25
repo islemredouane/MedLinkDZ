@@ -304,8 +304,13 @@
 .profil-info-card__actions,
 .profil-annonces-card__actions {
   display: flex;
-  justify-content: flex-end;
+  justify-content: stretch;
   margin-top: auto;
+}
+
+.profil-info-card__actions > *,
+.profil-annonces-card__actions > * {
+  width: 100%;
 }
 
 .logout-btn {

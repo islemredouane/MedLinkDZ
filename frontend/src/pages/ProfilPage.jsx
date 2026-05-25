@@ -159,7 +159,7 @@ export default function ProfilPage() {
               </div>
 
               <div className="profil-info-card__actions">
-                <PremiumButton variant="ghost" icon={Edit3} size="sm" onClick={goToProfileEdit}>
+                <PremiumButton fullWidth variant="ghost" icon={Edit3} size="sm" onClick={goToProfileEdit}>
                   Modifier les informations
                 </PremiumButton>
               </div>
