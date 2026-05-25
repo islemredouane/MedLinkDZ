@@ -362,5 +362,5 @@ export const sendResetPasswordEmail = async (user, token) => {
     </html>
     `;
     return sendEmail({ to: user.email, subject, text, html });
-};l, subject, text, html });
 };
+
