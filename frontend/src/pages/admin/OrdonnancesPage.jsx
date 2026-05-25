@@ -59,7 +59,7 @@ export default function OrdonnancesPage() {
                   <tr key={a.id}>
                     <td>
                       {url ? (
-                        <a href={url} target="_blank" rel="noreferrer" style={{ display: 'inline-flex', alignItems: 'center', gap: 6, color: '#047857' }}>
+                        <a href={url} target="_blank" rel="noreferrer" className="admin-link--file">
                           <FileText size={14} /> Voir
                         </a>
                       ) : '—'}

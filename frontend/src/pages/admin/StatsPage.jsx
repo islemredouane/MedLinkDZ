@@ -11,9 +11,9 @@ const KPIS = [
 ];
 
 const ROLE_LABELS = {
-  ADMIN: { label: 'Admin', color: '#7c3aed' },
-  USER: { label: 'Utilisateur', color: '#047857' },
-  PHARMACY: { label: 'Pharmacie', color: '#0369a1' },
+  ADMIN: { label: 'Admin', className: 'admin-role-badge--admin' },
+  USER: { label: 'Utilisateur', className: 'admin-role-badge--user' },
+  PHARMACY: { label: 'Pharmacie', className: 'admin-role-badge--pharmacy' },
 };
 
 export default function StatsPage() {
@@ -85,7 +85,7 @@ export default function StatsPage() {
           <div className="admin-kpi-grid">
             {KPIS.map(({ key, label, icon: Icon }) => (
               <div key={key} className="admin-kpi glass-bright">
-                <div style={{ display: 'flex', alignItems: 'center', gap: 8, color: '#047857' }}>
+                <div className="admin-kpi__head">
                   <Icon size={16} />
                   <span className="admin-kpi__label">{label}</span>
                 </div>
@@ -96,8 +96,8 @@ export default function StatsPage() {
 
           {/* Users Table */}
           <div className="admin-card glass-bright" style={{ marginTop: '1.5rem' }}>
-            <h3 style={{ margin: '0 0 1rem', fontSize: '1.05rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8 }}>
-              <Users size={18} style={{ color: '#047857' }} />
+            <h3 style={{ margin: '0 0 1rem', fontSize: '1.05rem', fontWeight: 700, display: 'flex', alignItems: 'center', gap: 8, color: 'var(--c-text-primary)' }}>
+              <Users size={18} style={{ color: 'var(--c-green-400)' }} />
               Liste des utilisateurs ({users.length})
             </h3>
             {users.length === 0 ? (
@@ -123,7 +123,7 @@ export default function StatsPage() {
                       const role = ROLE_LABELS[u.role] || ROLE_LABELS.USER;
                       return (
                         <tr key={u.id}>
-                          <td style={{ color: 'rgba(0,0,0,0.4)', fontWeight: 500 }}>{i + 1}</td>
+                          <td style={{ color: 'var(--c-text-muted)', fontWeight: 500 }}>{i + 1}</td>
                           <td style={{ fontWeight: 600, display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
                             {u.prenom} {u.nom}
                             {u.is_suspended && (
@@ -138,31 +138,22 @@ export default function StatsPage() {
                           </td>
                           <td>
                             <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                              <Mail size={13} style={{ opacity: 0.5 }} />
+                              <Mail size={13} style={{ opacity: 0.55, color: 'var(--c-text-muted)' }} />
                               {u.email}
                             </span>
                           </td>
                           <td>
                             {u.phone ? (
                               <span style={{ display: 'flex', alignItems: 'center', gap: 4 }}>
-                                <Phone size={13} style={{ opacity: 0.5 }} />
+                                <Phone size={13} style={{ opacity: 0.55, color: 'var(--c-text-muted)' }} />
                                 {u.phone}
                               </span>
                             ) : (
-                              <span style={{ color: 'rgba(0,0,0,0.3)' }}>—</span>
+                              <span style={{ color: 'var(--c-text-muted)' }}>—</span>
                             )}
                           </td>
                           <td>
-                            <span style={{
-                              display: 'inline-flex', alignItems: 'center', gap: 4,
-                              padding: '0.2rem 0.55rem',
-                              borderRadius: 6,
-                              fontSize: '0.76rem',
-                              fontWeight: 600,
-                              background: `${role.color}15`,
-                              color: role.color,
-                              border: `1px solid ${role.color}30`,
-                            }}>
+                            <span className={`admin-role-badge ${role.className}`}>
                               {u.role === 'ADMIN' && <ShieldCheck size={12} />}
                               {role.label}
                             </span>
@@ -184,13 +175,13 @@ export default function StatsPage() {
                               borderRadius: 8,
                               fontSize: '0.82rem',
                               fontWeight: 700,
-                              background: u.annonce_count > 0 ? 'rgba(16,185,129,0.12)' : 'rgba(0,0,0,0.05)',
-                              color: u.annonce_count > 0 ? '#047857' : 'rgba(0,0,0,0.4)',
+                              background: u.annonce_count > 0 ? 'rgba(16,185,129,0.12)' : 'rgba(255,255,255,0.04)',
+                              color: u.annonce_count > 0 ? 'var(--c-green-400)' : 'var(--c-text-muted)',
                             }}>
                               {u.annonce_count}
                             </span>
                           </td>
-                          <td style={{ fontSize: '0.82rem', color: 'rgba(0,0,0,0.55)' }}>
+                          <td style={{ fontSize: '0.82rem', color: 'var(--c-text-secondary)' }}>
                             {formatDate(u.created_at)}
                           </td>
                           <td>

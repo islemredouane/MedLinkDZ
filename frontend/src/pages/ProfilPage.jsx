@@ -20,7 +20,7 @@ export default function ProfilPage() {
   const [loadingAnnonces, setLoadingAnnonces] = useState(true);
 
   const [editOpen, setEditOpen] = useState(false);
-  const [form, setForm] = useState({ nom: '', prenom: '', telephone: '', wilaya: '' });
+  const [form, setForm] = useState({ nom: '', prenom: '', phone: '', wilaya: '' });
   const [avatarFile, setAvatarFile] = useState(null);
   const [avatarPreview, setAvatarPreview] = useState(null);
   const [saving, setSaving] = useState(false);

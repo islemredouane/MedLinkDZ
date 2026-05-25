@@ -13,13 +13,18 @@ import {
 
 // POST /api/auth/register
 export const registerUser = async (req, res) => {
-    const { nom, prenom, email, password, phone } = req.body;
+    const { nom, prenom, email, password, phone, wilaya } = req.body;
     const normalizedEmail = email?.trim().toLowerCase();
+    const parsedWilayaId = wilaya ? Number.parseInt(wilaya, 10) : null;
 
     try {
         // Validate required fields
-        if (!nom || !prenom || !normalizedEmail || !password) {
+        if (!nom || !prenom || !normalizedEmail || !password || !wilaya) {
             return res.status(400).json({ success: false, message: 'Veuillez remplir tous les champs obligatoires.' });
+        }
+
+        if (Number.isNaN(parsedWilayaId)) {
+            return res.status(400).json({ success: false, message: 'La wilaya sélectionnée est invalide.' });
         }
 
         // Check if email already exists
@@ -36,7 +41,14 @@ export const registerUser = async (req, res) => {
         const password_hash = await hashPassword(password);
 
         // Create the user
-        const newUser = await userService.createUser({ nom, prenom, email: normalizedEmail, password_hash, phone });
+        const newUser = await userService.createUser({
+            nom,
+            prenom,
+            email: normalizedEmail,
+            password_hash,
+            phone,
+            wilaya_id: parsedWilayaId,
+        });
 
         // Send email verification
         const verificationToken = generateVerifyToken(newUser);
@@ -260,7 +272,12 @@ export const resendVerification = async (req, res) => {
 // PATCH /api/auth/update-profile
 export const updateProfile = async (req, res) => {
     try {
-        const { nom, prenom, phone } = req.body;
+        const { nom, prenom, phone, wilaya } = req.body;
+        const parsedWilayaId = wilaya ? Number.parseInt(wilaya, 10) : undefined;
+
+        if (wilaya && Number.isNaN(parsedWilayaId)) {
+            return res.status(400).json({ success: false, message: 'La wilaya sélectionnée est invalide.' });
+        }
 
         // If a file was uploaded (avatar), use its path
         const avatar_url = req.file ? `/uploads/${req.file.filename}` : undefined;
@@ -269,6 +286,7 @@ export const updateProfile = async (req, res) => {
             nom: nom || undefined,
             prenom: prenom || undefined,
             phone: phone || undefined,
+            wilaya_id: parsedWilayaId,
             avatar_url
         });
 

@@ -4,6 +4,9 @@ export const seedDatabase = async () => {
     try {
         console.log('Database Seeder: checking tables...');
 
+        // Align the users table with the profile form before any data access.
+        await pool.query('ALTER TABLE users ADD COLUMN IF NOT EXISTS wilaya_id INT REFERENCES wilayas(id) ON DELETE SET NULL');
+
         // 1. Check categories
         const catCheck = await pool.query('SELECT COUNT(*) FROM categories');
         const catCount = parseInt(catCheck.rows[0].count, 10);

@@ -1,45 +1,65 @@
 import pool from '../config/db.js';
 
+const USER_PROFILE_SELECT = `
+    SELECT
+        u.id,
+        u.nom,
+        u.prenom,
+        u.email,
+        u.password_hash,
+        u.phone,
+        u.role,
+        u.avatar_url,
+        u.is_verified,
+        u.is_suspended,
+        u.created_at,
+        u.wilaya_id,
+        w.nom_fr AS wilaya
+    FROM users u
+    LEFT JOIN wilayas w ON w.id = u.wilaya_id
+`;
+
 // Create a new user
 export const createUser = async (userData) => {
-    const { nom, prenom, email, password_hash, phone } = userData;
+    const { nom, prenom, email, password_hash, phone, wilaya_id } = userData;
     const query = `
-        INSERT INTO users (nom, prenom, email, password_hash, phone, role, is_verified) 
-        VALUES ($1, $2, $3, $4, $5, 'USER', false) 
-        RETURNING id, nom, prenom, email, phone, role, is_verified, created_at
+        INSERT INTO users (nom, prenom, email, password_hash, phone, wilaya_id, role, is_verified) 
+        VALUES ($1, $2, $3, $4, $5, $6, 'USER', false) 
+        RETURNING id
     `;
-    const result = await pool.query(query, [nom, prenom, email, password_hash, phone]);
-    return result.rows[0];
+    const result = await pool.query(query, [nom, prenom, email, password_hash, phone, wilaya_id ?? null]);
+    return findUserById(result.rows[0].id);
 };
 
 // Find a user by email (includes password_hash for login verification)
 export const findUserByEmail = async (email) => {
-    const query = 'SELECT * FROM users WHERE email = $1';
+    const query = `${USER_PROFILE_SELECT} WHERE u.email = $1`;
     const result = await pool.query(query, [email]);
     return result.rows[0] || null;
 };
 
 // Find a user by ID (excludes password_hash)
 export const findUserById = async (id) => {
-    const query = 'SELECT id, nom, prenom, email, phone, role, avatar_url, is_verified, is_suspended, created_at FROM users WHERE id = $1';
+    const query = `${USER_PROFILE_SELECT} WHERE u.id = $1`;
     const result = await pool.query(query, [id]);
     return result.rows.length > 0 ? result.rows[0] : null;
 };
 
 // Update user profile info
 export const updateUser = async (id, updates) => {
-    const { nom, prenom, phone, avatar_url } = updates;
+    const { nom, prenom, phone, avatar_url, wilaya_id } = updates;
     const query = `
         UPDATE users 
         SET nom = COALESCE($1, nom), 
             prenom = COALESCE($2, prenom), 
             phone = COALESCE($3, phone), 
-            avatar_url = COALESCE($4, avatar_url)
-        WHERE id = $5
-        RETURNING id, nom, prenom, email, phone, role, avatar_url, is_verified, created_at
+            avatar_url = COALESCE($4, avatar_url),
+            wilaya_id = COALESCE($5, wilaya_id)
+        WHERE id = $6
+        RETURNING id
     `;
-    const result = await pool.query(query, [nom, prenom, phone, avatar_url, id]);
-    return result.rows[0];
+    const result = await pool.query(query, [nom, prenom, phone, avatar_url, wilaya_id ?? null, id]);
+    return findUserById(result.rows[0].id);
 };
 
 // Update only the user's password hash

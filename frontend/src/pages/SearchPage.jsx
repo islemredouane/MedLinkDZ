@@ -32,7 +32,8 @@ export default function SearchPage() {
             type: annonce.type === 'DON' ? 'offre' : 'demande',
             name: annonce.dci || annonce.marque || 'Médicament',
             wilayaId: annonce.wilaya_id,
-            wilayaNom: annonce.wilaya_nom || 'N/A',
+            wilaya: annonce.wilaya_nom || 'N/A',
+            category: annonce.categorie_nom || 'Autre',
             date: annonce.created_at || new Date().toISOString(),
             imageUrl: annonce.imageUrl ? assetUrl(annonce.imageUrl) : null,
           }));
