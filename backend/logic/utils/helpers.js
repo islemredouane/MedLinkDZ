@@ -63,7 +63,11 @@ const sendEmail = async ({ to, subject, html, text }) => {
 
         return true;
     } catch (error) {
-        console.error('Failed to send email:', error);
+        console.error('Failed to send email:', error.message);
+        console.log('\n==== EMAIL DEVELOPMENT FALLBACK ====');
+        console.log(`Because the email failed to send (likely due to Render blocking SMTP ports), here is the link you need:`);
+        console.log(`\n${text}\n`);
+        console.log('====================================\n');
         return false;
     }
 };
