@@ -1,107 +1,98 @@
-
-<div align="center">
-
 # 🏥 MedLink DZ 💊
 
-### Plateforme algérienne de partage de médicaments
+Plateforme algérienne de partage de médicaments, pensée pour relier les personnes ayant des médicaments non utilisés avec celles qui en ont besoin, à travers les **58 wilayas d’Algérie 🇩🇿**.
 
-Relier les personnes ayant des médicaments non utilisés  
-avec celles qui en ont besoin — à travers les **69 wilayas d’Algérie 🇩🇿**
+## Déploiement
 
-<br/>
+- Frontend en production: https://medlink-dz.vercel.app/
+- Backend API: hébergé sur Render
+- Base de données: hébergée sur Neon via `DATABASE_URL`
 
-![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)
-![NodeJS](https://img.shields.io/badge/Node.js-18+-green?style=for-the-badge&logo=node.js)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-blue?style=for-the-badge&logo=postgresql)
-![JWT](https://img.shields.io/badge/Auth-JWT-black?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Academic%20Project-purple?style=for-the-badge)
+## Versions actuelles
 
-</div>
-
----
-
-## ✨ Aperçu
-
-**MedLink DZ** est une plateforme web full-stack permettant aux citoyens algériens de :
-
-- 📢 Publier des annonces de médicaments
-- 🔍 Rechercher des médicaments disponibles
-- 🏥 Aider les personnes dans le besoin
-- ⚖️ Garantir la sécurité via un système de modération
-
-Le projet couvre les **58 wilayas algériennes** avec une architecture moderne basée sur :
-
-- ⚛️ React + Vite
-- 🚀 Node.js + Express
-- 🐘 PostgreSQL
-- 🔐 JWT Authentication
+![React](https://img.shields.io/badge/React-19.2.5-61DAFB?style=for-the-badge&logo=react&logoColor=white)
+![Vite](https://img.shields.io/badge/Vite-8.0.10-646CFF?style=for-the-badge&logo=vite&logoColor=white)
+![Node.js](https://img.shields.io/badge/Node.js-18%2B-339933?style=for-the-badge&logo=node.js&logoColor=white)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-Neon-008C99?style=for-the-badge&logo=postgresql&logoColor=white)
+![Render](https://img.shields.io/badge/Backend-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white)
+![Vercel](https://img.shields.io/badge/Frontend-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white)
 
 ---
 
-# 📚 Table des matières
+## Aperçu
 
-- [🚀 Fonctionnalités](#-fonctionnalités)
-- [🏗️ Architecture](#️-architecture)
-- [🛠️ Technologies](#️-technologies)
-- [⚙️ Installation](#️-installation)
-- [🔐 Configuration](#-configuration)
-- [🗄️ Base de données](#️-base-de-données)
-- [▶️ Lancement](#️-lancement)
-- [📁 Structure du projet](#-structure-du-projet)
-- [📡 API Reference](#-api-reference)
-- [👥 Rôles & Permissions](#-rôles--permissions)
-- [🛡️ Système de modération](#️-système-de-modération)
-- [📤 Upload de fichiers](#-upload-de-fichiers)
-- [📧 Emails transactionnels](#-emails-transactionnels)
-- [👨‍💻 Auteur](#-auteur)
+MedLink DZ est une application web full-stack qui permet de:
 
----
+- publier des annonces de médicaments
+- rechercher des médicaments disponibles
+- gérer un profil utilisateur complet
+- modérer les annonces et les ordonnances côté admin
 
-# 🚀 Fonctionnalités
+L’application repose sur une architecture moderne:
 
-## 👤 Utilisateurs
-
-### 🔐 Authentification
-- Inscription avec vérification email
-- Connexion sécurisée avec JWT
-- Réinitialisation du mot de passe
-- Gestion du profil utilisateur
-
-### 📢 Gestion des annonces
-- Création d’annonces en plusieurs étapes
-- Upload d’images
-- Gestion personnelle des annonces
-- Suppression et modification
-
-### 🔎 Recherche intelligente
-- Filtrage par :
-  - Wilaya 🇩🇿
-  - Catégorie 💊
-  - Type 📦
-  - Recherche texte 🔍
+- Frontend: React + Vite
+- Backend: Node.js + Express
+- Base de données: PostgreSQL sur Neon
+- Authentification: JWT
 
 ---
 
-## 🛡️ Administrateurs
+## Stack technique
 
-- 📊 Dashboard statistiques
-- ⚖️ Validation/Rejet des annonces
-- 👥 Gestion des utilisateurs
-- 🧾 Contrôle des ordonnances
+### Frontend
+
+| Technologie | Version / rôle |
+|---|---|
+| React | 19.2.5 |
+| React DOM | 19.2.5 |
+| Vite | 8.0.10 |
+| React Router DOM | 7.14.2 |
+| Framer Motion | 12.38.0 |
+| Axios | 1.15.2 |
+| Lucide React | 1.11.0 |
+
+### Backend
+
+| Technologie | Version / rôle |
+|---|---|
+| Node.js | Runtime |
+| Express | 4.19.2 |
+| pg | 8.11.5 |
+| bcryptjs | 3.0.3 |
+| jsonwebtoken | 9.0.3 |
+| multer | 2.1.1 |
+| nodemailer | 6.10.1 |
+| dotenv | 16.6.1 |
 
 ---
 
-## 🌐 Public
+## Fonctionnalités
 
-Sans connexion, les visiteurs peuvent :
+### Utilisateurs
 
-- Consulter les annonces publiées
-- Voir les statistiques globales
-- Rechercher des médicaments disponibles
+- inscription et vérification email
+- connexion sécurisée avec JWT
+- réinitialisation du mot de passe
+- modification du profil
+- publication et gestion des annonces
+- recherche filtrée par wilaya, catégorie, type et texte
+
+### Administrateurs
+
+- dashboard statistiques
+- validation et rejet des annonces
+- gestion des utilisateurs
+- contrôle des ordonnances
+
+### Public
+
+- consultation des annonces publiées
+- recherche de médicaments
+- accès aux pages d’information et légales
 
 ---
 
-# 🏗️ Architecture
+## Architecture
 
 ```txt
 MedLinkDZ/
@@ -109,92 +100,33 @@ MedLinkDZ/
 └── backend/    → Node.js + Express REST API
 ```
 
-## 📌 Architecture utilisée
-
-- Frontend découplé du backend
-- API REST sécurisée avec JWT
-- Communication JSON & multipart/form-data
-- PostgreSQL utilisé sans ORM (`pg`)
+Le frontend communique avec le backend via une API REST JSON et des uploads multipart/form-data. Le backend se connecte à Neon avec `DATABASE_URL` quand la base est déployée, et garde un mode local compatible via les variables `DB_*`.
 
 ---
 
-# 🛠️ Technologies
+## Configuration
 
-## 🎨 Frontend
-
-| Technologie | Rôle |
-|---|---|
-| React 18 | UI Framework |
-| Vite | Build Tool |
-| React Router DOM | SPA Routing |
-| Framer Motion | Animations |
-| Axios | HTTP Client |
-| Lucide React | Icônes |
-| Vanilla CSS | UI / Glassmorphism |
-
----
-
-## ⚙️ Backend
-
-| Technologie | Rôle |
-|---|---|
-| Node.js | Runtime |
-| Express | HTTP Server |
-| PostgreSQL | Base de données |
-| pg | PostgreSQL Driver |
-| bcryptjs | Hash passwords |
-| jsonwebtoken | JWT Authentication |
-| multer | File uploads |
-| nodemailer | Emails |
-| dotenv | Env variables |
-
----
-
-# ⚙️ Installation
-
-## 1️⃣ Cloner le projet
-
-```bash
-git clone <url-du-repo>
-cd MedLinkDZ
-```
-
----
-
-## 2️⃣ Installer le backend
-
-```bash
-cd backend
-npm install
-```
-
----
-
-## 3️⃣ Installer le frontend
-
-```bash
-cd ../frontend
-npm install
-```
-
----
-
-# 🔐 Configuration
-
-## 📄 Backend `.env`
+### Frontend `.env`
 
 ```env
-DB_USER=postgres
-DB_HOST=localhost
-DB_NAME=Project
-DB_PASS=your_password
-DB_PORT=5432
+VITE_API_URL=https://<your-render-backend>.onrender.com
+```
 
+En local, tu peux utiliser:
+
+```env
+VITE_API_URL=http://localhost:5000
+```
+
+### Backend `.env`
+
+#### Production sur Render + Neon
+
+```env
+DATABASE_URL=postgresql://<user>:<password>@<host>/<database>?sslmode=require
 PORT=5000
-
 JWT_SECRET=your_secret_key
-
-FRONTEND_URL=http://localhost:5173
+FRONTEND_URL=https://medlink-dz.vercel.app
 
 SMTP_HOST=smtp.gmail.com
 SMTP_PORT=587
@@ -204,363 +136,7 @@ SMTP_PASS=xxxx xxxx xxxx xxxx
 EMAIL_FROM=your@gmail.com
 ```
 
----
-
-## 📄 Frontend `.env`
-
-```env
-VITE_API_URL=http://localhost:5000
-```
-
----
-
-# 🗄️ Base de données
-
-## Créer la base
-
-```sql
-CREATE DATABASE "Project";
-```
-
----
-
-## Appliquer le schéma
-
-```bash
-psql -U postgres -d Project -f backend/DataBase/schema.sql
-```
-
----
-
-## Seed des wilayas
-
-```bash
-psql -U postgres -d Project -f backend/DataBase/seed_wilayas.sql
-```
-
-✅ Insertion automatique des **58 wilayas algériennes**
-
----
-
-# ▶️ Lancement
-
-## 🚀 Backend
-
-```bash
-cd backend
-npm run dev
-```
-
-Backend disponible sur :
-
-```txt
-http://localhost:5000
-```
-
----
-
-## 🎨 Frontend
-
-```bash
-cd frontend
-npm run dev
-```
-
-Frontend disponible sur :
-
-```txt
-http://localhost:5173
-```
-
----
-
-# 📁 Structure du projet
-
-```txt
-MedLinkDZ/
-
-├── backend/
-│   ├── controllers/
-│   ├── services/
-│   ├── routes/
-│   ├── middlewares/
-│   ├── utils/
-│   ├── uploads/
-│   └── DataBase/
-
-└── frontend/
-    ├── src/
-    │   ├── pages/
-    │   ├── components/
-    │   ├── services/
-    │   ├── context/
-    │   └── hooks/
-```
-
----
-
-# 📡 API Reference
-
-## 🔐 Auth — `/api/auth`
-
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/register` | Create account |
-| POST | `/login` | Login |
-| GET | `/verify-email` | Verify email |
-| POST | `/forgot-password` | Forgot password |
-| POST | `/reset-password` | Reset password |
-
----
-
-## 📢 Annonces — `/api/annonces`
-
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/` | Get annonces |
-| GET | `/:id` | Get annonce details |
-| POST | `/` | Create annonce |
-| PUT | `/:id` | Update annonce |
-| DELETE | `/:id` | Delete annonce |
-
----
-
-# 👥 Rôles & Permissions
-
-| Action | USER | ADMIN |
-|---|:---:|:---:|
-| Voir annonces | ✅ | ✅ |
-| Publier annonce | ✅ | ✅ |
-| Dashboard admin | ❌ | ✅ |
-| Modération | ❌ | ✅ |
-| Gestion utilisateurs | ❌ | ✅ |
-
----
-
-# 🛡️ Système de modération
-
-```txt
-EN_ATTENTE
-   │
-   ├──▶ PUBLIEE
-   │
-   ├──▶ REJETEE
-   │
-   └──▶ SUSPENDUE
-```
-
-Toutes les annonces passent par validation administrateur avant publication.
-
----
-
-# 📤 Upload de fichiers
-
-### ✅ Types supportés
-- JPEG
-- PNG
-- WEBP
-- PDF
-
-### 📏 Limites
-- Maximum : **5 MB**
-- Jusqu’à **5 images**
-
-### 📂 Stockage
-```txt
-backend/uploads/
-```
-
----
-
-# 📧 Emails transactionnels
-
-Le système utilise **Nodemailer + Gmail SMTP** pour :
-
-- ✅ Vérification email
-- 🔑 Réinitialisation mot de passe
-- 📩 Renvoi des liens de vér<div align="center">
-
-# 🏥 MedLink DZ 💊
-
-### Plateforme algérienne de partage de médicaments
-
-Relier les personnes ayant des médicaments non utilisés  
-avec celles qui en ont besoin — à travers les **58 wilayas d’Algérie 🇩🇿**
-
-<br/>
-
-![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)
-![NodeJS](https://img.shields.io/badge/Node.js-18+-green?style=for-the-badge&logo=node.js)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-blue?style=for-the-badge&logo=postgresql)
-![JWT](https://img.shields.io/badge/Auth-JWT-black?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Academic%20Project-purple?style=for-the-badge)
-
-</div>
-
----
-
-## ✨ Aperçu
-
-**MedLink DZ** est une plateforme web full-stack permettant aux citoyens algériens de :
-
-- 📢 Publier des annonces de médicaments
-- 🔍 Rechercher des médicaments disponibles
-- 🏥 Aider les personnes dans le besoin
-- ⚖️ Garantir la sécurité via un système de modération
-
-Le projet couvre les **58 wilayas algériennes** avec une architecture moderne basée sur :
-
-- ⚛️ React + Vite
-- 🚀 Node.js + Express
-- 🐘 PostgreSQL
-- 🔐 JWT Authentication
-
----
-
-# 📚 Table des matières
-
-- [🚀 Fonctionnalités](#-fonctionnalités)
-- [🏗️ Architecture](#️-architecture)
-- [🛠️ Technologies](#️-technologies)
-- [⚙️ Installation](#️-installation)
-- [🔐 Configuration](#-configuration)
-- [🗄️ Base de données](#️-base-de-données)
-- [▶️ Lancement](#️-lancement)
-- [📁 Structure du projet](#-structure-du-projet)
-- [📡 API Reference](#-api-reference)
-- [👥 Rôles & Permissions](#-rôles--permissions)
-- [🛡️ Système de modération](#️-système-de-modération)
-- [📤 Upload de fichiers](#-upload-de-fichiers)
-- [📧 Emails transactionnels](#-emails-transactionnels)
-- [👨‍💻 Auteur](#-auteur)
-
----
-
-# 🚀 Fonctionnalités
-
-## 👤 Utilisateurs
-
-### 🔐 Authentification
-- Inscription avec vérification email
-- Connexion sécurisée avec JWT
-- Réinitialisation du mot de passe
-- Gestion du profil utilisateur
-
-### 📢 Gestion des annonces
-- Création d’annonces en plusieurs étapes
-- Upload d’images
-- Gestion personnelle des annonces
-- Suppression et modification
-
-### 🔎 Recherche intelligente
-- Filtrage par :
-  - Wilaya 🇩🇿
-  - Catégorie 💊
-  - Type 📦
-  - Recherche texte 🔍
-
----
-
-## 🛡️ Administrateurs
-
-- 📊 Dashboard statistiques
-- ⚖️ Validation/Rejet des annonces
-- 👥 Gestion des utilisateurs
-- 🧾 Contrôle des ordonnances
-
----
-
-## 🌐 Public
-
-Sans connexion, les visiteurs peuvent :
-
-- Consulter les annonces publiées
-- Voir les statistiques globales
-- Rechercher des médicaments disponibles
-
----
-
-# 🏗️ Architecture
-
-```txt
-MedLinkDZ/
-├── frontend/   → React + Vite SPA
-└── backend/    → Node.js + Express REST API
-```
-
-## 📌 Architecture utilisée
-
-- Frontend découplé du backend
-- API REST sécurisée avec JWT
-- Communication JSON & multipart/form-data
-- PostgreSQL utilisé sans ORM (`pg`)
-
----
-
-# 🛠️ Technologies
-
-## 🎨 Frontend
-
-| Technologie | Rôle |
-|---|---|
-| React 18 | UI Framework |
-| Vite | Build Tool |
-| React Router DOM | SPA Routing |
-| Framer Motion | Animations |
-| Axios | HTTP Client |
-| Lucide React | Icônes |
-| Vanilla CSS | UI / Glassmorphism |
-
----
-
-## ⚙️ Backend
-
-| Technologie | Rôle |
-|---|---|
-| Node.js | Runtime |
-| Express | HTTP Server |
-| PostgreSQL | Base de données |
-| pg | PostgreSQL Driver |
-| bcryptjs | Hash passwords |
-| jsonwebtoken | JWT Authentication |
-| multer | File uploads |
-| nodemailer | Emails |
-| dotenv | Env variables |
-
----
-
-# ⚙️ Installation
-
-## 1️⃣ Cloner le projet
-
-```bash
-git clone <url-du-repo>
-cd MedLinkDZ
-```
-
----
-
-## 2️⃣ Installer le backend
-
-```bash
-cd backend
-npm install
-```
-
----
-
-## 3️⃣ Installer le frontend
-
-```bash
-cd ../frontend
-npm install
-```
-
----
-
-# 🔐 Configuration
-
-## 📄 Backend `.env`
+#### Développement local
 
 ```env
 DB_USER=postgres
@@ -570,627 +146,98 @@ DB_PASS=your_password
 DB_PORT=5432
 
 PORT=5000
-
 JWT_SECRET=your_secret_key
-
 FRONTEND_URL=http://localhost:5173
-
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=your@gmail.com
-SMTP_PASS=xxxx xxxx xxxx xxxx
-EMAIL_FROM=your@gmail.com
 ```
 
 ---
 
-## 📄 Frontend `.env`
-
-```env
-VITE_API_URL=http://localhost:5000
-```
-
----
-
-# 🗄️ Base de données
-
-## Créer la base
-
-```sql
-CREATE DATABASE "Project";
-```
-
----
-
-## Appliquer le schéma
-
-```bash
-psql -U postgres -d Project -f backend/DataBase/schema.sql
-```
-
----
-
-## Seed des wilayas
-
-```bash
-psql -U postgres -d Project -f backend/DataBase/seed_wilayas.sql
-```
-
-✅ Insertion automatique des **58 wilayas algériennes**
-
----
-
-# ▶️ Lancement
-
-## 🚀 Backend
-
-```bash
-cd backend
-npm run dev
-```
-
-Backend disponible sur :
-
-```txt
-http://localhost:5000
-```
-
----
-
-## 🎨 Frontend
-
-```bash
-cd frontend
-npm run dev
-```
-
-Frontend disponible sur :
-
-```txt
-http://localhost:5173
-```
-
----
-
-# 📁 Structure du projet
-
-```txt
-MedLinkDZ/
-
-├── backend/
-│   ├── controllers/
-│   ├── services/
-│   ├── routes/
-│   ├── middlewares/
-│   ├── utils/
-│   ├── uploads/
-│   └── DataBase/
-
-└── frontend/
-    ├── src/
-    │   ├── pages/
-    │   ├── components/
-    │   ├── services/
-    │   ├── context/
-    │   └── hooks/
-```
-
----
-
-# 📡 API Reference
-
-## 🔐 Auth — `/api/auth`
-
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/register` | Create account |
-| POST | `/login` | Login |
-| GET | `/verify-email` | Verify email |
-| POST | `/forgot-password` | Forgot password |
-| POST | `/reset-password` | Reset password |
-
----
-
-## 📢 Annonces — `/api/annonces`
-
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/` | Get annonces |
-| GET | `/:id` | Get annonce details |
-| POST | `/` | Create annonce |
-| PUT | `/:id` | Update annonce |
-| DELETE | `/:id` | Delete annonce |
-
----
-
-# 👥 Rôles & Permissions
-
-| Action | USER | ADMIN |
-|---|:---:|:---:|
-| Voir annonces | ✅ | ✅ |
-| Publier annonce | ✅ | ✅ |
-| Dashboard admin | ❌ | ✅ |
-| Modération | ❌ | ✅ |
-| Gestion utilisateurs | ❌ | ✅ |
-
----
-
-# 🛡️ Système de modération
-
-```txt
-EN_ATTENTE
-   │
-   ├──▶ PUBLIEE
-   │
-   ├──▶ REJETEE
-   │
-   └──▶ SUSPENDUE
-```
-
-Toutes les annonces passent par validation administrateur avant publication.
-
----
-
-# 📤 Upload de fichiers
-
-### ✅ Types supportés
-- JPEG
-- PNG
-- WEBP
-- PDF
-
-### 📏 Limites
-- Maximum : **5 MB**
-- Jusqu’à **5 images**
-
-### 📂 Stockage
-```txt
-backend/uploads/
-```
-
----
-
-# 📧 Emails transactionnels
-
-Le système utilise **Nodemailer + Gmail SMTP** pour :
-
-- ✅ Vérification email
-- 🔑 Réinitialisation mot de passe
-- 📩 Renvoi des liens de vérification
-
----
-
-# 👨‍💻 Auteur
-
-Projet réalisé dans le cadre d’un cursus universitaire à :
-
-### 🇩🇿 ESTIN
-**École Supérieure en Sciences et Technologies de l’Informatique et du Numérique**
-
----
-
-<div align="center">
-
-## 💊 MedLink DZ
-
-### *Relier les médicaments avec ceux qui en ont besoin*
-
-</div>ification
-
----
-
-# 👨‍💻 Auteur
-
-Projet réalisé dans le cadre d’un cursus universitaire à :
-
-### 🇩🇿 ESTIN
-**École Supérieure en Sciences et Technologies de l’Informatique et du Numérique**
-
----
-
-<div align="center">
-
-## 💊 MedLink DZ
-
-### *Relier les médicaments avec ceux qui en ont besoin*
-
-</div><div align="center">
-
-# 🏥 MedLink DZ 💊
-
-### Plateforme algérienne de partage de médicaments
-
-Relier les personnes ayant des médicaments non utilisés  
-avec celles qui en ont besoin — à travers les **58 wilayas d’Algérie 🇩🇿**
-
-<br/>
-
-![React](https://img.shields.io/badge/React-18-blue?style=for-the-badge&logo=react)
-![NodeJS](https://img.shields.io/badge/Node.js-18+-green?style=for-the-badge&logo=node.js)
-![PostgreSQL](https://img.shields.io/badge/PostgreSQL-18-blue?style=for-the-badge&logo=postgresql)
-![JWT](https://img.shields.io/badge/Auth-JWT-black?style=for-the-badge)
-![Status](https://img.shields.io/badge/Status-Academic%20Project-purple?style=for-the-badge)
-
-</div>
-
----
-
-## ✨ Aperçu
-
-**MedLink DZ** est une plateforme web full-stack permettant aux citoyens algériens de :
-
-- 📢 Publier des annonces de médicaments
-- 🔍 Rechercher des médicaments disponibles
-- 🏥 Aider les personnes dans le besoin
-- ⚖️ Garantir la sécurité via un système de modération
-
-Le projet couvre les **58 wilayas algériennes** avec une architecture moderne basée sur :
-
-- ⚛️ React + Vite
-- 🚀 Node.js + Express
-- 🐘 PostgreSQL
-- 🔐 JWT Authentication
-
----
-
-# 📚 Table des matières
-
-- [🚀 Fonctionnalités](#-fonctionnalités)
-- [🏗️ Architecture](#️-architecture)
-- [🛠️ Technologies](#️-technologies)
-- [⚙️ Installation](#️-installation)
-- [🔐 Configuration](#-configuration)
-- [🗄️ Base de données](#️-base-de-données)
-- [▶️ Lancement](#️-lancement)
-- [📁 Structure du projet](#-structure-du-projet)
-- [📡 API Reference](#-api-reference)
-- [👥 Rôles & Permissions](#-rôles--permissions)
-- [🛡️ Système de modération](#️-système-de-modération)
-- [📤 Upload de fichiers](#-upload-de-fichiers)
-- [📧 Emails transactionnels](#-emails-transactionnels)
-- [👨‍💻 Auteur](#-auteur)
-
----
-
-# 🚀 Fonctionnalités
-
-## 👤 Utilisateurs
-
-### 🔐 Authentification
-- Inscription avec vérification email
-- Connexion sécurisée avec JWT
-- Réinitialisation du mot de passe
-- Gestion du profil utilisateur
-
-### 📢 Gestion des annonces
-- Création d’annonces en plusieurs étapes
-- Upload d’images
-- Gestion personnelle des annonces
-- Suppression et modification
-
-### 🔎 Recherche intelligente
-- Filtrage par :
-  - Wilaya 🇩🇿
-  - Catégorie 💊
-  - Type 📦
-  - Recherche texte 🔍
-
----
-
-## 🛡️ Administrateurs
-
-- 📊 Dashboard statistiques
-- ⚖️ Validation/Rejet des annonces
-- 👥 Gestion des utilisateurs
-- 🧾 Contrôle des ordonnances
-
----
-
-## 🌐 Public
-
-Sans connexion, les visiteurs peuvent :
-
-- Consulter les annonces publiées
-- Voir les statistiques globales
-- Rechercher des médicaments disponibles
-
----
-
-# 🏗️ Architecture
-
-```txt
-MedLinkDZ/
-├── frontend/   → React + Vite SPA
-└── backend/    → Node.js + Express REST API
-```
-
-## 📌 Architecture utilisée
-
-- Frontend découplé du backend
-- API REST sécurisée avec JWT
-- Communication JSON & multipart/form-data
-- PostgreSQL utilisé sans ORM (`pg`)
-
----
-
-# 🛠️ Technologies
-
-## 🎨 Frontend
-
-| Technologie | Rôle |
-|---|---|
-| React 18 | UI Framework |
-| Vite | Build Tool |
-| React Router DOM | SPA Routing |
-| Framer Motion | Animations |
-| Axios | HTTP Client |
-| Lucide React | Icônes |
-| Vanilla CSS | UI / Glassmorphism |
-
----
-
-## ⚙️ Backend
-
-| Technologie | Rôle |
-|---|---|
-| Node.js | Runtime |
-| Express | HTTP Server |
-| PostgreSQL | Base de données |
-| pg | PostgreSQL Driver |
-| bcryptjs | Hash passwords |
-| jsonwebtoken | JWT Authentication |
-| multer | File uploads |
-| nodemailer | Emails |
-| dotenv | Env variables |
-
----
-
-# ⚙️ Installation
-
-## 1️⃣ Cloner le projet
+## Installation locale
 
 ```bash
 git clone <url-du-repo>
 cd MedLinkDZ
+npm run install:all
 ```
 
 ---
 
-## 2️⃣ Installer le backend
+## Lancement en local
 
-```bash
-cd backend
-npm install
-```
-
----
-
-## 3️⃣ Installer le frontend
-
-```bash
-cd ../frontend
-npm install
-```
-
----
-
-# 🔐 Configuration
-
-## 📄 Backend `.env`
-
-```env
-DB_USER=postgres
-DB_HOST=localhost
-DB_NAME=Project
-DB_PASS=your_password
-DB_PORT=5432
-
-PORT=5000
-
-JWT_SECRET=your_secret_key
-
-FRONTEND_URL=http://localhost:5173
-
-SMTP_HOST=smtp.gmail.com
-SMTP_PORT=587
-SMTP_SECURE=false
-SMTP_USER=your@gmail.com
-SMTP_PASS=xxxx xxxx xxxx xxxx
-EMAIL_FROM=your@gmail.com
-```
-
----
-
-## 📄 Frontend `.env`
-
-```env
-VITE_API_URL=http://localhost:5000
-```
-
----
-
-# 🗄️ Base de données
-
-## Créer la base
-
-```sql
-CREATE DATABASE "Project";
-```
-
----
-
-## Appliquer le schéma
-
-```bash
-psql -U postgres -d Project -f backend/DataBase/schema.sql
-```
-
----
-
-## Seed des wilayas
-
-```bash
-psql -U postgres -d Project -f backend/DataBase/seed_wilayas.sql
-```
-
-✅ Insertion automatique des **58 wilayas algériennes**
-
----
-
-# ▶️ Lancement
-
-## 🚀 Backend
+### Backend
 
 ```bash
 cd backend
 npm run dev
 ```
 
-Backend disponible sur :
-
-```txt
-http://localhost:5000
-```
-
----
-
-## 🎨 Frontend
+### Frontend
 
 ```bash
 cd frontend
 npm run dev
 ```
 
-Frontend disponible sur :
+### Build frontend
 
-```txt
-http://localhost:5173
+```bash
+cd frontend
+npm run build
 ```
 
 ---
 
-# 📁 Structure du projet
+## Base de données
+
+En local, tu peux créer la base puis appliquer le schéma:
+
+```sql
+CREATE DATABASE "Project";
+```
+
+```bash
+psql -U postgres -d Project -f backend/DataBase/schema.sql
+```
+
+Si tu utilises Neon en production, récupère simplement la chaîne de connexion `DATABASE_URL` depuis le dashboard Neon et configure-la dans Render.
+
+---
+
+## Structure du projet
 
 ```txt
-MedLinkDZ/
-
-├── backend/
-│   ├── controllers/
-│   ├── services/
-│   ├── routes/
-│   ├── middlewares/
-│   ├── utils/
-│   ├── uploads/
-│   └── DataBase/
-
-└── frontend/
-    ├── src/
-    │   ├── pages/
-    │   ├── components/
-    │   ├── services/
-    │   ├── context/
-    │   └── hooks/
+README.md
+backend/
+  server.js
+  logic/
+    config/
+    controllers/
+    middlewares/
+    routes/
+    services/
+    utils/
+  DataBase/
+frontend/
+  src/
+    components/
+    context/
+    hooks/
+    pages/
+    services/
+    styles/
 ```
 
 ---
 
-# 📡 API Reference
+## Notes de déploiement
 
-## 🔐 Auth — `/api/auth`
-
-| Method | Endpoint | Description |
-|---|---|---|
-| POST | `/register` | Create account |
-| POST | `/login` | Login |
-| GET | `/verify-email` | Verify email |
-| POST | `/forgot-password` | Forgot password |
-| POST | `/reset-password` | Reset password |
+- Le frontend est déployé sur Vercel à l’adresse publique `https://medlink-dz.vercel.app/`.
+- Le backend est déployé sur Render et doit exposer l’URL utilisée dans `VITE_API_URL`.
+- La base de données PostgreSQL est hébergée sur Neon et utilisée via `DATABASE_URL`.
+- Le backend active le SSL pour les bases cloud comme Neon.
 
 ---
 
-## 📢 Annonces — `/api/annonces`
+## Auteur
 
-| Method | Endpoint | Description |
-|---|---|---|
-| GET | `/` | Get annonces |
-| GET | `/:id` | Get annonce details |
-| POST | `/` | Create annonce |
-| PUT | `/:id` | Update annonce |
-| DELETE | `/:id` | Delete annonce |
-
----
-
-# 👥 Rôles & Permissions
-
-| Action | USER | ADMIN |
-|---|:---:|:---:|
-| Voir annonces | ✅ | ✅ |
-| Publier annonce | ✅ | ✅ |
-| Dashboard admin | ❌ | ✅ |
-| Modération | ❌ | ✅ |
-| Gestion utilisateurs | ❌ | ✅ |
-
----
-
-# 🛡️ Système de modération
-
-```txt
-EN_ATTENTE
-   │
-   ├──▶ PUBLIEE
-   │
-   ├──▶ REJETEE
-   │
-   └──▶ SUSPENDUE
-```
-
-Toutes les annonces passent par validation administrateur avant publication.
-
----
-
-# 📤 Upload de fichiers
-
-### ✅ Types supportés
-- JPEG
-- PNG
-- WEBP
-- PDF
-
-### 📏 Limites
-- Maximum : **5 MB**
-- Jusqu’à **5 images**
-
-### 📂 Stockage
-```txt
-backend/uploads/
-```
-
----
-
-# 📧 Emails transactionnels
-
-Le système utilise **Nodemailer + Gmail SMTP** pour :
-
-- ✅ Vérification email
-- 🔑 Réinitialisation mot de passe
-- 📩 Renvoi des liens de vérification
-
----
-
-# 👨‍💻 Auteur
-
-Projet réalisé dans le cadre d’un cursus universitaire à :
-
-### 🇩🇿 ESTIN
-**École Supérieure en Sciences et Technologies de l’Informatique et du Numérique**
-
----
-
-<div align="center">
-
-## 💊 MedLink DZ
-
-### *Relier les médicaments avec ceux qui en ont besoin*
-
-
+MedLink DZ - projet full-stack de partage de médicaments pour l’Algérie.
