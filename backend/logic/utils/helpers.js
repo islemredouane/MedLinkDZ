@@ -2,7 +2,7 @@ import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import axios from 'axios';
 
-const FRONTEND_URL = process.env.FRONTEND_URL?.trim() || 'http://localhost:5173';
+const FRONTEND_URL = (process.env.FRONTEND_URL?.trim() || 'http://localhost:5173').replace(/\/$/, '');
 
 const sendEmail = async ({ to, subject, html, text }) => {
     const BREVO_API_KEY = process.env.BREVO_API_KEY?.trim();
