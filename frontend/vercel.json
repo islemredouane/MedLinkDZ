@@ -6,7 +6,7 @@
   "rewrites": [
     {
       "source": "/annonce/:id",
-      "destination": "/annonce.html"
+      "destination": "/annonce"
     },
     {
       "source": "/profil",
