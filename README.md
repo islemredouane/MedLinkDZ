@@ -10,6 +10,7 @@
 [![Vercel](https://img.shields.io/badge/Front-Vercel-000000?style=for-the-badge&logo=vercel&logoColor=white&labelColor=0A1612)](https://vercel.com)
 [![Render](https://img.shields.io/badge/API-Render-46E3B7?style=for-the-badge&logo=render&logoColor=white&labelColor=0A1612)](https://render.com)
 [![Neon](https://img.shields.io/badge/PostgreSQL-Neon-00E599?style=for-the-badge&logo=postgresql&logoColor=white&labelColor=0A1612)](https://neon.tech)
+[![GitHub stars](https://img.shields.io/github/stars/islemredouane/MedLinkDZ?style=for-the-badge&logo=github&logoColor=white&labelColor=0A1612&color=F5B301&label=Stars)](https://github.com/islemredouane/MedLinkDZ/stargazers)
 
 [![Tailwind CSS](https://img.shields.io/badge/Tailwind-v4-38BDF8?style=flat-square&logo=tailwindcss&logoColor=white)](https://tailwindcss.com)
 [![Vite](https://img.shields.io/badge/Vite-8-646CFF?style=flat-square&logo=vite&logoColor=white)](https://vite.dev)
@@ -23,7 +24,7 @@
 La plateforme solidaire qui relie les personnes qui ont des médicaments inutilisés<br>
 à celles qui en ont besoin, partout en Algérie 🇩🇿
 
-[**Voir le site**](https://medlink-dz.vercel.app) · [**Essayer la démo**](#-essayer-la-démo) · [**Documentation API**](docs/API.md) · [**Changelog**](CHANGELOG.md)
+[**Voir le site**](https://medlink-dz.vercel.app) · [**⭐ Mettre une étoile**](https://github.com/islemredouane/MedLinkDZ) · [**Essayer la démo**](#-essayer-la-démo) · [**Documentation API**](docs/API.md) · [**Changelog**](CHANGELOG.md)
 
 </div>
 
@@ -298,6 +299,8 @@ La version en ligne n'a pas besoin de l'API : pour la brancher au vrai backend, 
 <div align="center">
 
 **MedLink DZ** · projet full-stack de partage solidaire de médicaments pour l'Algérie
+
+⭐ Si le projet vous plaît, [une étoile sur GitHub](https://github.com/islemredouane/MedLinkDZ) fait toujours plaisir.
 
 <sub>Les informations publiées sur la plateforme ne remplacent pas l'avis d'un médecin ou d'un pharmacien.</sub>
 

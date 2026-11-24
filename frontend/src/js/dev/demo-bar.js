@@ -11,6 +11,7 @@ const ACCOUNTS = [
 ];
 const active = ACCOUNTS.find((a) => a.token === tokenStore.get()) || ACCOUNTS[2];
 
+const REPO_URL = 'https://github.com/islemredouane/MedLinkDZ';
 const STRIP_KEY = 'medlink_demo_strip';
 document.querySelector('[data-demo-strip-close]')?.addEventListener('click', () => {
   document.documentElement.classList.add('demo-strip-off');
@@ -42,6 +43,11 @@ function openAbout() {
       </ul>
       <p class="mt-7 font-mono text-[11px] uppercase tracking-[0.14em] text-muted">Explorer le site en tant que</p>
       <div class="mt-3 grid gap-2 sm:grid-cols-3">${views}</div>
+      <a href="${REPO_URL}" target="_blank" rel="noopener noreferrer" class="group mt-5 flex items-center gap-3.5 rounded-2xl border border-line bg-paper p-3.5 transition hover:border-brand/50 hover:bg-brand-soft/40">
+        <span class="grid size-10 shrink-0 place-items-center rounded-xl bg-ink text-white">${icon('github', 'size-5')}</span>
+        <span class="min-w-0 flex-1"><span class="block text-sm font-medium text-text">Le projet vous plaît ?</span><span class="block text-xs text-muted">Une étoile sur GitHub fait toujours plaisir.</span></span>
+        <span class="inline-flex shrink-0 items-center gap-1.5 rounded-full border border-line-strong bg-surface px-3 py-1.5 text-[13px] font-medium text-text transition group-hover:border-text">Étoile ${icon('star', 'size-3.5 fill-[#F5B301] text-[#F5B301]')}</span>
+      </a>
       <div class="mt-5 flex items-center justify-between gap-3 border-t border-line pt-4">
         <p class="text-xs text-muted">Rouvrez cette fenêtre à tout moment avec « En savoir plus ».</p>
         <button type="button" data-demo-reset class="btn btn-ghost btn-sm shrink-0">${icon('rotate-ccw', 'size-4')}Réinitialiser</button>
