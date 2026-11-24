@@ -207,10 +207,10 @@ Sur la page de connexion, utilisez l'un de ces comptes de démonstration :
 
 1. Connectez-vous en **membre**, puis *Publier* → **Je recherche** → « Ritaline 10 mg » : l'ordonnance devient obligatoire.
 2. Joignez n'importe quelle image ou PDF (il n'est jamais conservé), puis envoyez : l'annonce passe « En attente ».
-3. Ouvrez le bouton **Démo** (en bas) → *Administrateur* → *Modération* : consultez l'ordonnance, puis **Approuver**.
+3. Dans le bandeau du haut, cliquez sur **En savoir plus** → *Admin* → *Modération* : consultez l'ordonnance, puis **Approuver**.
 4. Revenez en membre : l'annonce est publiée et son ordonnance « validée ».
 
-Le bouton **Démo** permet de changer de vue (Visiteur / Membre / Admin) et de réinitialiser les données à tout moment.
+La fenêtre **En savoir plus** (bandeau du haut) permet de changer de vue (Visiteur / Membre / Admin) et de réinitialiser les données à tout moment.
 
 </details>
 

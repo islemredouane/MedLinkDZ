@@ -23,7 +23,7 @@ npm run demo        # http://localhost:5173
 C'est exactement la version en ligne : l'API fictive (`frontend/mock/`) tourne dans le navigateur et ne contacte aucun serveur.
 Les données restent dans le `localStorage` du visiteur (elles survivent aux changements de page, se réinitialisent seules au bout de 24 h
 ou depuis le menu). Les photos sont réduites avant d'être gardées, et les ordonnances ne sont jamais conservées.
-Le bouton **Démo** (en bas à gauche) bascule entre Admin / Membre / Visiteur et réinitialise les données. Mot de passe des comptes de démo : `demo1234` (n'importe quel mot de passe est accepté) :
+La fenêtre « En savoir plus » du bandeau du haut bascule entre Admin / Membre / Visiteur et réinitialise les données. Mot de passe des comptes de démo : `demo1234` (n'importe quel mot de passe est accepté) :
 
 | Email | Compte |
 |---|---|
