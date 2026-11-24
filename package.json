@@ -1,0 +1,18 @@
+{
+  "name": "medlink-dz",
+  "private": true,
+  "version": "2.0.0",
+  "description": "MedLink DZ: solidarity medicine sharing across the 69 wilayas of Algeria",
+  "scripts": {
+    "install:all": "npm --prefix backend install && npm --prefix frontend install",
+    "dev:api": "npm --prefix backend run dev",
+    "dev:web": "npm --prefix frontend run dev",
+    "demo": "npm --prefix frontend run dev:mock",
+    "build": "npm --prefix frontend run build",
+    "build:demo": "npm --prefix frontend run build:demo",
+    "build:og": "npm --prefix frontend run build:og"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
+  }
+}

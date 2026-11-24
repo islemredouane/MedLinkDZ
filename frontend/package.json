@@ -1,27 +1,26 @@
 {
-  "name": "medlinkdz",
+  "name": "medlink-dz-web",
   "private": true,
-  "version": "0.1.0",
-  "description": "MedLink DZ — plateforme d'entraide médicale (frontend + backend)",
+  "version": "2.0.0",
+  "description": "MedLink DZ — website (HTML, Tailwind CSS v4, vanilla JS, Vite)",
+  "type": "module",
   "scripts": {
     "dev": "vite",
-    "dev:backend": "npm --prefix backend run dev",
-    "dev:frontend": "npm --prefix frontend run dev",
-    "install:all": "npm install && npm --prefix backend install && npm --prefix frontend install",
+    "dev:mock": "vite --mode mock",
     "build": "vite build",
-    "start": "npm --prefix backend run start"
+    "build:demo": "vite build --mode mock",
+    "build:og": "node scripts/generate-og.mjs",
+    "preview": "vite preview"
   },
   "devDependencies": {
-    "@vitejs/plugin-react": "^6.0.1",
-    "concurrently": "^9.0.1",
+    "@tailwindcss/vite": "^4.3.5",
+    "tailwindcss": "^4.3.5",
     "vite": "^8.0.10"
   },
   "dependencies": {
-    "axios": "^1.15.2",
-    "framer-motion": "^12.38.0",
-    "lucide-react": "^1.11.0",
-    "react": "^19.2.5",
-    "react-dom": "^19.2.5",
-    "react-router-dom": "^7.14.2"
+    "lucide": "^1.78.0"
+  },
+  "engines": {
+    "node": "^20.19.0 || >=22.12.0"
   }
 }

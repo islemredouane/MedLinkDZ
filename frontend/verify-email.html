@@ -1,0 +1,29 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- @include head -->
+  <title>Vérification de l'email — MedLink DZ</title>
+  <meta name="robots" content="noindex" />
+</head>
+<body>
+  <main id="main" class="grid min-h-[100svh] lg:grid-cols-2">
+    <section class="flex min-h-[100svh] flex-col px-6 py-6 sm:px-10">
+      <div class="mx-auto my-auto w-full max-w-[400px] py-4 animate-rise">
+        <!-- @include auth-logo -->
+        <h1 class="text-[1.75rem] font-semibold leading-tight tracking-tight sm:text-3xl" data-title>Vérification de l'email</h1>
+        <p class="mt-1.5 text-lg leading-snug text-muted" data-subtitle>Un instant, nous validons votre compte.</p>
+        <div class="mt-8" data-state>
+          <div class="flex items-center gap-4 rounded-2xl border border-line bg-surface p-5">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" class="size-6 animate-spin-slow text-brand" aria-hidden="true"><path d="M21 12a9 9 0 1 1-6.219-8.56" stroke-linecap="round"/></svg>
+            <p class="text-sm">Validation en cours…</p>
+          </div>
+        </div>
+      </div>
+      <p class="mx-auto w-full max-w-[400px] text-center text-xs text-muted">© MedLink DZ · <a href="/conditions" class="hover:text-text">Conditions</a> · <a href="/confidentialite" class="hover:text-text">Confidentialité</a></p>
+    </section>
+    <!-- @include auth-aside -->
+  </main>
+
+  <script type="module" src="/src/js/pages/verify-email.js"></script>
+</body>
+</html>

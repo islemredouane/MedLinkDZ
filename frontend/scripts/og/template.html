@@ -1,0 +1,117 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>MedLink DZ — social card template</title>
+<!-- 1200×630 social card. Content comes from the URL hash (JSON), see scripts/generate-og.mjs. Not part of the site. -->
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;600;700&family=Instrument+Serif:ital@0;1&display=swap">
+<style>
+  :root { --ink:#0A1612; --forest:#0E3A2C; --brand:#13805C; --mint:#86D6B3; --signal:#D4512F; }
+  * { box-sizing: border-box; margin: 0; }
+  html, body { width: 1200px; height: 630px; overflow: hidden; background: var(--ink); }
+  body { position: relative; font-family: Inter, system-ui, sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+
+  /* Background: soft green light from the top right, fine grid */
+  .bg { position: absolute; inset: 0; background:
+      radial-gradient(900px 600px at 86% 8%, rgba(19,128,92,.5), transparent 62%),
+      radial-gradient(700px 500px at -5% 115%, rgba(134,214,179,.14), transparent 60%),
+      var(--ink); }
+  .grid { position: absolute; inset: 0; opacity: .5;
+      background-image: linear-gradient(rgba(255,255,255,.045) 1px, transparent 1px), linear-gradient(90deg, rgba(255,255,255,.045) 1px, transparent 1px);
+      background-size: 48px 48px; -webkit-mask-image: linear-gradient(90deg, #000 15%, transparent 90%); mask-image: linear-gradient(90deg, #000 15%, transparent 90%); }
+
+  /* Left column */
+  .left { position: absolute; left: 72px; top: 64px; bottom: 64px; width: 610px; display: flex; flex-direction: column; }
+  .brand { display: flex; align-items: center; gap: 16px; }
+  .brand svg { width: 52px; height: 52px; }
+  .brand b { font: 700 30px 'Space Grotesk'; letter-spacing: -.01em; }
+  .brand b i { font: 500 15px 'JetBrains Mono'; font-style: normal; letter-spacing: .18em; color: var(--mint); margin-left: 8px; }
+
+  .kicker { margin-top: auto; display: flex; align-items: center; gap: 14px; font: 600 15px 'JetBrains Mono'; letter-spacing: .18em; text-transform: uppercase; color: var(--mint); }
+  .kicker::before { content: ""; width: 36px; height: 2px; background: var(--mint); opacity: .7; }
+  h1 { margin-top: 20px; font: 600 62px/1.06 'Space Grotesk'; letter-spacing: -.028em; }
+  h1 em { font: italic 400 72px/1 'Instrument Serif'; letter-spacing: -.01em; color: var(--mint); white-space: nowrap; }
+  .sub { margin-top: 22px; max-width: 540px; font: 400 23px/1.4 Inter; color: rgba(255,255,255,.66); }
+  .stats { margin-top: 30px; display: flex; gap: 12px; }
+  .stat { display: flex; align-items: center; gap: 10px; padding: 11px 18px; border: 1px solid rgba(255,255,255,.16); border-radius: 999px; background: rgba(255,255,255,.05); font: 500 17px Inter; color: rgba(255,255,255,.88); }
+  .stat::before { content: ""; width: 8px; height: 8px; border-radius: 50%; background: var(--mint); }
+
+  /* Right: the site's own "Dernières annonces" panel */
+  .panel { position: absolute; right: 56px; top: 52px; width: 432px; height: 526px; padding: 22px; border-radius: 36px;
+      background: linear-gradient(180deg, rgba(255,255,255,.075), rgba(255,255,255,.03));
+      box-shadow: 0 40px 90px -24px rgba(0,0,0,.75), inset 0 0 0 1px rgba(255,255,255,.14); display: flex; flex-direction: column; }
+  .panel-head { display: flex; justify-content: space-between; align-items: center; padding: 2px 6px 16px; font: 600 12px 'JetBrains Mono'; letter-spacing: .16em; color: rgba(255,255,255,.55); }
+  .panel-head span:first-child::before { content: ""; display: inline-block; width: 7px; height: 7px; border-radius: 50%; background: var(--mint); margin-right: 10px; }
+  .panel-head span:last-child { color: var(--mint); }
+  .rows { display: flex; flex-direction: column; gap: 8px; }
+  .row { display: flex; align-items: center; gap: 16px; padding: 14px 18px; border-radius: 22px; background: rgba(255,255,255,.045); }
+  .row .dot { flex: none; width: 10px; height: 10px; border-radius: 50%; }
+  .row.offre .dot { background: var(--mint); } .row.demande .dot { background: #F08A6E; }
+  .row h3 { font: 600 21px/1.1 'Space Grotesk'; letter-spacing: -.01em; }
+  .row p { margin-top: 5px; font: 500 12px 'JetBrains Mono'; letter-spacing: .1em; color: rgba(255,255,255,.5); }
+  .row time { margin-left: auto; font: 500 12px 'JetBrains Mono'; letter-spacing: .06em; color: rgba(255,255,255,.4); white-space: nowrap; }
+  /* The first row stands out, like a freshly published annonce */
+  .row.hot { background: #fff; color: var(--ink); box-shadow: 0 24px 50px -18px rgba(0,0,0,.6); padding: 16px 18px; }
+  .row.hot .dot { background: var(--brand); }
+  .row.hot p, .row.hot time { color: #5F6E68; }
+  .row.hot .new { margin-left: auto; padding: 5px 11px; border-radius: 999px; background: #E2F1E9; color: var(--brand); font: 600 11px 'JetBrains Mono'; letter-spacing: .14em; }
+  .tiles { margin-top: auto; display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+  .tile { padding: 16px 16px; border-radius: 22px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.1); }
+  .tile small { display: block; font: 600 11px 'JetBrains Mono'; letter-spacing: .16em; color: rgba(255,255,255,.45); }
+  .tile b { display: flex; align-items: center; gap: 10px; margin-top: 8px; font: 600 20px 'Space Grotesk'; white-space: nowrap; }
+  .tile b::before { content: ""; width: 10px; height: 10px; border-radius: 50%; }
+  .tile.offre b::before { background: var(--mint); } .tile.demande b::before { background: #F08A6E; }
+</style>
+</head>
+<body>
+  <div class="bg"></div><div class="grid"></div>
+
+  <div class="left">
+    <div class="brand">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="9" fill="#13805C"/><rect x="13" y="6.5" width="6" height="19" rx="3" fill="#fff"/><rect x="6.5" y="13" width="19" height="6" rx="3" fill="#86D6B3"/><rect x="13" y="13" width="6" height="6" fill="#fff"/></svg>
+      <b>MedLink<i>DZ</i></b>
+    </div>
+    <div class="kicker" id="kicker"></div>
+    <h1 id="title"></h1>
+    <p class="sub" id="sub"></p>
+    <div class="stats" id="stats"></div>
+  </div>
+
+  <div class="panel">
+    <div class="panel-head"><span>DERNIÈRES ANNONCES</span><span>TOUT VOIR →</span></div>
+    <div class="rows">
+      <div class="row hot offre"><span class="dot"></span><div><h3>Doliprane 1000 mg</h3><p>OFFRE · 16 ALGER</p></div><span class="new">NOUVEAU</span></div>
+      <div class="row demande"><span class="dot"></span><div><h3>Insuline NovoMix 30</h3><p>DEMANDE · 06 BÉJAÏA</p></div><time>il y a 1 h</time></div>
+      <div class="row offre"><span class="dot"></span><div><h3>Ventoline 100 µg</h3><p>OFFRE · 31 ORAN</p></div><time>il y a 3 h</time></div>
+      <div class="row demande"><span class="dot"></span><div><h3>Levothyrox 50 µg</h3><p>DEMANDE · 25 CONSTANTINE</p></div><time>il y a 5 h</time></div>
+    </div>
+    <div class="tiles">
+      <div class="tile offre"><small>OFFRE</small><b>Je donne</b></div>
+      <div class="tile demande"><small>DEMANDE</small><b>Je recherche</b></div>
+    </div>
+  </div>
+
+<script>
+  const d = JSON.parse(decodeURIComponent(location.hash.slice(1) || '%7B%7D'));
+  const set = (id, html) => { document.getElementById(id).innerHTML = html; };
+  set('kicker', d.kicker || 'Plateforme solidaire · Algérie');
+  set('title', d.title || 'Un médicament inutilisé ici, <em>un traitement ailleurs.</em>');
+  set('sub', d.sub || '');
+  set('stats', (d.stats || []).map((s) => `<span class="stat">${s}</span>`).join(''));
+
+  // Resolves with { ok, missing } once the stylesheet and every font are really loaded (the generator refuses to save otherwise).
+  const FONTS = ['700 30px "Space Grotesk"', '600 62px "Space Grotesk"', '400 23px Inter', '500 17px Inter', 'italic 400 72px "Instrument Serif"', '600 15px "JetBrains Mono"', '500 12px "JetBrains Mono"'];
+  const TEXT = 'AaÀéèêçÉ0123 µ→✓·';
+  window.__ready = (async () => {
+    const link = document.querySelector('link[rel=stylesheet]');
+    if (!link.sheet) await new Promise((r) => { link.onload = link.onerror = r; });
+    await Promise.all(FONTS.map((f) => document.fonts.load(f, TEXT).catch(() => [])));
+    await document.fonts.ready;
+    const missing = FONTS.filter((f) => !document.fonts.check(f, TEXT));
+    return { ok: missing.length === 0, missing };
+  })();
+</script>
+</body>
+</html>

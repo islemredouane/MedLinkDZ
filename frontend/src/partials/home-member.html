@@ -1,0 +1,118 @@
+<!-- ===================== MEMBER HOME (signed in) =====================
+     Shown instead of the visitor home when a sign-in token exists (see index.html + home.js).
+     Task-first: search and publish up top, then the member's own annonces, then what's nearby. -->
+<div data-member-only>
+  <!-- Welcome band -->
+  <section class="on-dark relative overflow-hidden bg-ink pb-10 pt-24 text-white md:pb-14 md:pt-32">
+    <div class="pointer-events-none absolute -right-40 -top-48 size-[560px] rounded-full bg-brand/25 blur-[140px]"></div>
+
+    <div class="shell relative grid gap-10 lg:grid-cols-[1.4fr_1fr] lg:items-end">
+      <div class="animate-rise">
+        <p class="eyebrow" data-today>Aujourd'hui</p>
+        <h1 class="mt-4 text-[2.3rem] font-semibold leading-[1.05] text-white sm:text-5xl lg:text-[3.6rem]">
+          Bonjour <span data-first-name>!</span><span class="serif-accent block text-mint">que cherchez-vous&nbsp;?</span>
+        </h1>
+
+        <form class="mt-8 flex flex-col gap-2.5 rounded-[44px] bg-white p-3 text-text shadow-[0_30px_80px_-20px_rgb(0_0_0/.6)] sm:flex-row sm:items-stretch sm:gap-2 sm:rounded-full sm:p-2" data-member-search role="search">
+          <label class="hero-field min-w-0 flex-1 cursor-text">
+            <span class="hero-field-label">Médicament</span>
+            <span class="hero-field-row">
+              <i data-lucide="search" class="size-5 shrink-0 text-muted"></i>
+              <input name="q" type="search" placeholder="Ex. Doliprane" autocomplete="off" enterkeyhint="search"
+                     class="h-full w-full min-w-0 bg-transparent text-base outline-none placeholder:text-muted sm:text-[15px]">
+            </span>
+          </label>
+          <div class="hidden w-px bg-line sm:block"></div>
+          <div class="hero-field sm:w-48 sm:shrink-0">
+            <span class="hero-field-label">Wilaya</span>
+            <div class="hero-field-row" data-member-wilaya></div>
+          </div>
+          <button class="btn btn-primary h-14 shrink-0 rounded-full px-6 text-base sm:text-[15px]">Rechercher <i data-lucide="arrow-right"></i></button>
+        </form>
+      </div>
+
+      <div class="grid grid-cols-2 gap-3 lg:grid-cols-1 animate-rise [animation-delay:.1s]">
+        <a href="/publier?type=offre" class="group flex flex-col items-start gap-3 rounded-2xl border border-white/10 bg-white/[.04] p-4 sm:flex-row sm:items-center sm:gap-4 transition duration-300 ease-out-soft hover:border-mint/40 hover:bg-white/[.07]">
+          <span class="grid size-11 shrink-0 place-items-center rounded-xl bg-mint/15 text-mint"><i data-lucide="hand-heart" class="size-5"></i></span>
+          <span class="min-w-0 flex-1">
+            <span class="block text-[15px] font-medium leading-snug text-white">Proposer un médicament</span>
+            <span class="hidden text-sm text-white/55 sm:block">Je donne ce que je n'utilise plus</span>
+          </span>
+          <i data-lucide="arrow-up-right" class="hidden size-5 text-white/40 sm:block transition-[translate,color] duration-300 ease-out-soft group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-mint"></i>
+        </a>
+        <a href="/publier?type=demande" class="group flex flex-col items-start gap-3 rounded-2xl border border-white/10 bg-white/[.04] p-4 sm:flex-row sm:items-center sm:gap-4 transition duration-300 ease-out-soft hover:border-[#FF9B85]/40 hover:bg-white/[.07]">
+          <span class="grid size-11 shrink-0 place-items-center rounded-xl bg-[#FF9B85]/15 text-[#FF9B85]"><i data-lucide="search" class="size-5"></i></span>
+          <span class="min-w-0 flex-1">
+            <span class="block text-[15px] font-medium leading-snug text-white">Publier une demande</span>
+            <span class="hidden text-sm text-white/55 sm:block">Je cherche un médicament précis</span>
+          </span>
+          <i data-lucide="arrow-up-right" class="hidden size-5 text-white/40 sm:block transition-[translate,color] duration-300 ease-out-soft group-hover:-translate-y-0.5 group-hover:translate-x-0.5 group-hover:text-[#FF9B85]"></i>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Reminders + my annonces -->
+  <section class="py-10 md:py-14">
+    <div class="shell space-y-4">
+      <div class="space-y-3 empty:hidden" data-member-notices></div>
+
+      <div class="card overflow-hidden">
+        <div class="flex flex-col gap-4 border-b border-line p-5 sm:flex-row sm:items-center sm:justify-between sm:p-6">
+          <div class="min-w-0">
+            <p class="eyebrow">01 — Mes annonces</p>
+            <p class="mt-2 text-[15px] text-body" data-member-latest><span class="skeleton inline-block h-4 w-64 align-middle"></span></p>
+          </div>
+          <a href="/profil/annonces" class="btn btn-outline btn-sm self-start sm:self-auto">Tout voir <i data-lucide="arrow-right"></i></a>
+        </div>
+        <div class="grid grid-cols-3 divide-x divide-line">
+          <a href="/profil/annonces?statut=publiee" class="group p-5 transition hover:bg-paper sm:p-6">
+            <p class="flex items-center gap-2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.1em] text-muted sm:text-[11px] sm:tracking-[0.14em]"><span class="size-1.5 rounded-full bg-brand"></span>Publiées</p>
+            <p class="mt-2 font-display text-3xl font-semibold text-text sm:text-4xl" data-member-count="publiee">—</p>
+          </a>
+          <a href="/profil/annonces?statut=en_attente" class="group p-5 transition hover:bg-paper sm:p-6">
+            <p class="flex items-center gap-2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.1em] text-muted sm:text-[11px] sm:tracking-[0.14em]"><span class="size-1.5 rounded-full bg-amber"></span>En attente</p>
+            <p class="mt-2 font-display text-3xl font-semibold text-text sm:text-4xl" data-member-count="en_attente">—</p>
+          </a>
+          <a href="/profil/annonces?statut=rejetee" class="group p-5 transition hover:bg-paper sm:p-6">
+            <p class="flex items-center gap-2 whitespace-nowrap font-mono text-[10px] uppercase tracking-[0.1em] text-muted sm:text-[11px] sm:tracking-[0.14em]"><span class="size-1.5 rounded-full bg-danger"></span>Rejetées</p>
+            <p class="mt-2 font-display text-3xl font-semibold text-text sm:text-4xl" data-member-count="rejetee">—</p>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Near me -->
+  <section class="pb-14 md:pb-20">
+    <div class="shell">
+      <div class="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <p class="eyebrow">02 — Près de chez vous</p>
+          <h2 class="mt-3 text-3xl font-semibold leading-tight md:text-4xl">Autour de <span data-member-wilaya-name>votre wilaya</span></h2>
+        </div>
+        <a href="/search" class="btn btn-outline btn-sm self-start md:self-auto" data-member-nearby-link>Tout voir dans ma wilaya <i data-lucide="arrow-right"></i></a>
+      </div>
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-member-nearby></div>
+    </div>
+  </section>
+
+  <!-- Everywhere -->
+  <section class="border-t border-line bg-paper-2/60 py-14 md:py-20">
+    <div class="shell">
+      <div class="flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <div>
+          <p class="eyebrow">03 — Ajoutées récemment</p>
+          <h2 class="mt-3 text-3xl font-semibold leading-tight md:text-4xl">Partout en Algérie</h2>
+        </div>
+        <a href="/search" class="btn btn-outline btn-sm self-start md:self-auto">Toutes les annonces <i data-lucide="arrow-right"></i></a>
+      </div>
+      <div class="mt-8 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-member-latest-all></div>
+
+      <div class="notice notice-info mt-10 bg-surface">
+        <i data-lucide="shield-check"></i>
+        <div><strong class="text-text">Rappel sécurité</strong>Vérifiez la date de péremption et l'emballage, et échangez toujours dans un lieu public.</div>
+      </div>
+    </div>
+  </section>
+</div>

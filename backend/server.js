@@ -10,9 +10,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 dotenv.config({ path: path.join(__dirname, '.env') });
 
-// 2. Importer l'application express (depuis le dossier logic)
-import app from './logic/app.js';
-import { seedDatabase } from './logic/config/seeder.js';
+// 2. Importer l'application express (depuis le dossier src)
+import app from './src/app.js';
+import { seedDatabase } from './src/config/seeder.js';
 
 // 3. Définir le port et démarrer l'écoute
 const PORT = process.env.PORT || 5000;

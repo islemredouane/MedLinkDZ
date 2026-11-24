@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- @include head -->
+  <title>Rechercher un médicament — MedLink DZ</title>
+  <meta name="description" content="Parcourez les offres et demandes de médicaments publiées dans les 69 wilayas d'Algérie." />
+</head>
+<body>
+  <!-- @include header -->
+
+  <main id="main" class="pb-24 pt-28 md:pt-36">
+    <section class="shell">
+      <div class="mt-4 flex flex-col justify-between gap-4 md:flex-row md:items-end">
+        <h1 class="text-4xl font-semibold leading-tight md:text-6xl">Trouver un médicament</h1>
+        <p class="font-mono text-xs uppercase tracking-[0.14em] text-muted" data-total>Chargement…</p>
+      </div>
+
+      <!-- Filter bar. Phones: only the search row stays pinned; wilaya + type open from "Filtres".
+           md+: everything visible. -->
+      <div class="sticky top-16 z-20 -mx-5 mt-8 border-y border-line bg-surface/92 px-5 py-2.5 backdrop-blur-xl sm:mx-0 sm:mt-10 sm:rounded-[30px] sm:border sm:p-2.5 md:top-[84px] lg:rounded-full">
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-center">
+          <div class="flex gap-2 lg:flex-1">
+            <label class="field-control min-w-0 flex-1 rounded-full px-4">
+              <i data-lucide="search"></i>
+              <span class="sr-only">Nom du médicament</span>
+              <input type="search" placeholder="Nom, DCI ou marque…" autocomplete="off" enterkeyhint="search" data-q>
+              <button type="button" class="rounded-full p-1 text-muted hover:text-text" aria-label="Effacer la recherche" data-clear hidden><i data-lucide="x" class="size-4"></i></button>
+            </label>
+            <button type="button" class="relative flex h-12 shrink-0 items-center gap-2 rounded-full border border-line bg-surface px-4 text-sm font-medium text-text transition aria-expanded:border-ink aria-expanded:bg-ink aria-expanded:text-white md:hidden"
+                    aria-expanded="false" aria-controls="search-filters" data-filter-toggle>
+              <i data-lucide="sliders-horizontal" class="size-[18px]"></i><span>Filtres</span>
+              <span class="absolute -right-1.5 -top-1.5 grid size-5 place-items-center rounded-full bg-brand font-mono text-[10px] font-semibold text-white" data-filter-count hidden></span>
+            </button>
+          </div>
+          <div id="search-filters" class="flex flex-col gap-3 max-md:hidden md:flex-row md:items-center lg:contents" data-filter-panel>
+          <div class="md:flex-1 lg:w-64 lg:flex-none" data-wilaya></div>
+          <div class="segmented self-start md:self-auto" role="group" aria-label="Type d'annonce" data-types>
+            <button type="button" class="seg-item" data-type="all" aria-pressed="true">Tout</button>
+            <button type="button" class="seg-item" data-type="offre" aria-pressed="false"><span class="seg-dot bg-brand"></span>Offres</button>
+            <button type="button" class="seg-item" data-type="demande" aria-pressed="false"><span class="seg-dot bg-signal"></span>Demandes</button>
+          </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mt-8 flex items-center justify-between">
+        <p class="text-sm text-body"><span class="font-semibold text-text" data-count>0</span> <span data-count-label>résultat</span></p>
+        <button type="button" class="text-sm font-medium text-brand hover:underline" data-reset hidden>Réinitialiser les filtres</button>
+      </div>
+
+      <div class="mt-5 grid gap-5 sm:grid-cols-2 lg:grid-cols-3" data-results></div>
+    </section>
+  </main>
+
+  <!-- @include footer -->
+  <script type="module" src="/src/js/pages/search.js"></script>
+</body>
+</html>

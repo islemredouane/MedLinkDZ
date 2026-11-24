@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- @include head -->
+  <title>Annonce — MedLink DZ</title>
+</head>
+<body>
+  <!-- @include header -->
+
+  <main id="main" class="pb-24 pt-28 md:pt-36">
+    <div class="shell">
+      <a href="/search" class="inline-flex items-center gap-1.5 text-sm font-medium text-body hover:text-text" data-back>
+        <i data-lucide="arrow-left" class="size-4"></i> Retour aux annonces
+      </a>
+      <div class="mt-8" data-view>
+        <div class="grid grid-cols-[minmax(0,1fr)] gap-10 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
+          <div class="skeleton aspect-[16/10] rounded-3xl"></div>
+          <div class="space-y-4"><div class="skeleton h-4 w-32"></div><div class="skeleton h-10 w-3/4"></div><div class="skeleton h-40 w-full rounded-2xl"></div></div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- @include footer -->
+  <script type="module" src="/src/js/pages/annonce.js"></script>
+</body>
+</html>

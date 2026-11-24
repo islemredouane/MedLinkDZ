@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- @include head -->
+  <title>Modifier mon profil — MedLink DZ</title>
+  <meta name="robots" content="noindex" />
+</head>
+<body class="is-gated">
+  <!-- @include header -->
+
+  <main id="main" class="pb-28 pt-28 md:pt-36">
+    <div class="shell" data-gate-loader><div class="skeleton h-96 rounded-3xl"></div></div>
+
+    <div class="shell max-w-3xl" data-gated>
+      <a href="/profil" class="inline-flex items-center gap-1.5 text-sm font-medium text-body hover:text-text"><i data-lucide="arrow-left" class="size-4"></i>Mon profil</a>
+      <h1 class="mt-6 text-4xl font-semibold md:text-5xl">Modifier mes informations</h1>
+
+      <form class="card mt-10 divide-y divide-line" data-form>
+        <section class="grid gap-6 p-6 sm:p-8 md:grid-cols-[200px_1fr]">
+          <div><h2 class="text-base font-semibold">Photo de profil</h2><p class="mt-1 text-sm">Une image claire rend votre compte plus identifiable.</p></div>
+          <div class="flex items-center gap-5">
+            <span class="grid size-20 shrink-0 place-items-center overflow-hidden rounded-3xl bg-brand-soft font-display text-2xl font-semibold text-brand" data-avatar></span>
+            <div>
+              <button type="button" class="btn btn-outline btn-sm" data-pick><i data-lucide="camera"></i>Changer la photo</button>
+              <p class="mt-2 text-xs text-muted">JPG, PNG ou WebP.</p>
+              <input type="file" accept="image/jpeg,image/png,image/webp" class="sr-only" data-file>
+            </div>
+          </div>
+        </section>
+
+        <section class="grid gap-6 p-6 sm:p-8 md:grid-cols-[200px_1fr]">
+          <div><h2 class="text-base font-semibold">Identité</h2><p class="mt-1 text-sm">Affichée sur vos annonces.</p></div>
+          <div class="grid gap-5 sm:grid-cols-2">
+            <div class="field"><label for="prenom" class="field-label">Prénom</label><div class="field-control"><i data-lucide="user"></i><input id="prenom" name="prenom" autocomplete="given-name"></div></div>
+            <div class="field"><label for="nom" class="field-label">Nom</label><div class="field-control"><i data-lucide="user"></i><input id="nom" name="nom" autocomplete="family-name"></div></div>
+          </div>
+        </section>
+
+        <section class="grid gap-6 p-6 sm:p-8 md:grid-cols-[200px_1fr]">
+          <div><h2 class="text-base font-semibold">Coordonnées</h2><p class="mt-1 text-sm">Utilisées pour vous contacter au sujet de vos annonces.</p></div>
+          <div class="space-y-5">
+            <div class="field"><label for="phone" class="field-label">Téléphone</label><div class="field-control"><i data-lucide="phone"></i><input id="phone" name="phone" type="tel" autocomplete="tel"></div></div>
+            <div class="field"><span class="field-label">Wilaya</span><div data-wilaya></div></div>
+            <div class="field"><span class="field-label">Email</span><div class="field-control bg-paper"><i data-lucide="mail"></i><input disabled data-email class="text-muted"></div><span class="field-hint">L'email ne peut pas être modifié ici.</span></div>
+          </div>
+        </section>
+
+        <div class="p-6 sm:p-8">
+          <div class="mb-5 empty:mb-0" data-feedback></div>
+          <div class="flex flex-col-reverse gap-2 sm:flex-row sm:justify-end">
+            <a href="/profil" class="btn btn-ghost">Annuler</a>
+            <button class="btn btn-primary" data-submit>Enregistrer les modifications</button>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- @include footer -->
+  <script type="module" src="/src/js/pages/profil-modifier.js"></script>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- @include head -->
+  <title>Modération — Console admin · MedLink DZ</title>
+  <meta name="robots" content="noindex" />
+</head>
+<body class="is-gated">
+  <!-- @include header -->
+
+  <main id="main" class="pb-28 pt-28 md:pt-36">
+    <div class="shell" data-gate-loader><div class="skeleton h-72 rounded-3xl"></div></div>
+
+    <div class="shell" data-gated>
+      <!-- @include admin-nav -->
+      <script>document.querySelector('[data-admin-title]').textContent = 'Modération';</script>
+
+      <div class="mt-8 flex flex-col justify-between gap-2 sm:flex-row sm:items-center">
+        <p>Annonces en attente de validation. Vérifiez le contenu, la date de péremption et l'ordonnance éventuelle : approuver une demande valide aussi son ordonnance.</p>
+        <span class="tag tag-pending self-start" data-count>— en attente</span>
+      </div>
+      <div class="mt-4" data-feedback></div>
+      <div class="card mt-4 overflow-hidden" data-list>
+        <div class="space-y-4 p-6"><div class="skeleton h-6 w-2/3"></div><div class="skeleton h-6 w-1/2"></div></div>
+      </div>
+    </div>
+  </main>
+
+  <script type="module" src="/src/js/pages/admin-moderation.js"></script>
+</body>
+</html>

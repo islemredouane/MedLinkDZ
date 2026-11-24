@@ -22,6 +22,9 @@ jspm_packages/
 uploads/*
 !uploads/.gitkeep
 
+# Prescriptions: private, never served statically, never committed
+uploads_private/
+
 # Optional npm cache directory
 .npm
 

@@ -1,15 +1,6 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" width="64" height="64">
-  <!-- Green gradient background matching the navbar logo -->
-  <defs>
-    <linearGradient id="g" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#10b981"/>
-      <stop offset="100%" stop-color="#14b8a6"/>
-    </linearGradient>
-  </defs>
-  <rect width="64" height="64" rx="14" fill="url(#g)"/>
-  <!-- White HeartPulse icon centered (lucide paths, 24x24 scaled 1.7x, centered) -->
-  <g transform="translate(11.6, 11.6) scale(1.7)" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" fill="none">
-    <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z"/>
-    <path d="M3.22 12H9.5l1.5-3 2 6 1.5-3h5.27"/>
-  </g>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32">
+  <rect width="32" height="32" rx="9" fill="#13805C"/>
+  <rect x="13" y="6.5" width="6" height="19" rx="3" fill="#fff"/>
+  <rect x="6.5" y="13" width="19" height="6" rx="3" fill="#86D6B3"/>
+  <rect x="13" y="13" width="6" height="6" fill="#fff"/>
 </svg>

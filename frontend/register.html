@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- @include head -->
+  <title>Créer un compte — MedLink DZ</title>
+  <meta name="robots" content="noindex" />
+</head>
+<body>
+  <main id="main" class="grid min-h-[100svh] lg:grid-cols-2">
+    <section class="flex min-h-[100svh] flex-col px-6 py-6 sm:px-10">
+      <div class="mx-auto my-auto w-full max-w-[400px] py-4 animate-rise">
+        <!-- @include auth-logo -->
+        <h1 class="text-[1.75rem] font-semibold leading-tight tracking-tight sm:text-3xl" data-title>Rejoignez MedLink DZ</h1>
+        <p class="mt-1.5 text-lg leading-snug text-muted" data-subtitle>Créez votre compte, c'est gratuit.</p>
+        <!-- Two steps so each fits on screen: 1. who you are · 2. how to reach you + security -->
+        <div class="mt-6 flex items-center gap-3" aria-hidden="true" data-step-progress>
+          <span class="h-1 flex-1 rounded-full bg-brand"></span>
+          <span class="h-1 flex-1 rounded-full bg-line transition-colors duration-300" data-step-bar></span>
+          <span class="shrink-0 font-mono text-[11px] text-muted" data-step-label>Étape 1 sur 2</span>
+        </div>
+
+        <form class="mt-5" data-form novalidate>
+          <!-- Step 1 -->
+          <div class="space-y-4" data-reg-step="1">
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="field">
+                <label for="prenom" class="field-label">Prénom</label>
+                <div class="field-control"><i data-lucide="user"></i><input id="prenom" name="prenom" autocomplete="given-name" placeholder="Amina" required></div>
+              </div>
+              <div class="field">
+                <label for="nom" class="field-label">Nom</label>
+                <div class="field-control"><i data-lucide="user"></i><input id="nom" name="nom" autocomplete="family-name" placeholder="Benali" required></div>
+              </div>
+            </div>
+            <div class="field">
+              <label for="email" class="field-label">Email</label>
+              <div class="field-control"><i data-lucide="mail"></i><input id="email" name="email" type="email" autocomplete="email" placeholder="vous@exemple.com" required></div>
+            </div>
+            <button type="submit" class="btn btn-primary btn-lg w-full" data-next-step>Continuer <i data-lucide="arrow-right"></i></button>
+          </div>
+
+          <!-- Step 2 -->
+          <div class="space-y-4" data-reg-step="2" hidden>
+            <div class="grid gap-4 sm:grid-cols-2">
+              <div class="field">
+                <label for="phone" class="field-label">Téléphone</label>
+                <div class="field-control"><i data-lucide="phone"></i><input id="phone" name="phone" type="tel" autocomplete="tel" placeholder="05 xx xx xx xx" required></div>
+              </div>
+              <div class="field"><span class="field-label">Wilaya</span><div data-wilaya></div></div>
+            </div>
+            <div class="field">
+              <label for="password" class="field-label">Mot de passe</label>
+              <div class="field-control"><i data-lucide="lock"></i><input id="password" type="password" name="password" autocomplete="new-password" placeholder="8 caractères minimum" minlength="8" required>
+                <button type="button" class="rounded-full p-1 text-muted hover:text-text" aria-label="Afficher le mot de passe" data-toggle-pw="password"><i data-lucide="eye" class="size-4"></i></button></div>
+            </div>
+            <label class="flex items-start gap-3 text-sm">
+              <input type="checkbox" name="terms" required class="mt-0.5 size-4 shrink-0 accent-brand">
+              <span>J'accepte les <a href="/conditions" target="_blank" class="font-medium text-text underline underline-offset-4">conditions d'utilisation</a> et la <a href="/confidentialite" target="_blank" class="font-medium text-text underline underline-offset-4">politique de confidentialité</a>.</span>
+            </label>
+            <div class="space-y-3" data-feedback aria-live="polite"></div>
+            <button type="submit" class="btn btn-primary btn-lg w-full" data-submit>Créer mon compte</button>
+            <button type="button" class="mx-auto flex items-center gap-1.5 text-sm font-medium text-body hover:text-text" data-prev-step><i data-lucide="arrow-left" class="size-4"></i>Modifier mes informations</button>
+          </div>
+        </form>
+
+        <!-- After sign-up: "check your inbox" screen (replaces title, steps and form) -->
+        <div data-reg-done hidden>
+          <span class="grid size-12 place-items-center rounded-2xl bg-brand-soft text-brand"><i data-lucide="mail-check" class="size-6"></i></span>
+          <h2 class="mt-5 text-[1.75rem] font-semibold leading-tight tracking-tight sm:text-3xl">Vérifiez votre boîte mail</h2>
+          <p class="mt-1.5 text-lg leading-snug text-muted">Nous avons envoyé un lien d'activation à <span class="font-medium text-text [overflow-wrap:anywhere]" data-done-email></span>.</p>
+
+          <ol class="mt-5 space-y-2.5 text-[15px]">
+            <li class="flex items-center gap-3"><span class="grid size-6 shrink-0 place-items-center rounded-full bg-paper-2 font-mono text-[11px] text-text">1</span>Ouvrez l'email de MedLink DZ</li>
+            <li class="flex items-center gap-3"><span class="grid size-6 shrink-0 place-items-center rounded-full bg-paper-2 font-mono text-[11px] text-text">2</span>Cliquez sur le lien d'activation</li>
+            <li class="flex items-center gap-3"><span class="grid size-6 shrink-0 place-items-center rounded-full bg-paper-2 font-mono text-[11px] text-text">3</span>Connectez-vous et publiez votre première annonce</li>
+          </ol>
+
+          <div class="mt-6 grid grid-cols-2 gap-2">
+            <a href="https://mail.google.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Ouvrir Gmail <i data-lucide="arrow-up-right"></i></a>
+            <a href="https://outlook.live.com/mail/" target="_blank" rel="noopener noreferrer" class="btn btn-outline">Ouvrir Outlook <i data-lucide="arrow-up-right"></i></a>
+          </div>
+          <a href="/login" class="btn btn-primary btn-lg mt-2 w-full">Aller à la connexion <i data-lucide="arrow-right"></i></a>
+
+          <p class="mt-6 border-t border-line pt-5 text-sm text-body">Rien reçu&nbsp;? Vérifiez vos spams ou <a href="/resend-verification" class="font-medium text-brand hover:underline" data-done-resend>renvoyez l'email</a>.</p>
+
+          <!-- Demo mode only (npm run dev:mock) -->
+          <a href="/verify-email?token=demo" class="mt-4 flex items-center gap-2 rounded-xl border border-dashed border-amber/50 bg-amber-soft/60 px-3.5 py-2.5 text-[13px] text-amber hover:border-amber" data-done-demo hidden>
+            <span class="rounded-full bg-amber px-2 py-0.5 font-mono text-[10px] font-semibold uppercase tracking-[0.12em] text-white">Démo</span>
+            Simuler le clic sur le lien d'activation <i data-lucide="arrow-right" class="ml-auto size-4"></i>
+          </a>
+        </div>
+        <p class="mt-6 border-t border-line pt-5 text-sm text-body" data-login-hint>Déjà un compte&nbsp;? <a href="/login" class="font-medium text-brand hover:underline">Se connecter</a></p>
+      </div>
+      <p class="mx-auto w-full max-w-[400px] text-center text-xs text-muted">© MedLink DZ · <a href="/conditions" class="hover:text-text">Conditions</a> · <a href="/confidentialite" class="hover:text-text">Confidentialité</a></p>
+    </section>
+    <!-- @include auth-aside -->
+  </main>
+
+  <script type="module" src="/src/js/pages/register.js"></script>
+</body>
+</html>

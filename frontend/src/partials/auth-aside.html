@@ -1,0 +1,22 @@
+<!-- Auth photo panel: fills the right half at full window height (thin inset, large radius).
+     Photo: neighbourhood pharmacy by Markus Winkler, Unsplash License (free, no attribution required; credited anyway).
+     Stored locally in public/images (AVIF, 1400x2100): nothing is loaded from another site. To change it, replace that file. -->
+<aside class="relative hidden p-3 lg:block">
+  <div class="on-dark sticky top-3 h-[calc(100svh-24px)] overflow-hidden rounded-[28px] bg-ink text-white">
+    <img src="/images/auth-pharmacy.avif" width="1400" height="2100" alt="" class="absolute inset-0 size-full object-cover" fetchpriority="high" decoding="async">
+    <!-- Readability: dark gradient at the bottom where the caption sits -->
+    <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/40 to-transparent"></div>
+
+    <div class="relative flex h-full flex-col justify-end p-10 xl:p-12">
+      <p class="max-w-md font-display text-[2rem] font-medium leading-[1.12] tracking-tight text-white">Chaque boîte partagée, c'est un traitement qui continue.</p>
+      <div class="mt-8 grid max-w-md grid-cols-3 gap-px overflow-hidden rounded-2xl border border-white/15 bg-white/15 backdrop-blur-md">
+        <div class="bg-ink/55 p-4"><p class="font-display text-2xl font-semibold">69</p><p class="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55">Wilayas</p></div>
+        <div class="bg-ink/55 p-4"><p class="font-display text-2xl font-semibold">0 DA</p><p class="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55">Toujours</p></div>
+        <div class="bg-ink/55 p-4"><p class="font-display text-2xl font-semibold">100 %</p><p class="mt-1 font-mono text-[10px] uppercase tracking-[0.14em] text-white/55">Modéré</p></div>
+      </div>
+    </div>
+
+    <a href="https://unsplash.com/photos/white-and-red-cross-sign-pOu_UmkOG-0" target="_blank" rel="noopener noreferrer"
+       class="absolute right-4 top-4 rounded-full bg-ink/45 px-2.5 py-1 font-mono text-[10px] tracking-[0.08em] text-white/70 backdrop-blur transition hover:text-white">Photo · Markus Winkler / Unsplash</a>
+  </div>
+</aside>

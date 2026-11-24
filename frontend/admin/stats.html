@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <!-- @include head -->
+  <title>Statistiques — Console admin · MedLink DZ</title>
+  <meta name="robots" content="noindex" />
+</head>
+<body class="is-gated">
+  <!-- @include header -->
+
+  <main id="main" class="pb-28 pt-28 md:pt-36">
+    <div class="shell" data-gate-loader><div class="skeleton h-72 rounded-3xl"></div></div>
+
+    <div class="shell" data-gated>
+      <!-- @include admin-nav -->
+      <script>document.querySelector('[data-admin-title]').textContent = 'Statistiques';</script>
+
+      <section class="mt-8 grid gap-px overflow-hidden rounded-2xl border border-line bg-line sm:grid-cols-2 lg:grid-cols-4" data-kpis>
+        <div class="bg-surface p-6"><div class="skeleton h-4 w-24"></div><div class="skeleton mt-4 h-9 w-16"></div></div>
+        <div class="bg-surface p-6"><div class="skeleton h-4 w-24"></div><div class="skeleton mt-4 h-9 w-16"></div></div>
+        <div class="bg-surface p-6"><div class="skeleton h-4 w-24"></div><div class="skeleton mt-4 h-9 w-16"></div></div>
+        <div class="bg-surface p-6"><div class="skeleton h-4 w-24"></div><div class="skeleton mt-4 h-9 w-16"></div></div>
+      </section>
+
+      <section class="mt-12">
+        <div class="flex flex-col justify-between gap-4 sm:flex-row sm:items-end">
+          <div>
+            <h2 class="text-2xl font-semibold">Utilisateurs</h2>
+            <p class="mt-1 text-sm">État des comptes, coordonnées et actions d'administration.</p>
+          </div>
+          <label class="field-control h-10 sm:w-72">
+            <i data-lucide="search"></i><span class="sr-only">Filtrer les utilisateurs</span>
+            <input type="search" placeholder="Nom, email, téléphone…" data-filter>
+          </label>
+        </div>
+        <div class="card mt-5 overflow-hidden" data-users>
+          <div class="space-y-4 p-6"><div class="skeleton h-6 w-2/3"></div><div class="skeleton h-6 w-1/2"></div></div>
+        </div>
+      </section>
+    </div>
+  </main>
+
+  <script type="module" src="/src/js/pages/admin-stats.js"></script>
+</body>
+</html>
