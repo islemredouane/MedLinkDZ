@@ -10,6 +10,7 @@
     "build": "vite build",
     "build:demo": "vite build --mode mock",
     "build:og": "node scripts/generate-og.mjs",
+    "build:icons": "node scripts/generate-icons.mjs",
     "preview": "vite preview"
   },
   "devDependencies": {

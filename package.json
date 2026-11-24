@@ -10,7 +10,8 @@
     "demo": "npm --prefix frontend run dev:mock",
     "build": "npm --prefix frontend run build",
     "build:demo": "npm --prefix frontend run build:demo",
-    "build:og": "npm --prefix frontend run build:og"
+    "build:og": "npm --prefix frontend run build:og",
+    "build:icons": "npm --prefix frontend run build:icons"
   },
   "engines": {
     "node": "^20.19.0 || >=22.12.0"

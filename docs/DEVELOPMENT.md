@@ -99,3 +99,22 @@ npm run build:og          # toutes les cartes (nécessite Chrome ou Edge et une 
 
 Le texte de chaque carte est dans `frontend/scripts/generate-og.mjs`, le dessin dans `frontend/scripts/og/template.html`.
 L'adresse du site utilisée dans les balises est `https://medlink-dz.vercel.app` ; pour un autre domaine, définissez `VITE_SITE_URL` au build.
+
+## Application installable (PWA)
+
+Le site s'installe comme une application (Android, iPhone, ordinateur). Tout est dans `frontend/public/` :
+
+| Fichier | Rôle |
+|---|---|
+| `manifest.webmanifest` | nom, couleurs, icônes, raccourcis (Rechercher, Publier, Mes annonces), captures pour la fenêtre d'installation |
+| `sw.js` | service worker : pages réseau d'abord (toujours à jour), fichiers statiques en cache, jamais `/api/` |
+| `offline.html` | page affichée hors connexion quand la page demandée n'est pas en cache |
+| `icons/`, `apple-touch-icon.png` | icônes générées depuis le logo |
+
+```bash
+npm run build:icons       # régénère les icônes (Chrome ou Edge requis)
+```
+
+Le worker n'est enregistré que dans les builds de production (`npm run build` ou `build:demo`), jamais avec `npm run dev`, pour éviter les modules en cache périmés.
+Pour vider les caches de tous les visiteurs après une mise à jour importante, changez `VERSION` en haut de `frontend/public/sw.js`.
+Sur iPhone et iPad, il n'y a pas d'invite d'installation : le bouton « Installer l'app » explique les étapes (Partager, puis « Sur l'écran d'accueil »).

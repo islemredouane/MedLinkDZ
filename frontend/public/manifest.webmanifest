@@ -1,0 +1,31 @@
+{
+  "id": "/",
+  "name": "MedLink DZ",
+  "short_name": "MedLink",
+  "description": "Partage solidaire de médicaments en Algérie : offrez ou trouvez un médicament non utilisé près de chez vous.",
+  "lang": "fr",
+  "dir": "ltr",
+  "start_url": "/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "orientation": "any",
+  "theme_color": "#0A1612",
+  "background_color": "#0A1612",
+  "categories": ["health", "medical", "social"],
+  "icons": [
+    { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "/icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ],
+  "shortcuts": [
+    { "name": "Rechercher un médicament", "short_name": "Rechercher", "url": "/search?source=shortcut", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Publier une annonce", "short_name": "Publier", "url": "/publier?source=shortcut", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] },
+    { "name": "Mes annonces", "short_name": "Mes annonces", "url": "/profil/annonces?source=shortcut", "icons": [{ "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" }] }
+  ],
+  "screenshots": [
+    { "src": "/screenshots/phone-home.webp", "sizes": "780x1688", "type": "image/webp", "form_factor": "narrow", "label": "Accueil" },
+    { "src": "/screenshots/phone-search.webp", "sizes": "780x1688", "type": "image/webp", "form_factor": "narrow", "label": "Recherche de médicaments" },
+    { "src": "/screenshots/desktop-home.webp", "sizes": "1440x1000", "type": "image/webp", "form_factor": "wide", "label": "Accueil membre" },
+    { "src": "/screenshots/desktop-search.webp", "sizes": "1440x1000", "type": "image/webp", "form_factor": "wide", "label": "Recherche" }
+  ]
+}

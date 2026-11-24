@@ -4,6 +4,7 @@ import './scrollbar.js';
 import { getUser, logout, isAdmin, initials } from './auth.js';
 import { assetUrl, catalogApi } from './api.js';
 import { $, $$, esc } from './dom.js';
+import { toast } from './toast.js';
 
 function markActiveNav() {
   const path = location.pathname.replace(/\.html$/, '').replace(/\/index$/, '').replace(/\/$/, '') || '/';
@@ -120,6 +121,39 @@ if (live) {
       live.hidden = false;
     })
     .catch(() => { /* pill stays hidden */ });
+}
+
+/* ---------- Installable app (PWA) ---------- */
+// Offline support and installability. Production builds only: a worker in the dev server would cache stale modules.
+if ('serviceWorker' in navigator && import.meta.env.PROD) {
+  addEventListener('load', () => { navigator.serviceWorker.register('/sw.js').catch(() => { /* private mode, blocked storage */ }); });
+}
+
+// "Installer l'app" button (footer). Chrome, Edge and Android offer a real install prompt once the browser decides the app is
+// installable; iPhone and iPad have no such prompt, so the button explains the Share-sheet steps instead.
+{
+  const buttons = $$('[data-install]');
+  const standalone = matchMedia('(display-mode: standalone)').matches || navigator.standalone === true;
+  const isIOS = /iphone|ipad|ipod/i.test(navigator.userAgent) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+  let promptEvent = null;
+  const show = (on) => buttons.forEach((b) => { b.hidden = !on; });
+  if (buttons.length && !standalone) {
+    if (isIOS) show(true);
+    addEventListener('beforeinstallprompt', (e) => { e.preventDefault(); promptEvent = e; show(true); });
+    addEventListener('appinstalled', () => { promptEvent = null; show(false); });
+    buttons.forEach((b) => b.addEventListener('click', async () => {
+      if (promptEvent) {
+        // The event works once. Whatever the outcome (installed, dismissed, refused) the button hides;
+        // Chrome fires a new event later if it offers the prompt again, which brings the button back.
+        const event = promptEvent;
+        promptEvent = null;
+        show(false);
+        try { await event.prompt(); await event.userChoice; } catch { /* refused or dismissed */ }
+      } else if (isIOS) {
+        toast('Touchez le bouton Partager de Safari, puis « Sur l’écran d’accueil ».', 'info', 9000);
+      }
+    }));
+  }
 }
 
 // Demo mode only (npm run dev:mock); removed from production builds.

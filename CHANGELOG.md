@@ -14,6 +14,7 @@ Refonte complète du site et sécurisation de l'API.
 - Console admin : détails de chaque annonce, consultation sécurisée des ordonnances, signalement des médicaments « sur ordonnance ».
 - **Version portfolio** : une API fictive tourne dans le navigateur (aucun serveur), avec bandeau « Projet de démonstration », fenêtre d'explication, numéros factices, `noindex` et données réinitialisables. `npm run demo` en local, `npm run build:demo` pour la mise en ligne.
 - **Aperçus de liens** (WhatsApp, Facebook, LinkedIn, X…) : cartes 1200×630 aux couleurs du site (accueil, recherche, annonce, FAQ) et balises Open Graph / Twitter sur chaque page. Les cartes se régénèrent avec `npm run build:og`.
+- **Application installable (PWA)** : manifeste, icônes (dont icône « maskable » Android et icône iPhone), service worker, page hors connexion, pages visitées disponibles sans réseau et bouton « Installer l'app ». Les icônes se régénèrent avec `npm run build:icons`.
 - Champs de recherche de l'accueil en pilules sur téléphone, liste des wilayas qui s'ouvre vers le haut quand il n'y a pas de place, barre de défilement toujours visible (plus courte sur grand écran).
 
 ### API

@@ -131,6 +131,10 @@ Accueil personnalisé, suivi du statut de chaque annonce (et de son ordonnance),
 Inscription en deux étapes, vérification par email, mot de passe oublié, sessions JWT.
 <sub>`/register` · `/login` · `/verify-email`</sub>
 
+### 📲 Application installable
+S'installe sur téléphone, tablette et ordinateur (PWA) comme une vraie application ; les pages déjà ouvertes restent disponibles hors connexion.
+<sub>`manifest.webmanifest` · `sw.js` · bouton « Installer l'app » en bas de page</sub>
+
 </td>
 </tr>
 </table>
@@ -257,7 +261,7 @@ MedLinkDZ/
 │   │       ├── data/        les 69 wilayas
 │   │       └── pages/       un script par page
 │   ├── mock/                API fictive qui tourne dans le navigateur (démo)
-│   ├── public/              favicon, photo de connexion, cartes d'aperçu de liens (og/)
+│   ├── public/              favicon, icônes de l'app, manifest, service worker, page hors connexion, photo, cartes d'aperçu (og/)
 │   ├── scripts/             génération des cartes d'aperçu (Chrome headless)
 │   ├── vite.config.js       pages, partials, URLs propres, mode démo
 │   └── vercel.json
