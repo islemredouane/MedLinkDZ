@@ -1,0 +1,20 @@
+/* Shared look of the README images (banner, stats strip, device preview). Rendered by scripts/generate-readme-art.mjs. */
+:root { --ink: #0A1612; --ink-2: #0E1F18; --brand: #13805C; --mint: #86D6B3; --signal: #D4512F; }
+* { box-sizing: border-box; margin: 0; }
+html, body { background: transparent; }
+body { position: relative; font-family: Inter, system-ui, -apple-system, 'Segoe UI', sans-serif; color: #fff; -webkit-font-smoothing: antialiased; }
+
+/* The image itself: a rounded card, transparent outside the corners */
+.frame { position: relative; overflow: hidden; border-radius: 34px; background: var(--ink); box-shadow: inset 0 0 0 1.5px rgba(255, 255, 255, .13); }
+.glow { position: absolute; inset: 0; background:
+  radial-gradient(900px 560px at 84% 6%, rgba(19, 128, 92, .5), transparent 62%),
+  radial-gradient(760px 520px at 4% 112%, rgba(134, 214, 179, .15), transparent 60%), var(--ink); }
+.dots { position: absolute; inset: 0; background-image: radial-gradient(rgba(255, 255, 255, .17) 1.4px, transparent 1.7px); background-size: 30px 30px;
+  -webkit-mask-image: radial-gradient(ellipse 80% 90% at 50% 50%, #000 25%, transparent 88%); mask-image: radial-gradient(ellipse 80% 90% at 50% 50%, #000 25%, transparent 88%); }
+.top-line { position: absolute; top: 0; left: 12%; right: 12%; height: 1.5px; background: linear-gradient(90deg, transparent, rgba(134, 214, 179, .55), transparent); }
+
+.mono { font-family: 'JetBrains Mono', ui-monospace, Consolas, monospace; }
+.display { font-family: 'Space Grotesk', Inter, sans-serif; }
+.serif { font-family: 'Instrument Serif', Georgia, serif; font-style: italic; font-weight: 400; }
+.mint { color: var(--mint); }
+.live-dot { display: inline-block; width: 11px; height: 11px; border-radius: 50%; background: var(--mint); box-shadow: 0 0 0 5px rgba(134, 214, 179, .18); }

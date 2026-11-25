@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<title>MedLink DZ — README device preview (1760×1018)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+  html, body { width: 1760px; height: 1018px; }
+  .frame { width: 1760px; height: 1018px; border-radius: 40px; }
+
+  /* Browser window (desktop home) */
+  .win { position: absolute; left: 68px; top: 112px; width: 1240px; height: 780px; border-radius: 24px; overflow: hidden; background: var(--ink);
+    box-shadow: 0 0 0 1.5px rgba(255, 255, 255, .14), 0 70px 130px -40px rgba(0, 0, 0, .9); }
+  .bar { height: 62px; display: flex; align-items: center; gap: 22px; padding: 0 26px; background: linear-gradient(#11231c, #0d1a15); border-bottom: 1px solid rgba(255, 255, 255, .08); }
+  .lights i { display: inline-block; width: 15px; height: 15px; border-radius: 50%; margin-right: 10px; }
+  .lights i:nth-child(1) { background: #FF5F57; } .lights i:nth-child(2) { background: #FEBC2E; } .lights i:nth-child(3) { background: #28C840; }
+  .url { height: 38px; width: 560px; padding: 0 16px; display: flex; align-items: center; gap: 12px; border-radius: 13px; background: #07110d; border: 1px solid rgba(255, 255, 255, .09); font: 500 17px 'JetBrains Mono'; color: #fff; }
+  .url .scheme { color: rgba(255, 255, 255, .42); }
+  .url svg { width: 18px; height: 18px; flex: none; }
+  .view { position: absolute; left: 0; right: 0; top: 62px; bottom: 0; overflow: hidden; background: var(--ink); }
+  .view img { display: block; width: 100%; }
+
+  /* Phone (mobile home) */
+  .phone { position: absolute; left: 1288px; top: 46px; width: 410px; height: 926px; padding: 13px; border-radius: 66px; background: #0b1210;
+    box-shadow: 0 0 0 2px #27312d, 0 0 0 5px #050807, 0 70px 130px -30px rgba(0, 0, 0, .95), 0 0 90px rgba(19, 128, 92, .28); }
+  .screen { position: relative; width: 384px; height: 900px; border-radius: 54px; overflow: hidden; background: #0A1612; }
+  .island { position: absolute; z-index: 4; top: 13px; left: 50%; width: 118px; height: 34px; margin-left: -59px; border-radius: 20px; background: #000; }
+  .status { position: absolute; z-index: 3; top: 0; left: 0; right: 0; height: 56px; padding: 8px 36px 0 40px; display: flex; align-items: center; justify-content: space-between; font: 600 17px Inter; color: #fff; }
+  .status .r { display: flex; align-items: center; gap: 8px; font-weight: 600; }
+  .batt { position: relative; width: 28px; height: 14px; border-radius: 4.5px; border: 1.5px solid rgba(255, 255, 255, .55); }
+  .batt::before { content: ""; position: absolute; inset: 1.5px; border-radius: 2.5px; background: #fff; }
+  .batt::after { content: ""; position: absolute; right: -4.5px; top: 3.5px; width: 2px; height: 5px; border-radius: 0 2px 2px 0; background: rgba(255, 255, 255, .55); }
+  .app { position: absolute; left: 0; top: 56px; width: 384px; display: block; }
+  .home { position: absolute; z-index: 4; bottom: 9px; left: 50%; width: 140px; height: 5px; margin-left: -70px; border-radius: 3px; background: rgba(255, 255, 255, .88); }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="glow"></div><div class="dots"></div>
+
+  <div class="win">
+    <div class="bar">
+      <div class="lights"><i></i><i></i><i></i></div>
+      <div class="url">
+        <svg viewBox="0 0 24 24" fill="none" stroke="#28C840" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9.5" fill="rgba(40,200,64,.18)"/><path d="m8 12.5 2.8 2.8L16.5 9.5"/></svg>
+        <span><span class="scheme">https://</span>medlink-dz.vercel.app</span>
+      </div>
+    </div>
+    <div class="view"><img src="desktop.png" alt=""></div>
+  </div>
+
+  <div class="phone">
+    <div class="screen">
+      <div class="island"></div>
+      <div class="status"><span>9:41</span><span class="r"><span>5G</span><span class="batt"></span></span></div>
+      <img class="app" src="mobile.png" alt="">
+      <div class="home"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+  window.__ready = (async () => {
+    const link = document.querySelector('link[href*=fonts]'); if (!link.sheet) await new Promise((r) => { link.onload = link.onerror = r; });
+    const F = ['500 17px "JetBrains Mono"', '600 17px Inter'];
+    await Promise.all(F.map((f) => document.fonts.load(f, 'https://9:415G.').catch(() => [])));
+    await document.fonts.ready;
+    await Promise.all([...document.images].map((i) => i.complete ? 0 : new Promise((r) => { i.onload = i.onerror = r; })));
+    const missing = F.filter((f) => !document.fonts.check(f, 'https://9:41'));
+    return { ok: missing.length === 0 && [...document.images].every((i) => i.naturalWidth > 0), missing };
+  })();
+</script>
+</body>
+</html>

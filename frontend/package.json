@@ -11,6 +11,7 @@
     "build:demo": "vite build --mode mock",
     "build:og": "node scripts/generate-og.mjs",
     "build:icons": "node scripts/generate-icons.mjs",
+    "build:readme": "node scripts/generate-readme-art.mjs",
     "preview": "vite preview"
   },
   "devDependencies": {

@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>MedLink DZ — README stats strip (1760×399)</title>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=JetBrains+Mono:wght@500;600&family=Space+Grotesk:wght@500;600;700&display=swap">
+<link rel="stylesheet" href="base.css">
+<style>
+  html, body { width: 1760px; height: 399px; }
+  .frame { width: 1760px; height: 399px; }
+  h2 { position: absolute; left: 54px; top: 38px; font: 600 40px 'Space Grotesk'; letter-spacing: -.02em; }
+  h2 span { color: var(--mint); }
+  .pill { position: absolute; right: 54px; top: 34px; height: 50px; padding: 0 28px; display: flex; align-items: center; gap: 14px; border-radius: 999px; border: 1.5px solid rgba(255, 255, 255, .18); background: rgba(10, 22, 18, .6); font: 600 17px 'JetBrains Mono'; letter-spacing: .14em; text-transform: uppercase; color: rgba(255, 255, 255, .85); }
+  .pill .live-dot { width: 10px; height: 10px; box-shadow: none; }
+  .tiles { position: absolute; left: 54px; right: 54px; top: 118px; height: 206px; display: grid; grid-template-columns: repeat(6, 1fr); gap: 20px; }
+  .tile { padding: 28px 24px; border-radius: 30px; border: 1.5px solid rgba(255, 255, 255, .12); background: linear-gradient(180deg, rgba(255, 255, 255, .06), rgba(255, 255, 255, .025)); }
+  .tile.hot { border-color: rgba(19, 128, 92, .9); background: linear-gradient(180deg, rgba(19, 128, 92, .32), rgba(19, 128, 92, .1)); box-shadow: 0 0 46px -12px rgba(19, 128, 92, .75); }
+  .num { font: 700 70px/1 'Space Grotesk'; letter-spacing: -.03em; }
+  .tile.hot .num { color: #BFEBD7; }
+  .lab { margin-top: 18px; font: 600 21px 'Inter'; letter-spacing: -.01em; white-space: nowrap; }
+  .sub { margin-top: 8px; font: 500 15.5px/1.35 'JetBrains Mono'; letter-spacing: .02em; color: rgba(134, 214, 179, .72); }
+</style>
+</head>
+<body>
+<div class="frame">
+  <div class="glow"></div><div class="dots"></div>
+  <h2>MedLink DZ <span>at a glance</span></h2>
+  <div class="pill"><span class="live-dot"></span><span>Portfolio demo · 2026 · PWA</span></div>
+  <div class="tiles" id="tiles"></div>
+</div>
+
+<script src="data.js"></script>
+<script>
+  const T = [
+    { n: DATA.wilayas, l: 'Wilayas covered', s: 'All of Algeria', hot: true },
+    { n: DATA.pages, l: 'HTML pages', s: 'No framework' },
+    { n: DATA.endpoints, l: 'REST endpoints', s: DATA.groups + ' groups · JWT' },
+    { n: DATA.tables, l: 'PostgreSQL tables', s: 'Private prescriptions' },
+    { n: DATA.roles, l: 'User roles', s: 'Role-based access' },
+    { n: '0', l: 'JS framework', s: 'Tailwind v4 + Vite 8' },
+  ];
+  document.getElementById('tiles').innerHTML = T.map((t) => `<div class="tile${t.hot ? ' hot' : ''}"><div class="num">${t.n}</div><div class="lab">${t.l}</div><div class="sub">${t.s}</div></div>`).join('');
+  window.__ready = (async () => {
+    const link = document.querySelector('link[href*=fonts]'); if (!link.sheet) await new Promise((r) => { link.onload = link.onerror = r; });
+    const F = ['700 70px "Space Grotesk"', '600 40px "Space Grotesk"', '600 23px Inter', '500 15px "JetBrains Mono"'];
+    await Promise.all(F.map((f) => document.fonts.load(f, 'Aàéèêç0123 ’').catch(() => [])));
+    await document.fonts.ready;
+    const missing = F.filter((f) => !document.fonts.check(f, 'Aàéèêç0123')); return { ok: missing.length === 0, missing };
+  })();
+</script>
+</body>
+</html>
