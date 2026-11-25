@@ -482,14 +482,14 @@ MedLinkDZ/
 
 ## ✦ Team & contributors
 
-MedLink DZ started as a team project. The table lists everyone who contributed to the repository; the focus areas come from the commit history.
+MedLink DZ started as a team project. The **role** column follows the team's original task distribution; the last column is what each person's commits show in the repository history.
 
-| Contributor | GitHub | Main areas |
-|---|---|---|
-| **Redouane Mohamed Islem** | [@islemredouane](https://github.com/islemredouane) | Front end of the first version (pages, components, UI). **Version 2.0:** new framework-free front end and design system, installable PWA, link previews, in-browser demo, secured API (private prescriptions, access rules) |
-| **Youcef Bouderbala** | [@yyb-21](https://github.com/yyb-21) | First contributor to the repository (April 2026): front-end pages and components, and the API's controllers and services |
-| **Abdelhak Boukhanouf** | [@4bdo-bk](https://github.com/4bdo-bk) | Front-end pages, plus API controllers, services and the database schema |
-| **Zakaria Tetbirt** | [@Zakaria-tet-cs](https://github.com/Zakaria-tet-cs) | Early contribution to the repository (May 2026) |
+| Contributor | GitHub | Role | In the repository |
+|---|---|---|---|
+| **Redouane Mohamed Islem** | [@islemredouane](https://github.com/islemredouane) | Front-end development and project coordination | Most of the front-end pages and components (publishing flow, profile page, error screen, search cards), helper utilities and READMEs. **Author of version 2.0:** new framework-free front end and design system, installable PWA, link previews, in-browser demo, secured API (private prescriptions, access rules) |
+| **Abdelhak Boukhanouf** | [@4bdo-bk](https://github.com/4bdo-bk) | Back-end development, REST API and security | Admin dashboard with statistics, listing search and publishing with pictures, API controllers and services, updates to the database schema and the class diagram, bug fixes |
+| **Youssouf Bouderbala** | [@yyb-21](https://github.com/yyb-21) | Back-end development, REST API and security | First contributor (April 2026): initial project structure, user accounts (controller and service), authentication helpers and middlewares, admin actions (deleting users and listings), merges and README updates |
+| **Zakariya Tetbirt** | [@Zakaria-tet-cs](https://github.com/Zakaria-tet-cs) | Database design and management | Early commit to the repository (May 2026) |
 
 Full history: [contributors graph](https://github.com/islemredouane/MedLinkDZ/graphs/contributors) · changes by version: [CHANGELOG.md](CHANGELOG.md)
 
