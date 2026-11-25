@@ -33,7 +33,7 @@ A solidarity platform where people share medicines they no longer need with peop
 [**Security**](#-security--privacy) &nbsp;✦&nbsp;
 [**Decisions**](#-technical-decisions) &nbsp;✦&nbsp;
 [**Database & API**](#-database--api) &nbsp;✦&nbsp;
-[**Author**](#-author--context)
+[**Team**](#-team--contributors)
 
 </div>
 
@@ -481,13 +481,18 @@ MedLinkDZ/
 
 ---
 
-## ✦ Author & context
+## ✦ Team & contributors
 
-| | |
-|---|---|
-| **Author of version 2.0** | **Redouane Mohamed Islem**: new front end and design system, installable PWA, link previews, secured API (private prescriptions, access rules), in-browser demo |
-| **Project history** | The first version was built by a team: see the [contributors](https://github.com/islemredouane/MedLinkDZ/graphs/contributors) |
-| **Changes** | [CHANGELOG.md](CHANGELOG.md) |
+MedLink DZ started as a team project. The table lists everyone who contributed to the repository; the focus areas come from the commit history.
+
+| Contributor | GitHub | Main areas |
+|---|---|---|
+| **Redouane Mohamed Islem** | [@islemredouane](https://github.com/islemredouane) | Front end of the first version (pages, components, UI). **Version 2.0:** new framework-free front end and design system, installable PWA, link previews, in-browser demo, secured API (private prescriptions, access rules) |
+| **Youcef Bouderbala** | [@yyb-21](https://github.com/yyb-21) | First contributor to the repository (April 2026): front-end pages and components, and the API's controllers and services |
+| **Abdelhak Boukhanouf** | [@4bdo-bk](https://github.com/4bdo-bk) | Front-end pages, plus API controllers, services and the database schema |
+| **Zakaria Tetbirt** | [@Zakaria-tet-cs](https://github.com/Zakaria-tet-cs) | Early contribution to the repository (May 2026) |
+
+Full history: [contributors graph](https://github.com/islemredouane/MedLinkDZ/graphs/contributors) · changes by version: [CHANGELOG.md](CHANGELOG.md)
 
 <br>
 
