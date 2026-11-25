@@ -33,7 +33,6 @@ A solidarity platform where people share medicines they no longer need with peop
 [**Security**](#-security--privacy) &nbsp;✦&nbsp;
 [**Decisions**](#-technical-decisions) &nbsp;✦&nbsp;
 [**Database & API**](#-database--api) &nbsp;✦&nbsp;
-[**Deploy**](#-deployment) &nbsp;✦&nbsp;
 [**Author**](#-author--context)
 
 </div>
@@ -477,41 +476,6 @@ MedLinkDZ/
 ```
 
 </details>
-
-<br>
-
----
-
-## ✦ Deployment
-
-> [!CAUTION]
-> **Never commit a real `.env` file or any credential.** `.gitignore` blocks every `.env*` file except `.env.example`. Put secrets only in your host's environment-variable settings (Vercel or Render).
-
-### Site on Vercel (the live demo)
-
-1. Import the repository at [vercel.com/new](https://vercel.com/new).
-2. Set **Root Directory** to `frontend` and the preset to **Vite**.
-3. Leave the build command alone: [`frontend/vercel.json`](frontend/vercel.json) runs `npm run build:demo` (the in-browser demo) and also holds the clean-URL rewrites.
-4. In **Settings → General**, choose **Node.js 22.x** (Vite 8 needs 20.19 or newer). The demo needs no environment variable.
-
-### API on Render + PostgreSQL on Neon (optional)
-
-1. On Neon, create a database and run `backend/database/schema.sql` in the SQL editor.
-2. On Render, create a **Web Service** from the same repository: **Root Directory** `backend`, **Build** `npm install`, **Start** `npm start`.
-3. Add the environment variables below, then deploy.
-
-| Key | Where | Purpose |
-|---|---|---|
-| `DATABASE_URL` | API | Neon connection string (otherwise `DB_*` for a local PostgreSQL) |
-| `JWT_SECRET` | API | Signs the sessions: a long random string |
-| `FRONTEND_URL` | API | Site address used in the emails' links |
-| `BREVO_API_KEY` · `SENDER_EMAIL` | API | Email sending (optional: without them the links are printed in the server log) |
-| `PORT` | API | Listening port (provided by Render) |
-| `VITE_API_URL` | Site build | Address of the API when the site is built with `npm run build` |
-| `VITE_SITE_URL` | Site build | Public address used in the social-preview tags (default `https://medlink-dz.vercel.app`) |
-
-> [!TIP]
-> To connect the site to the real API instead of the demo, change `buildCommand` to `npm run build` in `frontend/vercel.json` and set `VITE_API_URL`. Running everything on your own machine is covered in [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
 
 <br>
 
