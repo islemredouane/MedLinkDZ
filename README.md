@@ -40,7 +40,7 @@ A solidarity platform where people share medicines they no longer need with peop
 <br>
 
 > [!IMPORTANT]
-> **This is a portfolio demo.** The live site runs entirely in your browser with fictional data: no server, no real listings, fake phone numbers (`00 00 00 00 NN`). A "Projet de démonstration" bar says so on every page, and search engines are kept out (`noindex`). The real back end (API + PostgreSQL) lives in [`backend/`](backend) and is documented in [docs/API.md](docs/API.md) and [docs/DEVELOPMENT.md](docs/DEVELOPMENT.md).
+> **This is a portfolio demo.** The live site runs entirely in your browser with fictional data: no server, no real listings, fake phone numbers (`00 00 00 00 NN`). A "Projet de démonstration" bar says so on every page, and search engines are kept out (`noindex`). The real back end (API + PostgreSQL) lives in [`backend/`](backend) and is documented in [docs/API.md](docs/API.md).
 
 <img src=".github/assets/stats.webp" alt="MedLink DZ at a glance: 69 wilayas, 19 HTML pages, 29 REST endpoints, 7 PostgreSQL tables, 3 user roles, 0 JavaScript frameworks" width="100%" />
 
@@ -438,7 +438,6 @@ MedLinkDZ/
 ├── CHANGELOG.md             version history
 ├── docs/
 │   ├── API.md               every endpoint, with examples
-│   ├── DEVELOPMENT.md       running the project locally (for contributors)
 │   └── class-diagram.pdf    class diagram
 │
 ├── backend/                 REST API: Node.js · Express

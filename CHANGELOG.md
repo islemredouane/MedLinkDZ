@@ -27,4 +27,4 @@ Complete redesign of the site and hardening of the API.
 ### Project
 - New layout: `backend/src`, `backend/database`, `docs/`, scripts at the root, `.env.example`.
 - Removal of unused files and of the `nodemailer` dependency.
-- README rewritten in English with a rendered banner, stats strip and device preview (`npm run build:readme`); API documentation brought up to date; changelog and development guide translated to English.
+- README rewritten in English with a rendered banner, stats strip and device preview (`npm run build:readme`); API documentation brought up to date; changelog translated to English.
